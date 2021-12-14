@@ -1,0 +1,5 @@
+x x x x x Capteur_Temp_defectueux 1 1 2021 ⛔
+ll l l l l Temperature 1 1 2021 🔵
+s s s s s Capteur_Temp_defectueux 1 4 2021 ⛔
+a a a a a Mouvement 1 1 2021 🆕
+zz new new zz new Temperature 6 1 2021 🔵
