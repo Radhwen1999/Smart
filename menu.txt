@@ -1,1 +1,4 @@
 33 4 croissant ojja chorba 
+11 1 lait_et_croissant escalope_et_salade repas_froid 
+22 2 lait_et_cake lasagne_et_jus repas_froid 
+44 4 yaourt_et_cake couscous_et_salde repas_froid 
