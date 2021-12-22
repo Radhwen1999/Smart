@@ -3328,11 +3328,20 @@ on_buttonlogin_clicked                 (GtkWidget       *objet,
                                         gpointer         user_data)
 {
 GtkWidget *window1;
-	GtkWidget *window2;
+
+	GtkWidget *window2,*mdp;
+
 	window1 = lookup_widget(objet,"windowmain");
+
 	window2 = create_windowlogin ();
+
   	gtk_widget_show (window2);
+
 	gtk_widget_destroy(window1);
+
+	mdp = lookup_widget (window2, "entrypasswordlogin");
+
+	gtk_entry_set_visibility(mdp,FALSE);
 }
 
 
@@ -3385,11 +3394,11 @@ passlock=lookup_widget(objet,"checkbuttonpassword");
 pass=lookup_widget(objet,"entrypasswordlogin");
 if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(passlock)))
 {
-gtk_entry_set_visibility(pass,FALSE);
+gtk_entry_set_visibility(pass,TRUE);
 }
 else
 {
-gtk_entry_set_visibility(pass,TRUE);
+gtk_entry_set_visibility(pass,FALSE);
 }
 }
 
@@ -3964,11 +3973,17 @@ on_buttondeconnexion_clicked           (GtkButton       *button,
                                         gpointer         user_data)
 {
 	GtkWidget *winadd;
-    	GtkWidget *winmen;
+    	GtkWidget *winmen,*mdp;
     	winmen=lookup_widget(button,"acceuil");
     	winadd=create_windowlogin();
     	gtk_widget_show(winadd);
     	gtk_widget_destroy(winmen);
+
+
+
+	mdp = lookup_widget (winadd, "entrypasswordlogin");
+
+	gtk_entry_set_visibility(mdp,FALSE);
 }
 
 
