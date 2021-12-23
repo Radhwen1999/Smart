@@ -3918,29 +3918,30 @@ create_gestion_des_utilisateurs (void)
   GtkWidget *fixed19;
   GtkWidget *esId;
   GtkWidget *image149;
-  GtkWidget *ajouterUtilisateur;
-  GtkWidget *alignment51;
-  GtkWidget *hbox49;
-  GtkWidget *image57;
-  GtkWidget *label151;
-  GtkWidget *label206;
-  GtkWidget *label207;
   GtkWidget *buttonuseracceuil;
   GtkWidget *alignment71;
   GtkWidget *hbox69;
   GtkWidget *image92;
   GtkWidget *label216;
-  GtkWidget *scrolledwindow4;
-  GtkWidget *treeview1;
-  GtkWidget *actualiser;
-  GtkWidget *image80;
+  GtkWidget *quit_gestion_des_utilisateurs;
+  GtkWidget *image139;
   GtkWidget *rechercherUser;
   GtkWidget *alignment52;
   GtkWidget *hbox50;
   GtkWidget *image58;
   GtkWidget *label152;
-  GtkWidget *quit_gestion_des_utilisateurs;
-  GtkWidget *image139;
+  GtkWidget *ajouterUtilisateur;
+  GtkWidget *alignment108;
+  GtkWidget *hbox106;
+  GtkWidget *image194;
+  GtkWidget *label279;
+  GtkWidget *help;
+  GtkWidget *alignment109;
+  GtkWidget *hbox107;
+  GtkWidget *image195;
+  GtkWidget *label280;
+  GtkWidget *scrolledwindow11;
+  GtkWidget *treeview1;
 
   gestion_des_utilisateurs = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_widget_set_size_request (gestion_des_utilisateurs, 1200, 700);
@@ -3955,7 +3956,7 @@ create_gestion_des_utilisateurs (void)
 
   esId = gtk_entry_new ();
   gtk_widget_show (esId);
-  gtk_fixed_put (GTK_FIXED (fixed19), esId, 104, 112);
+  gtk_fixed_put (GTK_FIXED (fixed19), esId, 152, 152);
   gtk_widget_set_size_request (esId, 160, 32);
   gtk_entry_set_invisible_char (GTK_ENTRY (esId), 8226);
 
@@ -3963,37 +3964,6 @@ create_gestion_des_utilisateurs (void)
   gtk_widget_show (image149);
   gtk_fixed_put (GTK_FIXED (fixed19), image149, 0, 0);
   gtk_widget_set_size_request (image149, 1200, 700);
-
-  ajouterUtilisateur = gtk_button_new ();
-  gtk_widget_show (ajouterUtilisateur);
-  gtk_fixed_put (GTK_FIXED (fixed19), ajouterUtilisateur, 976, 232);
-  gtk_widget_set_size_request (ajouterUtilisateur, 120, 35);
-
-  alignment51 = gtk_alignment_new (0.5, 0.5, 0, 0);
-  gtk_widget_show (alignment51);
-  gtk_container_add (GTK_CONTAINER (ajouterUtilisateur), alignment51);
-
-  hbox49 = gtk_hbox_new (FALSE, 2);
-  gtk_widget_show (hbox49);
-  gtk_container_add (GTK_CONTAINER (alignment51), hbox49);
-
-  image57 = gtk_image_new_from_stock ("gtk-add", GTK_ICON_SIZE_BUTTON);
-  gtk_widget_show (image57);
-  gtk_box_pack_start (GTK_BOX (hbox49), image57, FALSE, FALSE, 0);
-
-  label151 = gtk_label_new_with_mnemonic (_("Ajouter"));
-  gtk_widget_show (label151);
-  gtk_box_pack_start (GTK_BOX (hbox49), label151, FALSE, FALSE, 0);
-
-  label206 = gtk_label_new (_("\360\237\232\253 Faire un double\n click pour retirer\n     un utilisateur"));
-  gtk_widget_show (label206);
-  gtk_fixed_put (GTK_FIXED (fixed19), label206, 976, 376);
-  gtk_widget_set_size_request (label206, 136, 56);
-
-  label207 = gtk_label_new (_("\360\237\223\235 click droit pour\n           modifier\n       un utilisateur"));
-  gtk_widget_show (label207);
-  gtk_fixed_put (GTK_FIXED (fixed19), label207, 976, 296);
-  gtk_widget_set_size_request (label207, 136, 56);
 
   buttonuseracceuil = gtk_button_new ();
   gtk_widget_show (buttonuseracceuil);
@@ -4016,28 +3986,18 @@ create_gestion_des_utilisateurs (void)
   gtk_widget_show (label216);
   gtk_box_pack_start (GTK_BOX (hbox69), label216, FALSE, FALSE, 0);
 
-  scrolledwindow4 = gtk_scrolled_window_new (NULL, NULL);
-  gtk_widget_show (scrolledwindow4);
-  gtk_fixed_put (GTK_FIXED (fixed19), scrolledwindow4, 50, 170);
-  gtk_widget_set_size_request (scrolledwindow4, 830, 470);
+  quit_gestion_des_utilisateurs = gtk_button_new ();
+  gtk_widget_show (quit_gestion_des_utilisateurs);
+  gtk_fixed_put (GTK_FIXED (fixed19), quit_gestion_des_utilisateurs, 1169, 1);
+  gtk_widget_set_size_request (quit_gestion_des_utilisateurs, 30, 30);
 
-  treeview1 = gtk_tree_view_new ();
-  gtk_widget_show (treeview1);
-  gtk_container_add (GTK_CONTAINER (scrolledwindow4), treeview1);
-  gtk_widget_set_size_request (treeview1, 830, 470);
-
-  actualiser = gtk_button_new ();
-  gtk_widget_show (actualiser);
-  gtk_fixed_put (GTK_FIXED (fixed19), actualiser, 904, 120);
-  gtk_widget_set_size_request (actualiser, 40, 40);
-
-  image80 = gtk_image_new_from_stock ("gtk-refresh", GTK_ICON_SIZE_BUTTON);
-  gtk_widget_show (image80);
-  gtk_container_add (GTK_CONTAINER (actualiser), image80);
+  image139 = gtk_image_new_from_stock ("gtk-cancel", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image139);
+  gtk_container_add (GTK_CONTAINER (quit_gestion_des_utilisateurs), image139);
 
   rechercherUser = gtk_button_new ();
   gtk_widget_show (rechercherUser);
-  gtk_fixed_put (GTK_FIXED (fixed19), rechercherUser, 280, 112);
+  gtk_fixed_put (GTK_FIXED (fixed19), rechercherUser, 320, 152);
   gtk_widget_set_size_request (rechercherUser, 104, 32);
 
   alignment52 = gtk_alignment_new (0.5, 0.5, 0, 0);
@@ -4056,20 +4016,72 @@ create_gestion_des_utilisateurs (void)
   gtk_widget_show (label152);
   gtk_box_pack_start (GTK_BOX (hbox50), label152, FALSE, FALSE, 0);
 
-  quit_gestion_des_utilisateurs = gtk_button_new ();
-  gtk_widget_show (quit_gestion_des_utilisateurs);
-  gtk_fixed_put (GTK_FIXED (fixed19), quit_gestion_des_utilisateurs, 1169, 1);
-  gtk_widget_set_size_request (quit_gestion_des_utilisateurs, 30, 30);
+  ajouterUtilisateur = gtk_button_new ();
+  gtk_widget_show (ajouterUtilisateur);
+  gtk_fixed_put (GTK_FIXED (fixed19), ajouterUtilisateur, 480, 624);
+  gtk_widget_set_size_request (ajouterUtilisateur, 104, 40);
 
-  image139 = gtk_image_new_from_stock ("gtk-cancel", GTK_ICON_SIZE_BUTTON);
-  gtk_widget_show (image139);
-  gtk_container_add (GTK_CONTAINER (quit_gestion_des_utilisateurs), image139);
+  alignment108 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment108);
+  gtk_container_add (GTK_CONTAINER (ajouterUtilisateur), alignment108);
 
+  hbox106 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox106);
+  gtk_container_add (GTK_CONTAINER (alignment108), hbox106);
+
+  image194 = gtk_image_new_from_stock ("gtk-add", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image194);
+  gtk_box_pack_start (GTK_BOX (hbox106), image194, FALSE, FALSE, 0);
+
+  label279 = gtk_label_new_with_mnemonic (_("Ajouter"));
+  gtk_widget_show (label279);
+  gtk_box_pack_start (GTK_BOX (hbox106), label279, FALSE, FALSE, 0);
+
+  help = gtk_button_new ();
+  gtk_widget_show (help);
+  gtk_fixed_put (GTK_FIXED (fixed19), help, 624, 624);
+  gtk_widget_set_size_request (help, 104, 40);
+
+  alignment109 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment109);
+  gtk_container_add (GTK_CONTAINER (help), alignment109);
+
+  hbox107 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox107);
+  gtk_container_add (GTK_CONTAINER (alignment109), hbox107);
+
+  image195 = gtk_image_new_from_stock ("gtk-help", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image195);
+  gtk_box_pack_start (GTK_BOX (hbox107), image195, FALSE, FALSE, 0);
+
+  label280 = gtk_label_new_with_mnemonic (_("Aide"));
+  gtk_widget_show (label280);
+  gtk_box_pack_start (GTK_BOX (hbox107), label280, FALSE, FALSE, 0);
+
+  scrolledwindow11 = gtk_scrolled_window_new (NULL,NULL);
+  gtk_widget_show (scrolledwindow11);
+  gtk_fixed_put (GTK_FIXED (fixed19), scrolledwindow11, 152, 192);
+  gtk_widget_set_size_request (scrolledwindow11, 896, 408);
+
+  treeview1 = gtk_tree_view_new ();
+  gtk_widget_show (treeview1);
+  gtk_container_add (GTK_CONTAINER (scrolledwindow11), treeview1);
+  gtk_widget_set_size_request (treeview1, 896, 408);
+
+  g_signal_connect ((gpointer) buttonuseracceuil, "clicked",
+                    G_CALLBACK (on_buttonuseracceuil_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) quit_gestion_des_utilisateurs, "clicked",
+                    G_CALLBACK (on_quit_gestion_des_utilisateurs_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) rechercherUser, "clicked",
+                    G_CALLBACK (on_rechercherUser_clicked),
+                    NULL);
   g_signal_connect ((gpointer) ajouterUtilisateur, "clicked",
                     G_CALLBACK (on_ajouterUtilisateur_clicked),
                     NULL);
-  g_signal_connect ((gpointer) buttonuseracceuil, "clicked",
-                    G_CALLBACK (on_buttonuseracceuil_clicked),
+  g_signal_connect ((gpointer) help, "clicked",
+                    G_CALLBACK (on_help_clicked),
                     NULL);
   g_signal_connect ((gpointer) treeview1, "row_activated",
                     G_CALLBACK (on_treeview1_row_activated),
@@ -4080,44 +4092,36 @@ create_gestion_des_utilisateurs (void)
   g_signal_connect ((gpointer) treeview1, "button_press_event",
                     G_CALLBACK (on_treeview1_button_press_event),
                     NULL);
-  g_signal_connect ((gpointer) actualiser, "clicked",
-                    G_CALLBACK (on_actualiser_clicked),
-                    NULL);
-  g_signal_connect ((gpointer) rechercherUser, "clicked",
-                    G_CALLBACK (on_rechercherUser_clicked),
-                    NULL);
-  g_signal_connect ((gpointer) quit_gestion_des_utilisateurs, "clicked",
-                    G_CALLBACK (on_quit_gestion_des_utilisateurs_clicked),
-                    NULL);
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
   GLADE_HOOKUP_OBJECT_NO_REF (gestion_des_utilisateurs, gestion_des_utilisateurs, "gestion_des_utilisateurs");
   GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, fixed19, "fixed19");
   GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, esId, "esId");
   GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, image149, "image149");
-  GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, ajouterUtilisateur, "ajouterUtilisateur");
-  GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, alignment51, "alignment51");
-  GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, hbox49, "hbox49");
-  GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, image57, "image57");
-  GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, label151, "label151");
-  GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, label206, "label206");
-  GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, label207, "label207");
   GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, buttonuseracceuil, "buttonuseracceuil");
   GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, alignment71, "alignment71");
   GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, hbox69, "hbox69");
   GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, image92, "image92");
   GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, label216, "label216");
-  GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, scrolledwindow4, "scrolledwindow4");
-  GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, treeview1, "treeview1");
-  GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, actualiser, "actualiser");
-  GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, image80, "image80");
+  GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, quit_gestion_des_utilisateurs, "quit_gestion_des_utilisateurs");
+  GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, image139, "image139");
   GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, rechercherUser, "rechercherUser");
   GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, alignment52, "alignment52");
   GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, hbox50, "hbox50");
   GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, image58, "image58");
   GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, label152, "label152");
-  GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, quit_gestion_des_utilisateurs, "quit_gestion_des_utilisateurs");
-  GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, image139, "image139");
+  GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, ajouterUtilisateur, "ajouterUtilisateur");
+  GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, alignment108, "alignment108");
+  GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, hbox106, "hbox106");
+  GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, image194, "image194");
+  GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, label279, "label279");
+  GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, help, "help");
+  GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, alignment109, "alignment109");
+  GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, hbox107, "hbox107");
+  GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, image195, "image195");
+  GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, label280, "label280");
+  GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, scrolledwindow11, "scrolledwindow11");
+  GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, treeview1, "treeview1");
 
   return gestion_des_utilisateurs;
 }

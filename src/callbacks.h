@@ -818,3 +818,7 @@ on_buttonadem2_clicked                 (GtkWidget       *objet,
 void
 on_quitwindowextras_clicked            (GtkButton       *button,
                                         gpointer         user_data);
+
+void
+on_help_clicked                        (GtkButton       *button,
+                                        gpointer         user_data);

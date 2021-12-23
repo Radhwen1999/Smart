@@ -2258,23 +2258,7 @@ on_treeview1_row_activated             (GtkTreeView     *treeview,
                                         GtkTreeViewColumn *column,
                                         gpointer         user_data)
 {
-GtkTreeIter iter;
-gchar* espritId;
 
-char id[20];
-GtkTreeModel *model= gtk_tree_view_get_model(treeview);
-if(gtk_tree_model_get_iter(model, &iter, path)){
-gtk_tree_model_get(GTK_LIST_STORE(model),&iter,3,&espritId,-1);
-
-strcpy(id,espritId); 
-   g_print("%s\n",id); 
-
- supprimer_user(id);
-gtk_list_store_remove(GTK_LIST_STORE(model), &iter);
-
-afficher_user(treeview);
-
-}
 
 }
 
@@ -2302,159 +2286,174 @@ gtk_widget_show(fenetre_ajout);
 
 //////////////////////////////////////////////////////
 
-void
-  view_popup_menu_onDoSomething (GtkWidget *menuitem, gpointer userdata)
-  {
-    GtkTreeView *treeview = GTK_TREE_VIEW(userdata);
-
-GtkWidget *fenetre_afficher;
-GtkWidget *fenetre_modif;
-GtkWidget *espritId, *nom, *prenom, *jour, *mois, *annee, *email, *tel, *cin, *sexe, *role,*homme,*femme ;
-
-
-date1 d;
-char jo[20];
-char mo[20];
-char an[20];
-fenetre_afficher=lookup_widget(treeview,"gestion_des_utilisateurs");
-gtk_widget_destroy(fenetre_afficher);
-user um=modifier_user(idM);
-d=um.dateN;
-fenetre_modif=create_modifier_user();
-
-espritId = lookup_widget (fenetre_modif, "espritIdm");
-gtk_entry_set_text(GTK_ENTRY(espritId),um.espritId);
-gtk_entry_set_editable(espritId,FALSE);
-nom = lookup_widget (fenetre_modif, "nomm");
-gtk_entry_set_text(GTK_ENTRY(nom),um.nom);
-prenom = lookup_widget (fenetre_modif, "prenomm");
-gtk_entry_set_text(GTK_ENTRY(prenom),um.prenom);
-email = lookup_widget (fenetre_modif, "emailm");
-gtk_entry_set_text(GTK_ENTRY(email),um.email);
-tel = lookup_widget (fenetre_modif, "telm");
-gtk_entry_set_text(GTK_ENTRY(tel),um.tel);
-cin = lookup_widget (fenetre_modif, "cinm");
-gtk_entry_set_text(GTK_ENTRY(cin),um.cin);
-gtk_entry_set_editable(cin,FALSE);
-jour = lookup_widget (fenetre_modif, "jourm");
-//sprintf(jo,"%d",um.dateN.jour); convert int to char
-
-gtk_spin_button_set_value(GTK_SPIN_BUTTON(jour),um.dateN.jour);
-mois = lookup_widget (fenetre_modif, "moism");
-gtk_spin_button_set_value(GTK_SPIN_BUTTON(mois),um.dateN.mois);
-annee = lookup_widget (fenetre_modif, "anneem");
-gtk_spin_button_set_value(GTK_SPIN_BUTTON(annee),um.dateN.annee);
-role = lookup_widget (fenetre_modif, "rolem");
-int i=  test_role(um.role);
-gtk_combo_box_set_active(GTK_COMBO_BOX(role), i);
-homme = lookup_widget (fenetre_modif, "hommem");
-femme = lookup_widget (fenetre_modif, "femmem");
-if (strcmp(um.sexe,"homme")==0){
-gtk_toggle_button_set_active(GTK_RADIO_BUTTON(homme),TRUE);
-gtk_toggle_button_set_active(GTK_RADIO_BUTTON(femme),FALSE);
-}
-else if (strcmp(um.sexe,"femme")==0){
-gtk_toggle_button_set_active(GTK_RADIO_BUTTON(homme),FALSE);
-gtk_toggle_button_set_active(GTK_RADIO_BUTTON(femme),TRUE);
-}
-
-gtk_widget_show(fenetre_modif);
-
-  }
-
-
-  void
-  view_popup_menu (GtkWidget *treeview, GdkEventButton *event, gpointer userdata)
-  {
-    GtkWidget *menu, *menuitem;
-GtkTreeIter iter;
-GtkTreePath *path;
-    menu = gtk_menu_new();
-
-    menuitem = gtk_menu_item_new_with_label("Modifier");
-
-    g_signal_connect(menuitem, "activate",
-                     (GCallback) view_popup_menu_onDoSomething, treeview);
- if (gtk_tree_view_get_path_at_pos(GTK_TREE_VIEW(treeview),
-                                             (gint) event->x, 
-                                             (gint) event->y,
-                                             &path, NULL, NULL, NULL))
+void view_popup_menu_onDoSomething(GtkWidget *menuitem, gpointer userdata)
 {
-GtkTreeModel *model= gtk_tree_view_get_model(treeview);
-	     gchar* espritId;
+	GtkTreeView *treeview = GTK_TREE_VIEW(userdata);
 
-if(gtk_tree_model_get_iter(model, &iter, path)){
+	GtkWidget *fenetre_afficher;
+	GtkWidget *fenetre_modif;
+	GtkWidget *espritId, *nom, *prenom, *jour, *mois, *annee, *email, *tel, *cin, *sexe, *role, *homme, *femme;
 
-	     gtk_tree_model_get(GTK_LIST_STORE(model),&iter,3,&espritId,-1);
+	date1 d;
+	char jo[20];
+	char mo[20];
+	char an[20];
+	fenetre_afficher = lookup_widget(treeview, "gestion_des_utilisateurs");
+	gtk_widget_destroy(fenetre_afficher);
+	user um = modifier_user(idM);
+	d = um.dateN;
+	fenetre_modif = create_modifier_user();
 
-	     strcpy(idM,espritId); 
+	espritId = lookup_widget(fenetre_modif, "espritIdm");
+	gtk_entry_set_text(GTK_ENTRY(espritId), um.espritId);
+	gtk_entry_set_editable(espritId, FALSE);
+	nom = lookup_widget(fenetre_modif, "nomm");
+	gtk_entry_set_text(GTK_ENTRY(nom), um.nom);
+	prenom = lookup_widget(fenetre_modif, "prenomm");
+	gtk_entry_set_text(GTK_ENTRY(prenom), um.prenom);
+	email = lookup_widget(fenetre_modif, "emailm");
+	gtk_entry_set_text(GTK_ENTRY(email), um.email);
+	tel = lookup_widget(fenetre_modif, "telm");
+	gtk_entry_set_text(GTK_ENTRY(tel), um.tel);
+	cin = lookup_widget(fenetre_modif, "cinm");
+	gtk_entry_set_text(GTK_ENTRY(cin), um.cin);
+	gtk_entry_set_editable(cin, FALSE);
+	jour = lookup_widget(fenetre_modif, "jourm");
+	//sprintf(jo,"%d",um.dateN.jour); convert int to char
 
-  	     
+	gtk_spin_button_set_value(GTK_SPIN_BUTTON(jour), um.dateN.jour);
+	mois = lookup_widget(fenetre_modif, "moism");
+	gtk_spin_button_set_value(GTK_SPIN_BUTTON(mois), um.dateN.mois);
+	annee = lookup_widget(fenetre_modif, "anneem");
+	gtk_spin_button_set_value(GTK_SPIN_BUTTON(annee), um.dateN.annee);
+	role = lookup_widget(fenetre_modif, "rolem");
+	int i = test_role(um.role);
+	gtk_combo_box_set_active(GTK_COMBO_BOX(role), i);
+	homme = lookup_widget(fenetre_modif, "hommem");
+	femme = lookup_widget(fenetre_modif, "femmem");
+	if (strcmp(um.sexe, "homme") == 0)
+	{
+		gtk_toggle_button_set_active(GTK_RADIO_BUTTON(homme), TRUE);
+		gtk_toggle_button_set_active(GTK_RADIO_BUTTON(femme), FALSE);
+	}
+	else if (strcmp(um.sexe, "femme") == 0)
+	{
+		gtk_toggle_button_set_active(GTK_RADIO_BUTTON(homme), FALSE);
+		gtk_toggle_button_set_active(GTK_RADIO_BUTTON(femme), TRUE);
+	}
+
+	gtk_widget_show(fenetre_modif);
 }
-	}     
-    gtk_menu_shell_append(GTK_MENU_SHELL(menu), menuitem);
-
-    gtk_widget_show_all(menu);
-
-    
-    gtk_menu_popup(GTK_MENU(menu), NULL, NULL, NULL, NULL,
-                   (event != NULL) ? event->button : 0,
-                   gdk_event_get_time((GdkEvent*)event));
-	    
-  }
 
 
-  gboolean
-on_treeview1_button_press_event         (GtkWidget *treeview, GdkEventButton *event, gpointer userdata)
-  {
-    
-    if (event->type == GDK_BUTTON_PRESS  &&  event->button == 3)
-    {
-      g_print ("Single right click on the tree view.\n");
 
-      
-      if (1)
-      {
-        GtkTreeSelection *selection;
-
-        selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(treeview));
-
-        
-        if (gtk_tree_selection_count_selected_rows(selection)  <= 1)
-        {
-           GtkTreePath *path;
-
-          
-           if (gtk_tree_view_get_path_at_pos(GTK_TREE_VIEW(treeview),
-                                             (gint) event->x, 
-                                             (gint) event->y,
-                                             &path, NULL, NULL, NULL))
-           {
-             gtk_tree_selection_unselect_all(selection);
-             gtk_tree_selection_select_path(selection, path);
-	     
-             gtk_tree_path_free(path);
-           }
-        }
-      } 
-
-      view_popup_menu(treeview, event, userdata);
-
-      return TRUE;
-    }
-
-    return FALSE;
-  }
+void view_popup_menu_onDoSomething1(GtkWidget *menuitem, gpointer userdata)
+{
+	GtkTreeView *treeview = GTK_TREE_VIEW(userdata);
+	supprimer_user(idM);
+	GtkWidget *fenetre_afficher,*w1;
+	GtkWidget *treeview1;
+	w1=lookup_widget(treeview,"gestion_des_utilisateurs");
+	fenetre_afficher=create_gestion_des_utilisateurs();
+	gtk_widget_show(fenetre_afficher);
+	gtk_widget_destroy(w1);
+	treeview1=lookup_widget(fenetre_afficher,"treeview1");
+	afficher_user(treeview1);
+}
 
 
-  gboolean
-  on_treeview1_popup_menu(GtkWidget *treeview, gpointer userdata)
-  {
 
-    view_popup_menu(treeview, NULL, userdata);
 
-    return TRUE;
-  }
+
+
+void view_popup_menu(GtkWidget *treeview, GdkEventButton *event, gpointer userdata)
+{
+	GtkWidget *menu,*menu1, *menuitem,*menuitem1,*menuitem2;
+	GtkTreeIter iter;
+	GtkTreePath *path;
+	menu = gtk_menu_new();
+	menuitem = gtk_menu_item_new_with_label("Modifier");
+	menuitem1 = gtk_menu_item_new_with_label("Supprimer");
+
+	g_signal_connect(menuitem, "activate",
+					 (GCallback)view_popup_menu_onDoSomething, treeview);
+	g_signal_connect(menuitem1, "activate",
+					 (GCallback)view_popup_menu_onDoSomething1, treeview);
+	if (gtk_tree_view_get_path_at_pos(GTK_TREE_VIEW(treeview),
+									  (gint)event->x,
+									  (gint)event->y,
+									  &path, NULL, NULL, NULL))
+	{
+		GtkTreeModel *model = gtk_tree_view_get_model(treeview);
+		gchar *espritId;
+
+		if (gtk_tree_model_get_iter(model, &iter, path))
+		{
+
+			gtk_tree_model_get(GTK_LIST_STORE(model), &iter, 3, &espritId, -1);
+
+			strcpy(idM, espritId);
+		}
+	}
+
+	gtk_menu_shell_append(GTK_MENU_SHELL(menu), menuitem);
+	gtk_menu_shell_append(GTK_MENU_SHELL(menu), menuitem1);
+	
+
+	gtk_widget_show_all(menu);
+
+	gtk_menu_popup(GTK_MENU(menu), NULL, NULL, NULL, NULL,
+				   (event != NULL) ? event->button : 0,
+				   gdk_event_get_time((GdkEvent *)event));
+
+}
+
+
+gboolean on_treeview1_button_press_event(GtkWidget *treeview, GdkEventButton *event, gpointer userdata)
+{
+
+	if (event->type == GDK_BUTTON_PRESS && event->button == 3)
+	{
+		g_print("Single right click on the tree view.\n");
+
+		if (1)
+		{
+			GtkTreeSelection *selection;
+
+			selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(treeview));
+
+			if (gtk_tree_selection_count_selected_rows(selection) <= 1)
+			{
+				GtkTreePath *path;
+
+				if (gtk_tree_view_get_path_at_pos(GTK_TREE_VIEW(treeview),
+												  (gint)event->x,
+												  (gint)event->y,
+												  &path, NULL, NULL, NULL))
+				{
+					gtk_tree_selection_unselect_all(selection);
+					gtk_tree_selection_select_path(selection, path);
+
+					gtk_tree_path_free(path);
+				}
+			}
+		}
+
+		view_popup_menu(treeview, event, userdata);
+
+		return TRUE;
+	}
+
+	return FALSE;
+}
+
+gboolean on_treeview1_popup_menu(GtkWidget *treeview, gpointer userdata)
+{
+
+	view_popup_menu(treeview, NULL, userdata);
+
+	return TRUE;
+}
 
 
   
@@ -4515,4 +4514,23 @@ GtkWidget *winmen;
     	winmen=lookup_widget(button,"windowextras");
     	gtk_widget_destroy(winmen);
 }
+
+
+
+
+void
+on_help_clicked                        (GtkButton       *objet,
+                                        gpointer         user_data)
+{
+GtkWidget *pInfo;
+	pInfo=gtk_message_dialog_new(GTK_WINDOW(user_data),GTK_DIALOG_MODAL,GTK_MESSAGE_INFO,GTK_BUTTONS_OK," \nClic droit pour: \t\t  \n\n - Modifier\n\n - Supprimer ");
+gtk_window_set_decorated (GTK_WINDOW (pInfo), FALSE);
+    switch(gtk_dialog_run(GTK_DIALOG(pInfo)))
+    {
+    case GTK_RESPONSE_OK:
+    gtk_widget_destroy(pInfo);
+    break;
+    }
+}
+
 
