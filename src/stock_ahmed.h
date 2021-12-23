@@ -28,4 +28,4 @@ void cherche_nom_ahmed(char b[]);
 void cherche_quan_ahmed(char b[]);
 void cherche_val_ahmed(char b[]);
 void cherche_type_ahmed(char b[]);
-
+void rechercher_stock(GtkWidget *liste,char rech[]);

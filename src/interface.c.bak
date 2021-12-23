@@ -4570,28 +4570,6 @@ create_stock_ab (void)
   GtkWidget *fixed22;
   GtkWidget *entry1_ahmed;
   GtkWidget *image150;
-  GtkWidget *chercher_ahmed;
-  GtkWidget *alignment55;
-  GtkWidget *hbox53;
-  GtkWidget *image63;
-  GtkWidget *label178;
-  GtkWidget *scrolledwindow9;
-  GtkWidget *treeview1_ahmed;
-  GtkWidget *ajouter_ahmed;
-  GtkWidget *alignment57;
-  GtkWidget *hbox55;
-  GtkWidget *image65;
-  GtkWidget *label180;
-  GtkWidget *modifier_ahmed;
-  GtkWidget *alignment58;
-  GtkWidget *hbox56;
-  GtkWidget *image66;
-  GtkWidget *label181;
-  GtkWidget *retirer_ahmed;
-  GtkWidget *alignment56;
-  GtkWidget *hbox54;
-  GtkWidget *image64;
-  GtkWidget *label179;
   GtkWidget *destroy1_ahmed;
   GtkWidget *image68;
   GtkWidget *retour1_ahmed;
@@ -4599,8 +4577,23 @@ create_stock_ab (void)
   GtkWidget *hbox57;
   GtkWidget *image67;
   GtkWidget *label182;
-  GtkWidget *combobox1_ahmed;
   GtkWidget *label_stock_ahmed;
+  GtkWidget *treeview1_ahmed;
+  GtkWidget *chercher_ahmed;
+  GtkWidget *alignment55;
+  GtkWidget *hbox53;
+  GtkWidget *image63;
+  GtkWidget *label178;
+  GtkWidget *ajouter_ahmed;
+  GtkWidget *alignment57;
+  GtkWidget *hbox55;
+  GtkWidget *image65;
+  GtkWidget *label180;
+  GtkWidget *button1;
+  GtkWidget *alignment110;
+  GtkWidget *hbox108;
+  GtkWidget *image196;
+  GtkWidget *label281;
 
   stock_ab = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_widget_set_size_request (stock_ab, 1200, 700);
@@ -4615,7 +4608,7 @@ create_stock_ab (void)
 
   entry1_ahmed = gtk_entry_new ();
   gtk_widget_show (entry1_ahmed);
-  gtk_fixed_put (GTK_FIXED (fixed22), entry1_ahmed, 56, 96);
+  gtk_fixed_put (GTK_FIXED (fixed22), entry1_ahmed, 152, 152);
   gtk_widget_set_size_request (entry1_ahmed, 160, 32);
   gtk_entry_set_invisible_char (GTK_ENTRY (entry1_ahmed), 8226);
 
@@ -4623,100 +4616,6 @@ create_stock_ab (void)
   gtk_widget_show (image150);
   gtk_fixed_put (GTK_FIXED (fixed22), image150, 0, 0);
   gtk_widget_set_size_request (image150, 1200, 700);
-
-  chercher_ahmed = gtk_button_new ();
-  gtk_widget_show (chercher_ahmed);
-  gtk_fixed_put (GTK_FIXED (fixed22), chercher_ahmed, 296, 96);
-  gtk_widget_set_size_request (chercher_ahmed, 104, 32);
-
-  alignment55 = gtk_alignment_new (0.5, 0.5, 0, 0);
-  gtk_widget_show (alignment55);
-  gtk_container_add (GTK_CONTAINER (chercher_ahmed), alignment55);
-
-  hbox53 = gtk_hbox_new (FALSE, 2);
-  gtk_widget_show (hbox53);
-  gtk_container_add (GTK_CONTAINER (alignment55), hbox53);
-
-  image63 = gtk_image_new_from_stock ("gtk-find", GTK_ICON_SIZE_BUTTON);
-  gtk_widget_show (image63);
-  gtk_box_pack_start (GTK_BOX (hbox53), image63, FALSE, FALSE, 0);
-
-  label178 = gtk_label_new_with_mnemonic (_("Chercher"));
-  gtk_widget_show (label178);
-  gtk_box_pack_start (GTK_BOX (hbox53), label178, FALSE, FALSE, 0);
-
-  scrolledwindow9 = gtk_scrolled_window_new (NULL, NULL);
-  gtk_widget_show (scrolledwindow9);
-  gtk_fixed_put (GTK_FIXED (fixed22), scrolledwindow9, 48, 168);
-  gtk_widget_set_size_request (scrolledwindow9, 830, 470);
-
-  treeview1_ahmed = gtk_tree_view_new ();
-  gtk_widget_show (treeview1_ahmed);
-  gtk_container_add (GTK_CONTAINER (scrolledwindow9), treeview1_ahmed);
-  gtk_widget_set_size_request (treeview1_ahmed, 830, 470);
-
-  ajouter_ahmed = gtk_button_new ();
-  gtk_widget_show (ajouter_ahmed);
-  gtk_fixed_put (GTK_FIXED (fixed22), ajouter_ahmed, 976, 232);
-  gtk_widget_set_size_request (ajouter_ahmed, 120, 35);
-
-  alignment57 = gtk_alignment_new (0.5, 0.5, 0, 0);
-  gtk_widget_show (alignment57);
-  gtk_container_add (GTK_CONTAINER (ajouter_ahmed), alignment57);
-
-  hbox55 = gtk_hbox_new (FALSE, 2);
-  gtk_widget_show (hbox55);
-  gtk_container_add (GTK_CONTAINER (alignment57), hbox55);
-
-  image65 = gtk_image_new_from_stock ("gtk-add", GTK_ICON_SIZE_BUTTON);
-  gtk_widget_show (image65);
-  gtk_box_pack_start (GTK_BOX (hbox55), image65, FALSE, FALSE, 0);
-
-  label180 = gtk_label_new_with_mnemonic (_("Ajouter"));
-  gtk_widget_show (label180);
-  gtk_box_pack_start (GTK_BOX (hbox55), label180, FALSE, FALSE, 0);
-
-  modifier_ahmed = gtk_button_new ();
-  gtk_widget_show (modifier_ahmed);
-  gtk_fixed_put (GTK_FIXED (fixed22), modifier_ahmed, 976, 392);
-  gtk_widget_set_size_request (modifier_ahmed, 120, 35);
-
-  alignment58 = gtk_alignment_new (0.5, 0.5, 0, 0);
-  gtk_widget_show (alignment58);
-  gtk_container_add (GTK_CONTAINER (modifier_ahmed), alignment58);
-
-  hbox56 = gtk_hbox_new (FALSE, 2);
-  gtk_widget_show (hbox56);
-  gtk_container_add (GTK_CONTAINER (alignment58), hbox56);
-
-  image66 = gtk_image_new_from_stock ("gtk-edit", GTK_ICON_SIZE_BUTTON);
-  gtk_widget_show (image66);
-  gtk_box_pack_start (GTK_BOX (hbox56), image66, FALSE, FALSE, 0);
-
-  label181 = gtk_label_new_with_mnemonic (_("Modifier"));
-  gtk_widget_show (label181);
-  gtk_box_pack_start (GTK_BOX (hbox56), label181, FALSE, FALSE, 0);
-
-  retirer_ahmed = gtk_button_new ();
-  gtk_widget_show (retirer_ahmed);
-  gtk_fixed_put (GTK_FIXED (fixed22), retirer_ahmed, 976, 560);
-  gtk_widget_set_size_request (retirer_ahmed, 120, 35);
-
-  alignment56 = gtk_alignment_new (0.5, 0.5, 0, 0);
-  gtk_widget_show (alignment56);
-  gtk_container_add (GTK_CONTAINER (retirer_ahmed), alignment56);
-
-  hbox54 = gtk_hbox_new (FALSE, 2);
-  gtk_widget_show (hbox54);
-  gtk_container_add (GTK_CONTAINER (alignment56), hbox54);
-
-  image64 = gtk_image_new_from_stock ("gtk-delete", GTK_ICON_SIZE_BUTTON);
-  gtk_widget_show (image64);
-  gtk_box_pack_start (GTK_BOX (hbox54), image64, FALSE, FALSE, 0);
-
-  label179 = gtk_label_new_with_mnemonic (_("Retirer"));
-  gtk_widget_show (label179);
-  gtk_box_pack_start (GTK_BOX (hbox54), label179, FALSE, FALSE, 0);
 
   destroy1_ahmed = gtk_button_new ();
   gtk_widget_show (destroy1_ahmed);
@@ -4748,38 +4647,99 @@ create_stock_ab (void)
   gtk_widget_show (label182);
   gtk_box_pack_start (GTK_BOX (hbox57), label182, FALSE, FALSE, 0);
 
-  combobox1_ahmed = gtk_combo_box_new_text ();
-  gtk_widget_show (combobox1_ahmed);
-  gtk_fixed_put (GTK_FIXED (fixed22), combobox1_ahmed, 216, 96);
-  gtk_widget_set_size_request (combobox1_ahmed, 56, 32);
-  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox1_ahmed), _("id"));
-  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox1_ahmed), _("nom"));
-  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox1_ahmed), _("quan"));
-  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox1_ahmed), _("val"));
-  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox1_ahmed), _("type"));
-
   label_stock_ahmed = gtk_label_new ("");
   gtk_widget_show (label_stock_ahmed);
   gtk_fixed_put (GTK_FIXED (fixed22), label_stock_ahmed, 56, 128);
   gtk_widget_set_size_request (label_stock_ahmed, 152, 40);
 
+  treeview1_ahmed = gtk_tree_view_new ();
+  gtk_widget_show (treeview1_ahmed);
+  gtk_fixed_put (GTK_FIXED (fixed22), treeview1_ahmed, 152, 192);
+  gtk_widget_set_size_request (treeview1_ahmed, 896, 408);
+
+  chercher_ahmed = gtk_button_new ();
+  gtk_widget_show (chercher_ahmed);
+  gtk_fixed_put (GTK_FIXED (fixed22), chercher_ahmed, 320, 152);
+  gtk_widget_set_size_request (chercher_ahmed, 104, 32);
+
+  alignment55 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment55);
+  gtk_container_add (GTK_CONTAINER (chercher_ahmed), alignment55);
+
+  hbox53 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox53);
+  gtk_container_add (GTK_CONTAINER (alignment55), hbox53);
+
+  image63 = gtk_image_new_from_stock ("gtk-find", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image63);
+  gtk_box_pack_start (GTK_BOX (hbox53), image63, FALSE, FALSE, 0);
+
+  label178 = gtk_label_new_with_mnemonic (_("Chercher"));
+  gtk_widget_show (label178);
+  gtk_box_pack_start (GTK_BOX (hbox53), label178, FALSE, FALSE, 0);
+
+  ajouter_ahmed = gtk_button_new ();
+  gtk_widget_show (ajouter_ahmed);
+  gtk_fixed_put (GTK_FIXED (fixed22), ajouter_ahmed, 480, 624);
+  gtk_widget_set_size_request (ajouter_ahmed, 104, 40);
+
+  alignment57 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment57);
+  gtk_container_add (GTK_CONTAINER (ajouter_ahmed), alignment57);
+
+  hbox55 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox55);
+  gtk_container_add (GTK_CONTAINER (alignment57), hbox55);
+
+  image65 = gtk_image_new_from_stock ("gtk-add", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image65);
+  gtk_box_pack_start (GTK_BOX (hbox55), image65, FALSE, FALSE, 0);
+
+  label180 = gtk_label_new_with_mnemonic (_("Ajouter"));
+  gtk_widget_show (label180);
+  gtk_box_pack_start (GTK_BOX (hbox55), label180, FALSE, FALSE, 0);
+
+  button1 = gtk_button_new ();
+  gtk_widget_show (button1);
+  gtk_fixed_put (GTK_FIXED (fixed22), button1, 624, 624);
+  gtk_widget_set_size_request (button1, 104, 40);
+
+  alignment110 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment110);
+  gtk_container_add (GTK_CONTAINER (button1), alignment110);
+
+  hbox108 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox108);
+  gtk_container_add (GTK_CONTAINER (alignment110), hbox108);
+
+  image196 = gtk_image_new_from_stock ("gtk-help", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image196);
+  gtk_box_pack_start (GTK_BOX (hbox108), image196, FALSE, FALSE, 0);
+
+  label281 = gtk_label_new_with_mnemonic (_("Aide"));
+  gtk_widget_show (label281);
+  gtk_box_pack_start (GTK_BOX (hbox108), label281, FALSE, FALSE, 0);
+
+  g_signal_connect ((gpointer) destroy1_ahmed, "clicked",
+                    G_CALLBACK (on_destroy1_ahmed_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) retour1_ahmed, "clicked",
+                    G_CALLBACK (on_retour1_ahmed_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) treeview1_ahmed, "button_press_event",
+                    G_CALLBACK (on_treeview1_ahmed_button_press_event),
+                    NULL);
+  g_signal_connect ((gpointer) treeview1_ahmed, "popup_menu",
+                    G_CALLBACK (on_treeview1_ahmed_popup_menu),
+                    NULL);
   g_signal_connect ((gpointer) chercher_ahmed, "clicked",
                     G_CALLBACK (on_chercher_ahmed_clicked),
                     NULL);
   g_signal_connect ((gpointer) ajouter_ahmed, "clicked",
                     G_CALLBACK (on_ajouter_ahmed_clicked),
                     NULL);
-  g_signal_connect ((gpointer) modifier_ahmed, "clicked",
-                    G_CALLBACK (on_modifier_ahmed_clicked),
-                    NULL);
-  g_signal_connect ((gpointer) retirer_ahmed, "clicked",
-                    G_CALLBACK (on_retirer_ahmed_clicked),
-                    NULL);
-  g_signal_connect ((gpointer) destroy1_ahmed, "clicked",
-                    G_CALLBACK (on_destroy1_ahmed_clicked),
-                    NULL);
-  g_signal_connect ((gpointer) retour1_ahmed, "clicked",
-                    G_CALLBACK (on_retour1_ahmed_clicked),
+  g_signal_connect ((gpointer) button1, "clicked",
+                    G_CALLBACK (on_help_clicked),
                     NULL);
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
@@ -4787,28 +4747,6 @@ create_stock_ab (void)
   GLADE_HOOKUP_OBJECT (stock_ab, fixed22, "fixed22");
   GLADE_HOOKUP_OBJECT (stock_ab, entry1_ahmed, "entry1_ahmed");
   GLADE_HOOKUP_OBJECT (stock_ab, image150, "image150");
-  GLADE_HOOKUP_OBJECT (stock_ab, chercher_ahmed, "chercher_ahmed");
-  GLADE_HOOKUP_OBJECT (stock_ab, alignment55, "alignment55");
-  GLADE_HOOKUP_OBJECT (stock_ab, hbox53, "hbox53");
-  GLADE_HOOKUP_OBJECT (stock_ab, image63, "image63");
-  GLADE_HOOKUP_OBJECT (stock_ab, label178, "label178");
-  GLADE_HOOKUP_OBJECT (stock_ab, scrolledwindow9, "scrolledwindow9");
-  GLADE_HOOKUP_OBJECT (stock_ab, treeview1_ahmed, "treeview1_ahmed");
-  GLADE_HOOKUP_OBJECT (stock_ab, ajouter_ahmed, "ajouter_ahmed");
-  GLADE_HOOKUP_OBJECT (stock_ab, alignment57, "alignment57");
-  GLADE_HOOKUP_OBJECT (stock_ab, hbox55, "hbox55");
-  GLADE_HOOKUP_OBJECT (stock_ab, image65, "image65");
-  GLADE_HOOKUP_OBJECT (stock_ab, label180, "label180");
-  GLADE_HOOKUP_OBJECT (stock_ab, modifier_ahmed, "modifier_ahmed");
-  GLADE_HOOKUP_OBJECT (stock_ab, alignment58, "alignment58");
-  GLADE_HOOKUP_OBJECT (stock_ab, hbox56, "hbox56");
-  GLADE_HOOKUP_OBJECT (stock_ab, image66, "image66");
-  GLADE_HOOKUP_OBJECT (stock_ab, label181, "label181");
-  GLADE_HOOKUP_OBJECT (stock_ab, retirer_ahmed, "retirer_ahmed");
-  GLADE_HOOKUP_OBJECT (stock_ab, alignment56, "alignment56");
-  GLADE_HOOKUP_OBJECT (stock_ab, hbox54, "hbox54");
-  GLADE_HOOKUP_OBJECT (stock_ab, image64, "image64");
-  GLADE_HOOKUP_OBJECT (stock_ab, label179, "label179");
   GLADE_HOOKUP_OBJECT (stock_ab, destroy1_ahmed, "destroy1_ahmed");
   GLADE_HOOKUP_OBJECT (stock_ab, image68, "image68");
   GLADE_HOOKUP_OBJECT (stock_ab, retour1_ahmed, "retour1_ahmed");
@@ -4816,8 +4754,23 @@ create_stock_ab (void)
   GLADE_HOOKUP_OBJECT (stock_ab, hbox57, "hbox57");
   GLADE_HOOKUP_OBJECT (stock_ab, image67, "image67");
   GLADE_HOOKUP_OBJECT (stock_ab, label182, "label182");
-  GLADE_HOOKUP_OBJECT (stock_ab, combobox1_ahmed, "combobox1_ahmed");
   GLADE_HOOKUP_OBJECT (stock_ab, label_stock_ahmed, "label_stock_ahmed");
+  GLADE_HOOKUP_OBJECT (stock_ab, treeview1_ahmed, "treeview1_ahmed");
+  GLADE_HOOKUP_OBJECT (stock_ab, chercher_ahmed, "chercher_ahmed");
+  GLADE_HOOKUP_OBJECT (stock_ab, alignment55, "alignment55");
+  GLADE_HOOKUP_OBJECT (stock_ab, hbox53, "hbox53");
+  GLADE_HOOKUP_OBJECT (stock_ab, image63, "image63");
+  GLADE_HOOKUP_OBJECT (stock_ab, label178, "label178");
+  GLADE_HOOKUP_OBJECT (stock_ab, ajouter_ahmed, "ajouter_ahmed");
+  GLADE_HOOKUP_OBJECT (stock_ab, alignment57, "alignment57");
+  GLADE_HOOKUP_OBJECT (stock_ab, hbox55, "hbox55");
+  GLADE_HOOKUP_OBJECT (stock_ab, image65, "image65");
+  GLADE_HOOKUP_OBJECT (stock_ab, label180, "label180");
+  GLADE_HOOKUP_OBJECT (stock_ab, button1, "button1");
+  GLADE_HOOKUP_OBJECT (stock_ab, alignment110, "alignment110");
+  GLADE_HOOKUP_OBJECT (stock_ab, hbox108, "hbox108");
+  GLADE_HOOKUP_OBJECT (stock_ab, image196, "image196");
+  GLADE_HOOKUP_OBJECT (stock_ab, label281, "label281");
 
   return stock_ab;
 }

@@ -822,3 +822,12 @@ on_quitwindowextras_clicked            (GtkButton       *button,
 void
 on_help_clicked                        (GtkButton       *button,
                                         gpointer         user_data);
+
+gboolean
+on_treeview1_ahmed_button_press_event  (GtkWidget       *widget,
+                                        GdkEventButton  *event,
+                                        gpointer         user_data);
+
+gboolean
+on_treeview1_ahmed_popup_menu          (GtkWidget       *widget,
+                                        gpointer         user_data);

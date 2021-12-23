@@ -2414,7 +2414,6 @@ gboolean on_treeview1_button_press_event(GtkWidget *treeview, GdkEventButton *ev
 
 	if (event->type == GDK_BUTTON_PRESS && event->button == 3)
 	{
-		g_print("Single right click on the tree view.\n");
 
 		if (1)
 		{
@@ -2771,119 +2770,20 @@ void
 on_chercher_ahmed_clicked                    (GtkWidget       *objet,
                                         gpointer         user_data)
 {
-	GtkWidget *winadd;
-    	GtkWidget *winmen;
-    	GtkWidget *chercher_ab,*w1;
-	GtkWidget *treeview2_ahmed;
-	GtkWidget *output,*input,*combobox1_ahmed;
-	char text[100],a[20]="Not Found",b[20]="choose a category";
-	int i;
-	stock s;
-	input=lookup_widget(objet,"entry1_ahmed");
-	output=lookup_widget(objet,"label_stock_ahmed");
-	strcpy(text,gtk_entry_get_text(GTK_ENTRY(input)));
-	combobox1_ahmed=lookup_widget(objet,"combobox1_ahmed");
-	
-
-
-		GdkColor color;
-		gdk_color_parse ("#C92907", &color);
-		gtk_widget_modify_fg (output, GTK_STATE_NORMAL, &color);
-    		gtk_label_set_text(GTK_LABEL(output),text);
-
-
-
-
-	if ((strlen(chercheid_ahmed(text).nom)>2)&&(strcmp("id",gtk_combo_box_get_active_text(GTK_COMBO_BOX(combobox1_ahmed)))==0))
-	{
-		cherche_id_ahmed(text);
-		
-    		winmen=lookup_widget(objet,"stock_ab");
-    		winadd=create_chercher_ab();
-    		gtk_widget_show(winadd);
-    		gtk_widget_destroy(winmen);
-
-		treeview2_ahmed=lookup_widget(winadd,"treeview2_ahmed");
-
-		vider_ahmed(treeview2_ahmed);
-		affiche_chercher_ahmed(treeview2_ahmed);
-		
-	}
-	else if ((strlen(cherchenom_ahmed(text).nom)>2)&&(strcmp("nom",gtk_combo_box_get_active_text(GTK_COMBO_BOX(combobox1_ahmed)))==0))
-	{
-		cherche_nom_ahmed(text);
-		
-    		winmen=lookup_widget(objet,"stock_ab");
-    		winadd=create_chercher_ab();
-    		gtk_widget_show(winadd);
-    		gtk_widget_destroy(winmen);
-		treeview2_ahmed=lookup_widget(winadd,"treeview2_ahmed");
-		vider_ahmed(treeview2_ahmed);
-		affiche_chercher_ahmed(treeview2_ahmed);
-		
-	}
-	else if ((strlen(cherchequan_ahmed(text).nom)>2)&&(strcmp("quan",gtk_combo_box_get_active_text(GTK_COMBO_BOX(combobox1_ahmed)))==0))
-	{
-		cherche_quan_ahmed(text);
-		
-    		winmen=lookup_widget(objet,"stock_ab");
-    		winadd=create_chercher_ab();
-    		gtk_widget_show(winadd);
-    		gtk_widget_destroy(winmen);
-
-
-		
-
-		
-		treeview2_ahmed=lookup_widget(winadd,"treeview2_ahmed");
-
-		vider_ahmed(treeview2_ahmed);
-		affiche_chercher_ahmed(treeview2_ahmed);
-		
-	}
-	else if ((strlen(chercheval_ahmed(text).nom)>2)&&(strcmp("val",gtk_combo_box_get_active_text(GTK_COMBO_BOX(combobox1_ahmed)))==0))
-	{
-		cherche_val_ahmed(text);
-		
-    		winmen=lookup_widget(objet,"stock_ab");
-    		winadd=create_chercher_ab();
-    		gtk_widget_show(winadd);
-    		gtk_widget_destroy(winmen);
-
-
-	
-		treeview2_ahmed=lookup_widget(winadd,"treeview2_ahmed");
-
-		vider_ahmed(treeview2_ahmed);
-		affiche_chercher_ahmed(treeview2_ahmed);
-		
-	}
-	else if ((strlen(cherchecat_ahmed(text).nom)>2)&&(strcmp("type",gtk_combo_box_get_active_text(GTK_COMBO_BOX(combobox1_ahmed)))==0))
-	{
-		cherche_type_ahmed(text);
-		
-    		winmen=lookup_widget(objet,"stock_ab");
-    		winadd=create_chercher_ab();
-    		gtk_widget_show(winadd);
-    		gtk_widget_destroy(winmen);
-
-
-		
-		treeview2_ahmed=lookup_widget(winadd,"treeview2_ahmed");
-
-		vider_ahmed(treeview2_ahmed);
-		affiche_chercher_ahmed(treeview2_ahmed);
-		
-	}
-	else
-		gtk_label_set_text(GTK_LABEL(output),a);
-		/*for (int i=0;i<200000;i++)
-		{
-			printf("...\n");
-			printf("...\n");
-			
-		}
-		gtk_label_set_text(GTK_LABEL(output),b);*/	
+GtkWidget *fenetre_rechercher;
+GtkWidget *fenetre_afficher;
+GtkWidget *espritId;
+GtkWidget *treeview1;
+char rech[20];
+espritId = lookup_widget (objet, "entry1_ahmed");
+strcpy(rech, gtk_entry_get_text(GTK_ENTRY(espritId)));
+fenetre_afficher=lookup_widget(objet,"stock_ab");
+gtk_widget_destroy(fenetre_afficher);
+fenetre_rechercher=lookup_widget(objet,"stock_ab");
+fenetre_rechercher=create_stock_ab();
+gtk_widget_show(fenetre_rechercher);
+treeview1=lookup_widget(fenetre_rechercher,"treeview1_ahmed");
+rechercher_stock(treeview1,rech);	
 }
 
 
@@ -2996,7 +2896,7 @@ on_ajouter1_ahmed_clicked                    (GtkWidget       *objet,
 	sprintf(s.val,"%s/%s",a,b);
 
 	if (type==1)
-		strcpy(s.cat,"autre");
+		strcpy(s.cat,"autres");
 	else if (type==2)
 		strcpy(s.cat,"legume");
 	else if (type==3)
@@ -3078,7 +2978,7 @@ on_modifier1_ahmed_clicked                   (GtkWidget       *objet,
 	sprintf(s.val,"%s/%s",d,e);
 
 	if (type==1)
-		strcpy(s.cat,"autre");
+		strcpy(s.cat,"autres");
 	else if (type==2)
 		strcpy(s.cat,"legume");
 	else if (type==3)
@@ -3263,7 +3163,7 @@ on_fruit1_ahmed_toggled                       (GtkToggleButton *togglebutton,
                                         gpointer         user_data)
 {
 	if(gtk_toggle_button_get_active(GTK_RADIO_BUTTON(togglebutton)))
-		type=1;
+		type=3;
 }
 
 
@@ -3281,7 +3181,7 @@ on_autre1_ahmed_toggled                       (GtkToggleButton *togglebutton,
                                         gpointer         user_data)
 {
 	if(gtk_toggle_button_get_active(GTK_RADIO_BUTTON(togglebutton)))
-		type=3;
+		type=1;
 }
 
 
@@ -3310,6 +3210,179 @@ on_autre2_ahmed_toggled                (GtkToggleButton *togglebutton,
 	if(gtk_toggle_button_get_active(GTK_RADIO_BUTTON(togglebutton)))
 		type=1;
 }
+
+//////////////////////////////////////////////////////
+
+void view_popup_menu_modif_stock(GtkWidget *menuitem, gpointer userdata)
+{
+	GtkTreeView *treeview = GTK_TREE_VIEW(userdata);
+stock ss=chercheid_ahmed(idM);
+GtkWidget *input1,*input2,*input3,*stock_ab,*modifier_ab,*fruit,*legume,*autre;
+stock_ab = lookup_widget(treeview, "stock_ab");
+gtk_widget_destroy(stock_ab);
+modifier_ab=create_modifier_ab();
+input1=lookup_widget(modifier_ab,"entry6_ahmed");
+input2= lookup_widget(modifier_ab,"entry7_ahmed");
+input3= lookup_widget(modifier_ab,"entry8_ahmed");
+gtk_entry_set_text(GTK_ENTRY(input1), ss.id);
+gtk_entry_set_text(GTK_ENTRY(input2), ss.nom);
+gtk_entry_set_text(GTK_ENTRY(input3), ss.quantite);
+	fruit = lookup_widget(modifier_ab, "fruit2_ahmed");
+	legume = lookup_widget(modifier_ab, "legume2_ahmed");
+	autre = lookup_widget(modifier_ab, "autre2_ahmed");
+	if (strcmp(ss.cat, "fruit") == 0)
+	{
+		gtk_toggle_button_set_active(GTK_RADIO_BUTTON(fruit), TRUE);
+		gtk_toggle_button_set_active(GTK_RADIO_BUTTON(legume), FALSE);
+		gtk_toggle_button_set_active(GTK_RADIO_BUTTON(autre), FALSE);
+	}
+	else if (strcmp(ss.cat, "legume") == 0)
+	{
+		gtk_toggle_button_set_active(GTK_RADIO_BUTTON(fruit), FALSE);
+		gtk_toggle_button_set_active(GTK_RADIO_BUTTON(legume), TRUE);
+		gtk_toggle_button_set_active(GTK_RADIO_BUTTON(autre), FALSE);
+	}
+	else if (strcmp(ss.cat, "autre") == 0)
+	{
+		gtk_toggle_button_set_active(GTK_RADIO_BUTTON(fruit), FALSE);
+		gtk_toggle_button_set_active(GTK_RADIO_BUTTON(legume), FALSE);
+		gtk_toggle_button_set_active(GTK_RADIO_BUTTON(autre), TRUE);
+	}
+gtk_widget_show(modifier_ab);
+}
+////////
+
+
+
+
+void view_popup_menu_supp_stock(GtkWidget *menuitem, gpointer userdata)
+{
+	GtkTreeView *treeview = GTK_TREE_VIEW(userdata);
+	supprimer_user(idM);
+
+
+supprimer_ahmed(idM);
+	GtkWidget *winadd;
+    	GtkWidget *winmen;
+GtkWidget *stock_ab,*w1;
+GtkWidget *treeview1_ahmed;
+
+w1=lookup_widget(treeview,"stock_ab");
+stock_ab=create_stock_ab();
+
+gtk_widget_show(stock_ab);
+
+gtk_widget_destroy(w1);
+treeview1_ahmed=lookup_widget(stock_ab,"treeview1_ahmed");
+
+vider_ahmed(treeview1_ahmed);
+treeview_affiche_ahmed(treeview1_ahmed);
+
+GtkWidget *combobox1_ahmed;
+  combobox1_ahmed=lookup_widget(stock_ab,"combobox1_ahmed");
+  gtk_combo_box_set_active(GTK_COMBO_BOX(combobox1_ahmed),0);
+}
+
+
+
+
+
+
+void view_popup_menu_stock(GtkWidget *treeview, GdkEventButton *event, gpointer userdata)
+{
+	GtkWidget *menu,*menu1, *menuitem,*menuitem1,*menuitem2;
+	GtkTreeIter iter;
+	GtkTreePath *path;
+	menu = gtk_menu_new();
+	menuitem = gtk_menu_item_new_with_label("Modifier");
+	menuitem1 = gtk_menu_item_new_with_label("Supprimer");
+
+	g_signal_connect(menuitem, "activate",
+					 (GCallback)view_popup_menu_modif_stock, treeview);
+	g_signal_connect(menuitem1, "activate",
+					 (GCallback)view_popup_menu_supp_stock, treeview);
+	if (gtk_tree_view_get_path_at_pos(GTK_TREE_VIEW(treeview),
+									  (gint)event->x,
+									  (gint)event->y,
+									  &path, NULL, NULL, NULL))
+	{
+		GtkTreeModel *model = gtk_tree_view_get_model(treeview);
+		gchar *espritId;
+
+		if (gtk_tree_model_get_iter(model, &iter, path))
+		{
+
+			gtk_tree_model_get(GTK_LIST_STORE(model), &iter, 0, &espritId, -1);
+
+			strcpy(idM, espritId);
+		}
+	}
+
+	gtk_menu_shell_append(GTK_MENU_SHELL(menu), menuitem);
+	gtk_menu_shell_append(GTK_MENU_SHELL(menu), menuitem1);
+	
+
+	gtk_widget_show_all(menu);
+
+	gtk_menu_popup(GTK_MENU(menu), NULL, NULL, NULL, NULL,
+				   (event != NULL) ? event->button : 0,
+				   gdk_event_get_time((GdkEvent *)event));
+
+}
+
+
+gboolean on_treeview1_ahmed_button_press_event(GtkWidget *treeview, GdkEventButton *event, gpointer userdata)
+{
+
+	if (event->type == GDK_BUTTON_PRESS && event->button == 3)
+	{
+		
+
+		if (1)
+		{
+			GtkTreeSelection *selection;
+
+			selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(treeview));
+
+			if (gtk_tree_selection_count_selected_rows(selection) <= 1)
+			{
+				GtkTreePath *path;
+
+				if (gtk_tree_view_get_path_at_pos(GTK_TREE_VIEW(treeview),
+												  (gint)event->x,
+												  (gint)event->y,
+												  &path, NULL, NULL, NULL))
+				{
+					gtk_tree_selection_unselect_all(selection);
+					gtk_tree_selection_select_path(selection, path);
+
+					gtk_tree_path_free(path);
+				}
+			}
+		}
+
+		view_popup_menu_stock(treeview, event, userdata);
+
+		return TRUE;
+	}
+
+	return FALSE;
+}
+
+gboolean on_treeview1_ahmed_popup_menu(GtkWidget *treeview, gpointer userdata)
+{
+
+	view_popup_menu_stock(treeview, NULL, userdata);
+
+	return TRUE;
+}
+
+
+
+
+///////////////////////////////
+
+
 
 
 
@@ -3371,7 +3444,7 @@ gtk_label_set_text(GTK_LABEL(login_err),"Verifier vos cordonnées !");
 else if (login(u.espritId,u.password,ust)==1){
 find_user(u.espritId);
 
-g_print("test %s\n",ust.espritId);
+
 GtkWidget *windowlogin;
 GtkWidget *acceuil;
 GtkWidget *treeview1;
@@ -4532,5 +4605,7 @@ gtk_window_set_decorated (GTK_WINDOW (pInfo), FALSE);
     break;
     }
 }
+
+
 
 
