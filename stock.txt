@@ -12,7 +12,8 @@
 1 tomate 20 mars/2023 legume
 69 ognion 0 janvier/2021 ahmed
 5 lait 20 mai/2022 fruit
-100 ahmed 20 Fevrier/2022 legume
+120 ahmed 20 Fevrier/2022 legume
+50 lait 20 Fevrier/2022 autres
 50 lait 20 Fevrier/2022 autres
 sdfdsf sdfsdf dsfsdf Fevrier/2022 legume
 sdfsdf sdfsdf sdfsdf Fevrier/2023 autres
