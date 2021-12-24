@@ -138,10 +138,10 @@ return (vide);
 //
 
 enum
-{   ENOM,
+{   EID,
+    ENOM,
     EPRENOM,
     ENIVEAU,
-    EID,
     ESEXE,
     EDATE,
     COLUMNS,
@@ -166,6 +166,10 @@ void affichage_am (char fichier[],GtkWidget *liste)
 if(store == NULL )
 {
 renderer = gtk_cell_renderer_text_new();
+column=gtk_tree_view_column_new_with_attributes("identifiant",renderer,"text",EID,NULL);
+gtk_tree_view_append_column (GTK_TREE_VIEW (liste),column);
+
+renderer = gtk_cell_renderer_text_new();
 column=gtk_tree_view_column_new_with_attributes("nom",renderer,"text",ENOM,NULL);
 gtk_tree_view_append_column (GTK_TREE_VIEW (liste),column);
 
@@ -175,10 +179,6 @@ gtk_tree_view_append_column (GTK_TREE_VIEW (liste),column);
 
 renderer = gtk_cell_renderer_text_new();
 column=gtk_tree_view_column_new_with_attributes("niveau",renderer,"text",ENIVEAU,NULL);
-gtk_tree_view_append_column (GTK_TREE_VIEW (liste),column);
-
-renderer = gtk_cell_renderer_text_new();
-column=gtk_tree_view_column_new_with_attributes("identifiant",renderer,"text",EID,NULL);
 gtk_tree_view_append_column (GTK_TREE_VIEW (liste),column);
 
 renderer = gtk_cell_renderer_text_new();
@@ -197,7 +197,7 @@ if (f != NULL)
 while(fscanf(f,"%s %s %s %s %s %s \n",nom,prenom,niveau,id,sexe,date) != EOF )
 {
 gtk_list_store_append(store,&iter);
-gtk_list_store_set(store,&iter,ENOM,nom,EPRENOM,prenom,ENIVEAU,niveau,EID,id,ESEXE,sexe,EDATE,date,-1);
+gtk_list_store_set(store,&iter,EID,id,ENOM,nom,EPRENOM,prenom,ENIVEAU,niveau,ESEXE,sexe,EDATE,date,-1);
 }
 fclose(f) ;
 gtk_tree_view_set_model(GTK_TREE_VIEW (liste),GTK_TREE_MODEL (store));

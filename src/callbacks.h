@@ -831,3 +831,12 @@ on_treeview1_ahmed_button_press_event  (GtkWidget       *widget,
 gboolean
 on_treeview1_ahmed_popup_menu          (GtkWidget       *widget,
                                         gpointer         user_data);
+
+gboolean
+on_treeview1_0_am_popup_menu           (GtkWidget       *widget,
+                                        gpointer         user_data);
+
+gboolean
+on_treeview1_0_am_button_press_event   (GtkWidget       *widget,
+                                        GdkEventButton  *event,
+                                        gpointer         user_data);

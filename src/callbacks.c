@@ -879,6 +879,7 @@ int m_am;
 int w_am; 
 int y_am=0;
 int z_am=0;
+char idett[20];
 
 etudiant etud;
 void
@@ -887,32 +888,6 @@ on_treeview1_am_row_activated          (GtkTreeView     *treeview,
                                         GtkTreeViewColumn *column,
                                         gpointer         user_data)
 {
-GtkTreeIter iter;
-gchar* nom ;
-gchar* prenom;
-gchar* niveau;
-gchar* id;
-gchar* sexe;
-gchar* date;
-etudiant e;
-
-char fichier[]={"etudiant.txt"};
-
-GtkTreeModel *model = gtk_tree_view_get_model(treeview);
-if(gtk_tree_model_get_iter(model,&iter,path))
-{
-gtk_tree_model_get(GTK_LIST_STORE(model),&iter,0,&nom,1,&prenom,2,&niveau,3,&id,4,&sexe,5,&date,-1);
-
-strcpy(e.id,id);
-strcpy(e.nom,nom);
-strcpy(e.prenom,prenom);
-strcpy(e.niveau,niveau);
-strcpy(e.sexe,sexe);
-strcpy(e.date,date);
-
-
-affichage_am(fichier,treeview);
-}
 
 }
 
@@ -964,42 +939,6 @@ void
 on_button2Modify0_am_clicked           (GtkButton       *objet,
                                         gpointer         user_data)
 {
-GtkWidget *window1,*window2,*input2,*output5,*output6;
-
-char fichierr[]={"etudiant.txt"};
-char x [10];
-int s ;
-int n=0 ;
-etudiant e;
-
-
-window1=lookup_widget(objet,"GestionEtudiants_am");
-input2=lookup_widget(objet,"entry10Modify0_am");
-strcpy(x,gtk_entry_get_text(GTK_ENTRY(input2)));
-s=verifier_am(x);
-while((strcmp(x,"")!=0)&&(n==0))
-{
-if ( s==0)
-{
-output5 = lookup_widget(objet,"label37_am") ;
-gtk_label_set_text(GTK_LABEL(output5),"etudiant introuvable");
-n=1;
-}
-else
-{
-window2=lookup_widget(objet,"ModifierEtudiant_am");
-window2=create_ModifierEtudiant_am();
-gtk_widget_show(window2);
-gtk_widget_destroy(window1);
-strcpy(iden_am,x);
-n=1;
-}
-}
-if(n==0)
-{
-output6 = lookup_widget(objet,"label37_am") ;
-gtk_label_set_text(GTK_LABEL(output6),"il faut donner identifiant");
-}
 
 }
 
@@ -1008,43 +947,7 @@ void
 on_button3Delete_am_clicked            (GtkButton       *objet,
                                         gpointer         user_data)
 {
-GtkWidget *window_ajouter,*input2,*output,*output1;
-GtkWidget *input,*input1,*input3;
 
-char fichierr[]={"etudiant.txt"};
-char x [10];
-int s ;
-int n=0 ;
-
-window_ajouter=lookup_widget(objet,"GestionEtudiants_am");
-input2=lookup_widget(objet,"entry11Delete0_am");
-strcpy(x,gtk_entry_get_text(GTK_ENTRY(input2)));
-s=verifier_am(x);
-while((strcmp(x,"")!=0)&&(n==0))
-{
-if (s==0)
-{
-output = lookup_widget(objet,"label36_am") ;
-gtk_label_set_text(GTK_LABEL(output),"etudiant introuvable");
-n=1;
-}
-else
-{
-
-input3=lookup_widget(objet,"ConfirmerSupression_am");
-input3=create_ConfirmerSupression_am ();
-gtk_widget_show(input3);
-input1=lookup_widget(objet,"GestionEtudiants_am");
-gtk_widget_destroy(input1);
-n=1;
-strcpy(ident_am,x);
-}
-}
-if(n==0)
-{
-output1 = lookup_widget(objet,"label36_am") ;
-gtk_label_set_text(GTK_LABEL(output1),"il faut donner identifiant");
-}
 }
 
 
@@ -1272,7 +1175,6 @@ char fichier[]={"etudiant.txt"};
 GtkWidget *input3,*input4,*treeview1;
 input3=lookup_widget(objet,"GestionEtudiants_am");
 input3=create_GestionEtudiants_am ();
-gtk_widget_show(input3);
 input4=lookup_widget(objet,"GestionEtudiants_am");
 gtk_widget_destroy(input4);
 gtk_widget_show(input3);
@@ -1302,48 +1204,6 @@ void
 on_button10Displaymod2_am_clicked      (GtkButton       *objet,
                                         gpointer         user_data)
 {
-	
-	char texte1[20],texte2[20],texte3[20],texte4[20],texte5[20];
-	char outputmessage[100];
-	GtkWidget *outputid;
-	GtkWidget *outputprenom;
-	GtkWidget *outputdate;
-	GtkWidget *outputnom;
-	GtkWidget *outputniveau;
-	GtkWidget *output10;
-	GtkWidget *tg1 ,*tg2;
-	GtkWidget *outputt;
-	
-	etudiant e;
-	char fichier[]={"etudiant.txt"};
-	e=recherche_am(fichier,iden_am);
-	tg1=lookup_widget(objet,"radiobutton3_am");
-	tg2=lookup_widget(objet,"radiobutton4_am");
-	if(strcmp(e.sexe,"Homme")==0){gtk_toggle_button_set_active(GTK_RADIO_BUTTON (tg1),TRUE);gtk_label_set_text(GTK_LABEL(outputt),"");}
-	if(strcmp(e.sexe,"Femme")==0){gtk_toggle_button_set_active(GTK_RADIO_BUTTON (tg2),TRUE);gtk_label_set_text(GTK_LABEL(outputt),"");}
-	sprintf(outputmessage,"Tapez vos nouveau donnée puis cliquez sur\n\tModifier\n");
-	output10 = lookup_widget(objet,"label33_am");
-    	gtk_label_set_text(GTK_LABEL(output10),outputmessage);		
-
-	sprintf(texte1,"%s",e.id);
-	outputid = lookup_widget(objet,"entry9ID2_am");
-    	gtk_entry_set_text(GTK_ENTRY(outputid),texte1);
-
-	sprintf(texte2,"%s",e.nom);
-	outputnom = lookup_widget(objet,"entry6Name2_am");
-    	gtk_entry_set_text(GTK_ENTRY(outputnom),texte2);
-		
-	sprintf(texte3,"%s",e.prenom);
-	outputprenom = lookup_widget(objet,"entry7Prenom2_am");
-   	gtk_entry_set_text(GTK_ENTRY(outputprenom),texte3);
-
-	sprintf(texte4,"%s",e.date);
-	outputdate = lookup_widget(objet,"entry99_am");
-    	gtk_entry_set_text(GTK_ENTRY(outputdate),texte4);
-
-	sprintf(texte5,"%s",e.niveau);
-	outputniveau = lookup_widget(objet,"entry8NumTel2_am");
-    	gtk_entry_set_text(GTK_ENTRY(outputniveau),texte5);
 
 
 }
@@ -1377,13 +1237,24 @@ if(w_am==1)
 {
 ajouter_etudiant(etud);
 GtkWidget *input,*input1,*input2;
-input=lookup_widget(objet_graphique,"GestionEtudiants_am");
-input=create_GestionEtudiants_am();
-gtk_widget_show(input);
-input1=lookup_widget(objet_graphique,"AjouterEtudiant_am");
-gtk_widget_destroy(input1);
+
 input2=lookup_widget(objet_graphique,"ConfirmerAjout_am");
 gtk_widget_destroy(input2);
+/*input1=lookup_widget(objet_graphique,"AjouterEtudiant_am");
+gtk_widget_destroy(input1);*/
+
+
+char fichier[]={"etudiant.txt"};
+GtkWidget *input3,*input4,*treeview1;
+input3=lookup_widget(objet_graphique,"GestionEtudiants_am");
+input3=create_GestionEtudiants_am ();
+input4=lookup_widget(objet_graphique,"GestionEtudiants_am");
+gtk_widget_destroy(input4);
+gtk_widget_show(input3);
+treeview1=lookup_widget(input3,"treeview1_0_am");
+affichage_am(fichier,treeview1);
+
+
 n=1;
 }
 if(m_am==1)
@@ -1438,31 +1309,32 @@ char fichierr[]={"etudiant.txt"};
 int s ;
 if(z_am==1)
 {
-s=suprimer_etudiant(fichierr,ident_am);
-input=lookup_widget(objet_graphique,"GestionEtudiants_am");
-input=create_GestionEtudiants_am();
-gtk_widget_show(input);
+s=suprimer_etudiant(fichierr,idett);
+
 input1=lookup_widget(objet_graphique,"ConfirmerSupression_am");
 gtk_widget_destroy(input1);
-treeview1=lookup_widget(input,"treeview1_0_am");
-affichage_am(fichierr,treeview1);
-}
-if(z_am==2)
-{
-
-
-GtkWidget *input,*input1;
-input1=lookup_widget(objet_graphique,"ConfirmerSupression_am");
-gtk_widget_destroy(input1);
-
-
 
 
 char fichier[]={"etudiant.txt"};
 GtkWidget *input3,*input4,*treeview1;
 input3=lookup_widget(objet_graphique,"GestionEtudiants_am");
 input3=create_GestionEtudiants_am ();
+input4=lookup_widget(objet_graphique,"GestionEtudiants_am");
+gtk_widget_destroy(input4);
 gtk_widget_show(input3);
+treeview1=lookup_widget(input3,"treeview1_0_am");
+affichage_am(fichier,treeview1);
+
+
+}
+if(z_am==2)
+{
+input1=lookup_widget(objet_graphique,"ConfirmerSupression_am");
+gtk_widget_destroy(input1);
+char fichier[]={"etudiant.txt"};
+GtkWidget *input3,*input4,*treeview1;
+input3=lookup_widget(objet_graphique,"GestionEtudiants_am");
+input3=create_GestionEtudiants_am ();
 input4=lookup_widget(objet_graphique,"GestionEtudiants_am");
 gtk_widget_destroy(input4);
 gtk_widget_show(input3);
@@ -1483,6 +1355,180 @@ on_button36_am_clicked                 (GtkWidget       *objet,
 	gtk_widget_destroy(window2);
 
 }
+
+/////////////////////////////////////////////////////
+
+void view_popup_menu_modif_student(GtkWidget *menuitem, gpointer userdata)
+{
+	GtkTreeView *treeview = GTK_TREE_VIEW(userdata);
+char fichier[]={"etudiant.txt"};
+etudiant ss=recherche_am(fichier,idett);
+GtkWidget *input1,*input2,*input3,*input4,*input5,*GestionEtudiants_am,*ModifierEtudiant_am,*Homme,*Femme;
+GestionEtudiants_am = lookup_widget(treeview,"GestionEtudiants_am");
+gtk_widget_destroy(GestionEtudiants_am);
+ModifierEtudiant_am=create_ModifierEtudiant_am();
+input1=lookup_widget(ModifierEtudiant_am,"entry9ID2_am");
+input2=lookup_widget(ModifierEtudiant_am,"entry6Name2_am");
+input3=lookup_widget(ModifierEtudiant_am,"entry7Prenom2_am");
+input4=lookup_widget(ModifierEtudiant_am,"entry99_am");
+input5=lookup_widget(ModifierEtudiant_am,"entry8NumTel2_am");
+
+gtk_entry_set_text(GTK_ENTRY(input1), ss.id);
+gtk_entry_set_text(GTK_ENTRY(input2), ss.nom);
+gtk_entry_set_text(GTK_ENTRY(input3), ss.prenom);
+gtk_entry_set_text(GTK_ENTRY(input4), ss.date);
+gtk_entry_set_text(GTK_ENTRY(input5), ss.niveau);
+
+	Homme = lookup_widget(ModifierEtudiant_am,"radiobutton3_am");
+	Femme = lookup_widget(ModifierEtudiant_am,"radiobutton4_am");
+	
+	if (strcmp(ss.sexe, "Homme") == 0)
+	{
+		gtk_toggle_button_set_active(GTK_RADIO_BUTTON(Homme), TRUE);
+		gtk_toggle_button_set_active(GTK_RADIO_BUTTON(Femme), FALSE);
+	}
+	else if (strcmp(ss.sexe, "Femme") == 0)
+	{
+		gtk_toggle_button_set_active(GTK_RADIO_BUTTON(Homme), FALSE);
+		gtk_toggle_button_set_active(GTK_RADIO_BUTTON(Femme), TRUE);
+	}
+	
+gtk_widget_show(ModifierEtudiant_am);
+}
+////////
+
+
+
+
+void view_popup_menu_supp_student(GtkWidget *menuitem, gpointer userdata)
+{
+	GtkTreeView *treeview = GTK_TREE_VIEW(userdata);
+GtkWidget *input3,*input1;
+input3=lookup_widget(treeview,"ConfirmerSupression_am");
+input3=create_ConfirmerSupression_am ();
+gtk_widget_show(input3);
+input1=lookup_widget(treeview,"GestionEtudiants_am");
+gtk_widget_destroy(input1);
+
+
+/*char fichier[]={"etudiant.txt"};
+suprimer_etudiant(fichier,idett) ;
+GtkWidget *GestionEtudiants_am,*w1;
+GtkWidget *treeview1_0_am;
+
+w1=lookup_widget(treeview,"GestionEtudiants_am");
+GestionEtudiants_am=create_GestionEtudiants_am();
+
+gtk_widget_show(GestionEtudiants_am);
+
+gtk_widget_destroy(w1);
+treeview1_0_am=lookup_widget(GestionEtudiants_am,"treeview1_0_am");
+
+affichage_am (fichier,treeview1_0_am) ;*/
+
+}
+
+
+
+
+
+
+void view_popup_menu_student(GtkWidget *treeview, GdkEventButton *event, gpointer userdata)
+{
+	GtkWidget *menu,*menu1, *menuitem,*menuitem1,*menuitem2;
+	GtkTreeIter iter;
+	GtkTreePath *path;
+	menu = gtk_menu_new();
+	menuitem = gtk_menu_item_new_with_label("Modifier");
+	menuitem1 = gtk_menu_item_new_with_label("Supprimer");
+
+	g_signal_connect(menuitem, "activate",
+					 (GCallback)view_popup_menu_modif_student, treeview);
+	g_signal_connect(menuitem1, "activate",
+					 (GCallback)view_popup_menu_supp_student, treeview);
+	if (gtk_tree_view_get_path_at_pos(GTK_TREE_VIEW(treeview),
+									  (gint)event->x,
+									  (gint)event->y,
+									  &path, NULL, NULL, NULL))
+	{
+		GtkTreeModel *model = gtk_tree_view_get_model(treeview);
+		gchar *espritId;
+
+		if (gtk_tree_model_get_iter(model, &iter, path))
+		{
+
+			gtk_tree_model_get(GTK_LIST_STORE(model), &iter, 0, &espritId, -1);
+
+			strcpy(idett, espritId);
+		}
+	}
+
+	gtk_menu_shell_append(GTK_MENU_SHELL(menu), menuitem);
+	gtk_menu_shell_append(GTK_MENU_SHELL(menu), menuitem1);
+	
+
+	gtk_widget_show_all(menu);
+
+	gtk_menu_popup(GTK_MENU(menu), NULL, NULL, NULL, NULL,
+				   (event != NULL) ? event->button : 0,
+				   gdk_event_get_time((GdkEvent *)event));
+
+}
+
+
+gboolean on_treeview1_0_am_button_press_event(GtkWidget *treeview, GdkEventButton *event, gpointer userdata)
+{
+
+	if (event->type == GDK_BUTTON_PRESS && event->button == 3)
+	{
+		
+
+		if (1)
+		{
+			GtkTreeSelection *selection;
+
+			selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(treeview));
+
+			if (gtk_tree_selection_count_selected_rows(selection) <= 1)
+			{
+				GtkTreePath *path;
+
+				if (gtk_tree_view_get_path_at_pos(GTK_TREE_VIEW(treeview),
+												  (gint)event->x,
+												  (gint)event->y,
+												  &path, NULL, NULL, NULL))
+				{
+					gtk_tree_selection_unselect_all(selection);
+					gtk_tree_selection_select_path(selection, path);
+
+					gtk_tree_path_free(path);
+				}
+			}
+		}
+
+		view_popup_menu_student(treeview, event, userdata);
+
+		return TRUE;
+	}
+
+	return FALSE;
+}
+
+gboolean on_treeview1_0_am_popup_menu(GtkWidget *treeview, gpointer userdata)
+{
+
+	view_popup_menu_student(treeview, NULL, userdata);
+
+	return TRUE;
+}
+
+
+
+
+///////////////////////////////
+
+
+
 
 /*********************FIN ETUDIANT********************/
 
@@ -4605,6 +4651,7 @@ gtk_window_set_decorated (GTK_WINDOW (pInfo), FALSE);
     break;
     }
 }
+
 
 
 
