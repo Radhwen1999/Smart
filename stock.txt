@@ -13,7 +13,8 @@
 120 pomme 30 avril/2021 fruit
 2 ognion 0 janvier/2021 legume
 5 lait 20 mai/2022 fruit
-100 ahmed 20 Fevrier/2022 legume
+111 ahmed 20 Fevrier/2022 legume
+12 amir 20 Fev/2022 hi
 50 lait 20 Fevrier/2022 autres
 sdfdsf sdfsdf dsfsdf Fevrier/2022 legume
 sdfsdf sdfsdf sdfsdf Fevrier/2023 autres
