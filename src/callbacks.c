@@ -239,8 +239,193 @@ on_RECLAMATION_clicked                 (GtkWidget       *objet,
 int w=1;
 int z=1;
 int *i=0;
+char idcap[20];
+
+void
+on_aidecapteur_clicked                 ( GtkWidget       *objet,
+                                        gpointer         user_data)
+{
+GtkWidget *pInfo;
+	pInfo=gtk_message_dialog_new(GTK_WINDOW(user_data),GTK_DIALOG_MODAL,GTK_MESSAGE_INFO,GTK_BUTTONS_OK," \nClic droit pour: \t\t  \n\n - Modifier\n\n - Supprimer ");
+gtk_window_set_decorated (GTK_WINDOW (pInfo), FALSE);
+    switch(gtk_dialog_run(GTK_DIALOG(pInfo)))
+    {
+    case GTK_RESPONSE_OK:
+    gtk_widget_destroy(pInfo);
+    break;
+    }
+}
+
+//////////////////////////////
+void view_popup_menu_modif_cap(GtkWidget *menuitem, gpointer userdata)
+{
+	GtkTreeView *treeview = GTK_TREE_VIEW(userdata);
+capteur ss=find_cap(idcap);
+GtkWidget *input1,*input2,*input3,*input4,*input5,*gestcap,*editcap,*temp,*fum,*mouv,*deb;
+gestcap = lookup_widget(treeview,"gestcap");
+gtk_widget_destroy(gestcap);
+editcap=create_editcap();
+input1=lookup_widget(editcap,"entryconsultid");
+input2=lookup_widget(editcap,"entrymaredit");
+input3=lookup_widget(editcap,"entrynomedit");
+input4=lookup_widget(editcap,"entryrefedit");
 
 
+gtk_entry_set_text(GTK_ENTRY(input1), ss.id);
+gtk_entry_set_text(GTK_ENTRY(input2), ss.marque);
+gtk_entry_set_text(GTK_ENTRY(input3), ss.nomdecapteur);
+gtk_entry_set_text(GTK_ENTRY(input4), ss.reference);
+
+
+	temp = lookup_widget(editcap,"radiobuttontempedit");
+	fum = lookup_widget(editcap,"radiobuttonfumedit");
+	mouv = lookup_widget(editcap,"radiobuttonmouvedit");
+	deb = lookup_widget(editcap,"radiobuttondebedit");
+	
+	if (strcmp(ss.service, "Mouvement") == 0)
+	{
+		gtk_toggle_button_set_active(GTK_RADIO_BUTTON(mouv), TRUE);
+		gtk_toggle_button_set_active(GTK_RADIO_BUTTON(fum), FALSE);
+		gtk_toggle_button_set_active(GTK_RADIO_BUTTON(temp), FALSE);
+		gtk_toggle_button_set_active(GTK_RADIO_BUTTON(deb), FALSE);
+	}
+	if (strcmp(ss.service, "Temperature") == 0)
+	{
+		gtk_toggle_button_set_active(GTK_RADIO_BUTTON(mouv), FALSE);
+		gtk_toggle_button_set_active(GTK_RADIO_BUTTON(fum), FALSE);
+		gtk_toggle_button_set_active(GTK_RADIO_BUTTON(temp), TRUE);
+		gtk_toggle_button_set_active(GTK_RADIO_BUTTON(deb), FALSE);
+	}	
+if (strcmp(ss.service, "Débit") == 0)
+	{
+		gtk_toggle_button_set_active(GTK_RADIO_BUTTON(mouv), FALSE);
+		gtk_toggle_button_set_active(GTK_RADIO_BUTTON(fum), FALSE);
+		gtk_toggle_button_set_active(GTK_RADIO_BUTTON(temp), FALSE);
+		gtk_toggle_button_set_active(GTK_RADIO_BUTTON(deb), TRUE);
+	}
+if (strcmp(ss.service, "Fumée") == 0)
+	{
+		gtk_toggle_button_set_active(GTK_RADIO_BUTTON(mouv), FALSE);
+		gtk_toggle_button_set_active(GTK_RADIO_BUTTON(fum), TRUE);
+		gtk_toggle_button_set_active(GTK_RADIO_BUTTON(temp), FALSE);
+		gtk_toggle_button_set_active(GTK_RADIO_BUTTON(deb), FALSE);
+	}
+	
+gtk_widget_show(editcap);
+}
+////////
+
+
+
+
+void view_popup_menu_supp_cap(GtkWidget *menuitem, gpointer userdata)
+{
+	GtkTreeView *treeview = GTK_TREE_VIEW(userdata);
+supprimer_capteur(idcap);	
+GtkWidget *window1;
+	GtkWidget *window2;
+	window1 = lookup_widget(treeview,"gestcap");
+	window2 = create_gestcap ();
+  	gtk_widget_show (window2);
+	gtk_widget_destroy(window1);
+	GtkWidget *treeview1; 
+	treeview1 = lookup_widget(window2,"treeviewcap");
+	afficher_capteur(treeview1);
+}
+
+
+
+
+
+
+void view_popup_menu_cap(GtkWidget *treeview, GdkEventButton *event, gpointer userdata)
+{
+	GtkWidget *menu,*menu1, *menuitem,*menuitem1,*menuitem2;
+	GtkTreeIter iter;
+	GtkTreePath *path;
+	menu = gtk_menu_new();
+	menuitem = gtk_menu_item_new_with_label("Modifier");
+	menuitem1 = gtk_menu_item_new_with_label("Supprimer");
+
+	g_signal_connect(menuitem, "activate",
+					 (GCallback)view_popup_menu_modif_cap, treeview);
+	g_signal_connect(menuitem1, "activate",
+					 (GCallback)view_popup_menu_supp_cap, treeview);
+	if (gtk_tree_view_get_path_at_pos(GTK_TREE_VIEW(treeview),
+									  (gint)event->x,
+									  (gint)event->y,
+									  &path, NULL, NULL, NULL))
+	{
+		GtkTreeModel *model = gtk_tree_view_get_model(treeview);
+		gchar *espritId;
+
+		if (gtk_tree_model_get_iter(model, &iter, path))
+		{
+
+			gtk_tree_model_get(GTK_LIST_STORE(model), &iter, 0, &espritId, -1);
+
+			strcpy(idcap, espritId);
+		}
+	}
+
+	gtk_menu_shell_append(GTK_MENU_SHELL(menu), menuitem);
+	gtk_menu_shell_append(GTK_MENU_SHELL(menu), menuitem1);
+	
+
+	gtk_widget_show_all(menu);
+
+	gtk_menu_popup(GTK_MENU(menu), NULL, NULL, NULL, NULL,
+				   (event != NULL) ? event->button : 0,
+				   gdk_event_get_time((GdkEvent *)event));
+
+}
+
+
+gboolean on_treeviewcap_button_press_event(GtkWidget *treeview, GdkEventButton *event, gpointer userdata)
+{
+
+	if (event->type == GDK_BUTTON_PRESS && event->button == 3)
+	{
+		
+
+		if (1)
+		{
+			GtkTreeSelection *selection;
+
+			selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(treeview));
+
+			if (gtk_tree_selection_count_selected_rows(selection) <= 1)
+			{
+				GtkTreePath *path;
+
+				if (gtk_tree_view_get_path_at_pos(GTK_TREE_VIEW(treeview),
+												  (gint)event->x,
+												  (gint)event->y,
+												  &path, NULL, NULL, NULL))
+				{
+					gtk_tree_selection_unselect_all(selection);
+					gtk_tree_selection_select_path(selection, path);
+
+					gtk_tree_path_free(path);
+				}
+			}
+		}
+
+		view_popup_menu_cap(treeview, event, userdata);
+
+		return TRUE;
+	}
+
+	return FALSE;
+}
+
+gboolean on_treeviewcap_popup_menu(GtkWidget *treeview, gpointer userdata)
+{
+
+	view_popup_menu_cap(treeview, NULL, userdata);
+
+	return TRUE;
+}
 
 void
 on_radiobuttontemp_toggled             (GtkToggleButton *togglebutton,
@@ -729,14 +914,22 @@ void
 on_buttonfindcap_clicked               (GtkWidget       *objet,
                                         gpointer         user_data)
 {
-	GtkWidget *window;
-	GtkWidget *window2;
-	GtkWidget *treeview;
-	GtkWidget *output10;
-	window = lookup_widget(objet,"gestcap");
-	window2 = create_findcap ();
-	gtk_widget_destroy(window);
-	gtk_widget_show(window2);
+	
+GtkWidget *fenetre_rechercher;
+GtkWidget *fenetre_afficher;
+GtkWidget *espritId;
+GtkWidget *treeview1;
+char rech[20];
+espritId = lookup_widget (objet, "entryfindcapteur");
+strcpy(rech, gtk_entry_get_text(GTK_ENTRY(espritId)));
+fenetre_afficher=lookup_widget(objet,"gestcap");
+gtk_widget_destroy(fenetre_afficher);
+fenetre_rechercher=lookup_widget(objet,"gestcap");
+fenetre_rechercher=create_gestcap();
+gtk_widget_show(fenetre_rechercher);
+treeview1=lookup_widget(fenetre_rechercher,"treeviewcap");
+afficher_findcapteur(treeview1,rech);	
+
 	
 }
 
@@ -4651,6 +4844,10 @@ gtk_window_set_decorated (GTK_WINDOW (pInfo), FALSE);
     break;
     }
 }
+
+
+
+
 
 
 

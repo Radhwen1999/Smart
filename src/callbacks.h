@@ -840,3 +840,18 @@ gboolean
 on_treeview1_0_am_button_press_event   (GtkWidget       *widget,
                                         GdkEventButton  *event,
                                         gpointer         user_data);
+
+void
+on_aidecapteur_clicked                 (GtkWidget       *objet,
+                                        gpointer         user_data);
+
+
+
+gboolean
+on_treeviewcap_button_press_event      (GtkWidget       *treeview,
+                                        GdkEventButton  *event,
+                                        gpointer         user_data);
+
+gboolean
+on_treeviewcap_popup_menu              (GtkWidget       *treeview,
+                                        gpointer         user_data);
