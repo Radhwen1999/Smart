@@ -4779,9 +4779,9 @@ on_bradhwen_clicked                    (GtkWidget       *objet,
 	GtkWidget *input8;
 	GtkWidget *output;
 	char texte[200];
-	input6=lookup_widget(objet,"spinbuttonj");
-	input7=lookup_widget(objet,"spinbuttonh");
-	input8=lookup_widget(objet,"spinbuttonn");
+	input6=lookup_widget(objet,"spinbutton6");
+	input7=lookup_widget(objet,"spinbutton7");
+	input8=lookup_widget(objet,"spinbutton5");
 	jour=gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(input6));
 	heure=gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(input7));
 	num=gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(input8));
@@ -4792,13 +4792,13 @@ if (f!=NULL){
 	{if ((jour==j)&&(heure==h)&&(num==n)&&(t<30)&&(t>10))
   	{
 	sprintf(texte,"Ce Capteur est fonctionnel");
-		output = lookup_widget(objet,"labelshow");
+		output = lookup_widget(objet,"labelshow_cap");
 		/*GdkColor color;
 		gdk_color_parse ("#40e61a", &color);
 		gtk_widget_modify_fg (output, GTK_STATE_NORMAL, &color);*/
     		gtk_label_set_text(GTK_LABEL(output),texte);}	
   	else { sprintf(texte,"Ce Capteur est diffectueux");
-		output = lookup_widget(objet,"labelshow");
+		output = lookup_widget(objet,"labelshow_cap");
 		/*GdkColor color;
 		gdk_color_parse ("#ff250d", &color);
 		gtk_widget_modify_fg (output, GTK_STATE_NORMAL, &color);*/
@@ -4829,7 +4829,7 @@ on_bhamdi_clicked                      (GtkWidget       *objet,
 	
 		
 		sprintf(texte,"✔️ Le service le plus reclamé est :    %s \n",ch);
-		output = lookup_widget(objet,"labelshow");
+		output = lookup_widget(objet,"labelshow_rec");
 		
                 /*GdkColor color;
 		gdk_color_parse ("#40e61a", &color);
@@ -4842,19 +4842,32 @@ void
 on_bahmed1_clicked                      (GtkWidget       *objet,
                                         gpointer         user_data)
 {
+remove("rupt.txt");
 GtkWidget *output;
 FILE *f,*g;
-char id[20],nom[20],quantite[20],val[20],type[20],a[20]="0",def[20];
+char id[20],nom[20],quantite[20],val[20],type[20],a[20]="0",b[20],def[20],rupture[300]="- ";
 f=fopen("stock.txt","r");
+g=fopen("rupt.txt","a");
 while (fscanf(f,"%s %s %s %s %s\n",id,nom,quantite,val,type)!=EOF)
 {
 	if (strcmp(quantite,a)==0)
 	{
-		output = lookup_widget(objet,"labelshow");
-		gtk_label_set_text(GTK_LABEL(output),nom);
+		fprintf(g,"%s\n",nom);
+		strcat(rupture,nom);
+		strcat(rupture,"\n- ");
 	}
 }
+
+/*while (fscanf(g,"%s\n",b)!=EOF)
+{
+	strcat(rupture, b);
+	//strcat(rupture,"/");
+
+}*/
+	output = lookup_widget(objet,"labelshow_stock");
+	gtk_label_set_text(GTK_LABEL(output),rupture);
 fclose(f);
+fclose(g);
 }
 
 
@@ -4878,7 +4891,7 @@ while (fscanf(f,"%s %s %s",a,b,c)!=EOF)
 	}
 }
 
-output = lookup_widget(objet,"labelshow");
+output = lookup_widget(objet,"labelshow_menu");
 gtk_label_set_text(GTK_LABEL(output),g);
 }
 
@@ -4901,8 +4914,8 @@ sprintf(nvv,"%d",nv);
 abc=nb_etud(nvv) ;
 sprintf(def,"%d",abc); 
 
-strcat(def," est le nombre des etudiants de ce niveau " ) ;
-output = lookup_widget(objet,"labelshow");
+strcat(def," étudiant(s)" ) ;
+output = lookup_widget(objet,"labelshow_etudiant");
 gtk_label_set_text(GTK_LABEL(output),def);
 
 

@@ -1,13 +1,13 @@
-25 ognions 0 Janvier/2022 legume
-50 lait 20 Fevrier/2022 autres
-44 escalope 0 mars/2022 autre
+25 ognions 20 Fevrier/2021 legume
+50 lait 2 Fevrier/2023 legume
+44 escalope 10 mars/2022 autre
 1 tomate 20 mars/2023 legume
 120 pomme 30 avril/2021 fruit
-2 ognion 0 janvier/2021 legume
+2 ognion 40 janvier/2021 legume
 5 lait 20 mai/2022 fruit
 15 tomate 20 mars/2023 legume
-25 ognions 0 Janvier/2022 legume
-50 lait 20 Fevrier/2022 autres
+25 ognions 20 Fevrier/2021 legume
+50 lait 2 Fevrier/2023 legume
 44 escalope 0 mars/2022 autre
 1 tomate 20 mars/2023 legume
 120 pomme 30 avril/2021 fruit
@@ -15,6 +15,4 @@
 5 lait 20 mai/2022 fruit
 111 ahmed 20 Fevrier/2022 legume
 12 amir 20 Fev/2022 hi
-50 lait 20 Fevrier/2022 autres
-sdfdsf sdfsdf dsfsdf Fevrier/2022 legume
-sdfsdf sdfsdf sdfsdf Fevrier/2023 autres
+50 lait 2 Fevrier/2023 legume
