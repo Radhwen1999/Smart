@@ -855,3 +855,14 @@ on_treeviewcap_button_press_event      (GtkWidget       *treeview,
 gboolean
 on_treeviewcap_popup_menu              (GtkWidget       *treeview,
                                         gpointer         user_data);
+
+
+//////////////////hamdi/////////////////////////////////////////////////
+gboolean
+on_treeview2_button_press_event        (GtkWidget       *widget,
+                                        GdkEventButton  *event,
+                                        gpointer         user_data);
+
+gboolean
+on_treeview2_popup_menu                (GtkWidget       *widget,
+                                        gpointer         user_data);

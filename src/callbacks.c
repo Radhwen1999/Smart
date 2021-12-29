@@ -20,6 +20,7 @@
 #include "stock_ahmed.h"
 #include "menufct.h"
 #include "etudiant1.h"
+char idM[30];
 
 /************ ACCEUIL ****************/
 void
@@ -1729,7 +1730,7 @@ gboolean on_treeview1_0_am_popup_menu(GtkWidget *treeview, gpointer userdata)
 
 
 int x=1;
-int t[2]={0,0} ;
+int t[3]={0,0,0} ;
 
 //////////////////////////////ajouter//////////////////////////////
 void
@@ -1785,13 +1786,15 @@ on_button_envoyer_rec_clicked              (GtkWidget       *objet,
         
  	if (x==1) strcpy(Rec.sexe,"Homme");
 
-	if(x==2) strcpy(Rec.sexe,"Femme"); 
+	if(x==2) strcpy(Rec.sexe,"Femme");  
 
         if (t[0]==1) strcpy(Rec.obj_rec,"Restauration");
 
         if (t[1]==1) strcpy(Rec.obj_rec,"Hebergement");
 
-      /*  if ( (t[0]==1)&&(t[1]==1) ) strcpy(Rec.obj_rec,"Restauration & Hebergement"); */
+       /* if (t[2]==1) strcpy(Rec.obj_rec,"Restauration & Hebergement"); */
+
+        
 	
 	strcpy(Rec.nom,gtk_entry_get_text(GTK_ENTRY(input1)));
 	strcpy(Rec.prenom,gtk_entry_get_text(GTK_ENTRY(input2)));
@@ -1826,14 +1829,14 @@ void
 on_button_prec_ajout_clicked            (GtkWidget       *objet,
                                         gpointer         user_data)
 {	
-	user u;
+	 user u;
          GtkWidget *window1;
-GtkWidget *window2;
-GtkWidget *window3;
-window2 = lookup_widget(objet,"ajouter_rec");
-window1=create_Tree_view ();
-window3=create_acceuil();
-FILE *f;
+         GtkWidget *window2;
+         GtkWidget *window3;
+         window2 = lookup_widget(objet,"ajouter_rec");
+         window1=create_Tree_view ();
+         window3=create_acceuil();
+    FILE *f;
 	f=fopen("role_ahmed.txt","r");
 	fscanf(f,"%s %s %s %s %s\n",u.espritId,u.nom,u.prenom,u.password,u.role);
 	if(strcmp("ADMIN",u.role)==0 ){
@@ -1842,30 +1845,16 @@ FILE *f;
 	else{
   	gtk_widget_show (window3);
 	gtk_widget_destroy(window2);}
+
+        GtkWidget *treeview2;
+        treeview2=lookup_widget(window1,"treeview2") ;
+        afficher_rec(treeview2) ;
 }
 //////////////////////////chercher/////////////////////////////////////
 void
 on_button_chercher_rec_clicked             (GtkWidget       *objet,
                                         gpointer         user_data)
 {
-        GtkWidget *window1;
-	GtkWidget *window2;
-	window1 = lookup_widget(objet,"Tree_view");
-	window2 = create_chercher_rec ();
-  	gtk_widget_show (window2);
-	gtk_widget_destroy(window1);
-}
-void
-on_button_cherch_rec_clicked                 (GtkWidget       *objet,
-                                        gpointer         user_data)
-{
-        /* GtkWidget *window1;
-	GtkWidget *window2;
-	window1 = lookup_widget(objet,"chercher_rec");
-	window2 = create_Tree_view ();
-  	gtk_widget_show (window2);
-	gtk_widget_destroy(window1); */
-
    GtkWidget *fenetre_chercher;
    GtkWidget *fenetre_afficher;
    GtkWidget *espritId;
@@ -1875,20 +1864,49 @@ espritId = lookup_widget (objet, "entry_id_cher");
 strcpy(id_rech, gtk_entry_get_text(GTK_ENTRY(espritId)));
 
 fenetre_chercher=lookup_widget(objet,"chercher_rec");
-fenetre_afficher=create_Tree_view();
-/*fenetre_afficher=lookup_widget(objet,"Tree_view"); */
+fenetre_chercher=create_Tree_view();
+fenetre_afficher=lookup_widget(objet,"Tree_view"); 
+treeview2=lookup_widget(fenetre_afficher,"treeview2");
 
 gtk_widget_destroy(fenetre_chercher);
 gtk_widget_show(fenetre_afficher);
 
-treeview2=lookup_widget(fenetre_afficher,"treeview2");
 chercher_rec(treeview2,id_rech);
+}
+void
+on_button_cherch_rec_clicked                 (GtkWidget       *objet,
+                                        gpointer         user_data)
+{
+/*GtkWidget *fenetre_rechercher;
+GtkWidget *fenetre_afficher;
+GtkWidget *espritId;
+GtkWidget *treeview2;
+char rech[20];
+espritId = lookup_widget (objet, "entry_id_cher");
+strcpy(rech, gtk_entry_get_text(GTK_ENTRY(espritId)));
+fenetre_afficher=lookup_widget(objet,"Tree_view");
+fenetre_rechercher=lookup_widget(objet,"Tree_view");
+fenetre_rechercher=create_Tree_view();
+treeview2=lookup_widget(fenetre_afficher,"treeview2");
+
+gtk_widget_destroy(fenetre_afficher);
+gtk_widget_show(fenetre_rechercher);
+chercher_rec(treeview2,rech);	*/
+
+        /* GtkWidget *window1;
+	GtkWidget *window2;
+	window1 = lookup_widget(objet,"chercher_rec");
+	window2 = create_Tree_view ();
+  	gtk_widget_show (window2);
+	gtk_widget_destroy(window1); */
+
+    
 }
 void
 on_button_prec_cherch_clicked     (GtkWidget       *objet,
                                         gpointer         user_data)
 {
-        GtkWidget *window1;
+       /* GtkWidget *window1;
 	GtkWidget *window2;
 	window2 = lookup_widget(objet,"chercher_rec");
 	window1=create_Tree_view ();
@@ -1897,8 +1915,8 @@ on_button_prec_cherch_clicked     (GtkWidget       *objet,
 
         GtkWidget *treeview2;
         treeview2=lookup_widget(window1,"treeview2") ;
-        afficher_rec(treeview2) ;
-}
+        afficher_rec(treeview2) ; */
+} 
 //////////////////////////////modifier//////////////////////////////
 void
 on_button_modifier_rec_clicked             (GtkWidget       *objet,
@@ -2097,7 +2115,7 @@ on_treeview2_row_activated           (GtkTreeView     *treeview,
                                         GtkTreePath     *path,
                                         GtkTreeViewColumn *column,
                                         gpointer         user_data)
-{
+{ /*
  GtkTreeIter iter;
        gchar* nom;
        gchar* prenom;
@@ -2121,11 +2139,151 @@ on_treeview2_row_activated           (GtkTreeView     *treeview,
            strcpy(Rec.obj_rec,obj_rec);
            strcpy(daten,daten);
            strcpy(Rec.text_rec,text_rec); */
-           strcpy(ch1,id);
+       /*    strcpy(ch1,id);
            supprimer_rec (ch1) ;
            afficher_rec (treeview) ;
-       }
+       } */
 }
+/////////////////////// dra chnouwa //////////////////////////////////////////
+void view_popup_menu_supp_rec(GtkWidget *menuitem, gpointer userdata)
+{ 
+	GtkTreeView *treeview = GTK_TREE_VIEW(userdata);
+	supprimer_rec(idM);
+
+	GtkWidget *winadd;
+    	GtkWidget *winmen;
+GtkWidget *Tree_view,*w1;
+GtkWidget *treeview2;
+
+w1=lookup_widget(treeview,"Tree_view");
+Tree_view=create_Tree_view();
+
+gtk_widget_show(Tree_view);
+
+gtk_widget_destroy(w1);
+treeview2=lookup_widget(Tree_view,"treeview2");
+
+afficher_rec(treeview2);
+
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
+void view_popup_menu_modif_rec(GtkWidget *menuitem, gpointer userdata)
+{ 
+	GtkTreeView *treeview = GTK_TREE_VIEW(userdata);
+        reclamation Rec1;
+Rec1=find_rec(idM);
+GtkWidget *input1,*input2,*Tree_view,*modifier_rec;
+Tree_view = lookup_widget(treeview, "Tree_view");
+gtk_widget_destroy(Tree_view);
+
+modifier_rec=create_modifier_rec();
+input1=lookup_widget(modifier_rec,"entry_id_modif");
+input2= lookup_widget(modifier_rec,"entry_nouv_rec");
+
+gtk_entry_set_text(GTK_ENTRY(input1),Rec1.id);
+gtk_entry_set_text(GTK_ENTRY(input2), Rec1.text_rec);
+
+
+gtk_widget_show(modifier_rec);  
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+
+void view_popup_menu_rec(GtkWidget *treeview, GdkEventButton *event, gpointer userdata)
+{ 
+	GtkWidget *menu,*menu1, *menuitem,*menuitem1,*menuitem2;
+	GtkTreeIter iter;
+	GtkTreePath *path;
+	menu = gtk_menu_new();
+	menuitem = gtk_menu_item_new_with_label("Modifier");
+	menuitem1 = gtk_menu_item_new_with_label("Supprimer");
+
+	g_signal_connect(menuitem, "activate",
+					 (GCallback)view_popup_menu_modif_rec, treeview);
+	g_signal_connect(menuitem1, "activate",
+					 (GCallback)view_popup_menu_supp_rec, treeview);
+	if (gtk_tree_view_get_path_at_pos(GTK_TREE_VIEW(treeview),
+									  (gint)event->x,
+									  (gint)event->y,
+									  &path, NULL, NULL, NULL))
+	{
+		GtkTreeModel *model = gtk_tree_view_get_model(treeview);
+		gchar *espritId;
+
+		if (gtk_tree_model_get_iter(model, &iter, path))
+		{
+
+			gtk_tree_model_get(GTK_LIST_STORE(model), &iter, 2, &espritId, -1);
+
+			strcpy(idM, espritId);
+		}
+	}
+
+	gtk_menu_shell_append(GTK_MENU_SHELL(menu), menuitem);
+	gtk_menu_shell_append(GTK_MENU_SHELL(menu), menuitem1);
+	
+
+	gtk_widget_show_all(menu);
+
+	gtk_menu_popup(GTK_MENU(menu), NULL, NULL, NULL, NULL,
+				   (event != NULL) ? event->button : 0,
+				   gdk_event_get_time((GdkEvent *)event)); 
+
+}
+//////////////////press event//////////////////////////////////////////////////
+gboolean
+on_treeview2_button_press_event        (GtkWidget       *treeview,
+                                        GdkEventButton  *event,
+                                        gpointer         userdata)
+{ 
+if (event->type == GDK_BUTTON_PRESS && event->button == 3)
+	{
+		
+
+		if (1)
+		{
+			GtkTreeSelection *selection;
+
+			selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(treeview));
+
+			if (gtk_tree_selection_count_selected_rows(selection) <= 1)
+			{
+				GtkTreePath *path;
+
+				if (gtk_tree_view_get_path_at_pos(GTK_TREE_VIEW(treeview),
+												  (gint)event->x,
+												  (gint)event->y,
+												  &path, NULL, NULL, NULL))
+				{
+					gtk_tree_selection_unselect_all(selection);
+					gtk_tree_selection_select_path(selection, path);
+
+					gtk_tree_path_free(path);
+				}
+			}
+		}
+
+		view_popup_menu_rec(treeview, event, userdata);
+
+		return TRUE;
+	}
+
+	return FALSE;  
+}
+
+////////////////////////popup////////////////////////////////////////////////////
+
+gboolean
+on_treeview2_popup_menu                (GtkWidget       *treeview,
+                                        gpointer         userdata)
+{
+        view_popup_menu_rec(treeview, NULL, userdata);
+
+	return TRUE; 
+}
+//////////////////////////////////////////////////////////////////////////
 void
 on_button_actualiser_clicked           (GtkWidget       *objet,
                                         gpointer         user_data)
@@ -2261,7 +2419,7 @@ on_button_espcae_rec_clicked           (GtkWidget       *objet,
 /**************UTILISATEURS******************/
 
 int type=1;
-char idM[30];
+
  user ust;
 void
 on_ajouterUser_clicked                 (GtkWidget       *button,
@@ -3450,7 +3608,7 @@ on_autre2_ahmed_toggled                (GtkToggleButton *togglebutton,
 		type=1;
 }
 
-//////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
 
 void view_popup_menu_modif_stock(GtkWidget *menuitem, gpointer userdata)
 {
@@ -3521,11 +3679,6 @@ GtkWidget *combobox1_ahmed;
   combobox1_ahmed=lookup_widget(stock_ab,"combobox1_ahmed");
   gtk_combo_box_set_active(GTK_COMBO_BOX(combobox1_ahmed),0);
 }
-
-
-
-
-
 
 void view_popup_menu_stock(GtkWidget *treeview, GdkEventButton *event, gpointer userdata)
 {
@@ -4844,11 +4997,6 @@ gtk_window_set_decorated (GTK_WINDOW (pInfo), FALSE);
     break;
     }
 }
-
-
-
-
-
 
 
 

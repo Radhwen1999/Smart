@@ -17,7 +17,6 @@ GtkWidget* create_ajouter_rec (void);
 GtkWidget* create_Tree_view (void);
 GtkWidget* create_supprimer_rec (void);
 GtkWidget* create_service_plus_reclame (void);
-GtkWidget* create_chercher_rec (void);
 GtkWidget* create_modifier_rec (void);
 GtkWidget* create_ajouter_user (void);
 GtkWidget* create_gestion_des_utilisateurs (void);
