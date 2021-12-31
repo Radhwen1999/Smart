@@ -63,40 +63,41 @@ void chercher_rec(GtkWidget *liste,char id_rech[10])
    if(store == NULL)
    {
         renderer = gtk_cell_renderer_text_new () ;
-        column = gtk_tree_view_column_new_with_attributes("Nom",renderer,"text",ENOM,NULL) ;
+        column = gtk_tree_view_column_new_with_attributes("Nom         ",renderer,"text",ENOM,NULL) ;
         gtk_tree_view_append_column (GTK_TREE_VIEW (liste), column) ;
 
 
         renderer = gtk_cell_renderer_text_new () ;
-        column = gtk_tree_view_column_new_with_attributes("Prenom",renderer,"text",EPRENOM,NULL) ;
+        column = gtk_tree_view_column_new_with_attributes("Prenom         ",renderer,"text",EPRENOM,NULL) ;
         gtk_tree_view_append_column (GTK_TREE_VIEW (liste), column) ;
 
 
         renderer = gtk_cell_renderer_text_new () ;
-        column = gtk_tree_view_column_new_with_attributes("Id",renderer,"text",EID,NULL) ;
+        column = gtk_tree_view_column_new_with_attributes("Id         ",renderer,"text",EID,NULL) ;
         gtk_tree_view_append_column (GTK_TREE_VIEW (liste), column) ; 
 
         renderer = gtk_cell_renderer_text_new () ;
-        column = gtk_tree_view_column_new_with_attributes("Sexe",renderer,"text",ESEXE,NULL) ;
+        column = gtk_tree_view_column_new_with_attributes("Sexe            ",renderer,"text",ESEXE,NULL) ;
         gtk_tree_view_append_column (GTK_TREE_VIEW (liste), column) ;
 
 
         renderer = gtk_cell_renderer_text_new () ;
-        column = gtk_tree_view_column_new_with_attributes("Email",renderer,"text",EEMAIL,NULL) ;
+        column = gtk_tree_view_column_new_with_attributes("Email               ",renderer,"text",EEMAIL,NULL) ;
         gtk_tree_view_append_column (GTK_TREE_VIEW (liste), column) ;
 
         renderer = gtk_cell_renderer_text_new () ;
-        column = gtk_tree_view_column_new_with_attributes("Objet_réclamation",renderer,"text",EOBJ_REC,NULL) ;
+        column = gtk_tree_view_column_new_with_attributes("Objet Réclamation          ",renderer,"text",EOBJ_REC,NULL) ;
         gtk_tree_view_append_column (GTK_TREE_VIEW (liste), column) ; 
 
         renderer=gtk_cell_renderer_text_new();
-        column=gtk_tree_view_column_new_with_attributes("Date_ajout",renderer,"text",EDATEN,NULL);
+        column=gtk_tree_view_column_new_with_attributes("Date Ajout          ",renderer,"text",EDATEN,NULL);
         gtk_tree_view_append_column(GTK_TREE_VIEW(liste),column);
 	
 
         renderer = gtk_cell_renderer_text_new () ;
-        column = gtk_tree_view_column_new_with_attributes("Texte_réclamation",renderer,"text",ETEXT_REC,NULL) ;
+        column = gtk_tree_view_column_new_with_attributes("Texte Réclamation                  ",renderer,"text",ETEXT_REC,NULL) ;
         gtk_tree_view_append_column (GTK_TREE_VIEW (liste), column) ;
+
    }
 
         store = gtk_list_store_new(ECOLUMNS,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING);
@@ -148,41 +149,41 @@ void afficher_rec (GtkWidget *liste)
 
 if (store==NULL)
 {
-renderer = gtk_cell_renderer_text_new () ;
-column = gtk_tree_view_column_new_with_attributes("Nom",renderer,"text",ENOM,NULL) ;
-gtk_tree_view_append_column (GTK_TREE_VIEW (liste), column) ;
+        renderer = gtk_cell_renderer_text_new () ;
+        column = gtk_tree_view_column_new_with_attributes("Nom         ",renderer,"text",ENOM,NULL) ;
+        gtk_tree_view_append_column (GTK_TREE_VIEW (liste), column) ;
 
 
-renderer = gtk_cell_renderer_text_new () ;
-column = gtk_tree_view_column_new_with_attributes("Prenom",renderer,"text",EPRENOM,NULL) ;
-gtk_tree_view_append_column (GTK_TREE_VIEW (liste), column) ;
+        renderer = gtk_cell_renderer_text_new () ;
+        column = gtk_tree_view_column_new_with_attributes("Prenom         ",renderer,"text",EPRENOM,NULL) ;
+        gtk_tree_view_append_column (GTK_TREE_VIEW (liste), column) ;
 
 
-renderer = gtk_cell_renderer_text_new () ;
-column = gtk_tree_view_column_new_with_attributes("Id",renderer,"text",EID,NULL) ;
-gtk_tree_view_append_column (GTK_TREE_VIEW (liste), column) ; 
+        renderer = gtk_cell_renderer_text_new () ;
+        column = gtk_tree_view_column_new_with_attributes("Id         ",renderer,"text",EID,NULL) ;
+        gtk_tree_view_append_column (GTK_TREE_VIEW (liste), column) ; 
 
-renderer = gtk_cell_renderer_text_new () ;
-column = gtk_tree_view_column_new_with_attributes("Sexe",renderer,"text",ESEXE,NULL) ;
-gtk_tree_view_append_column (GTK_TREE_VIEW (liste), column) ;
+        renderer = gtk_cell_renderer_text_new () ;
+        column = gtk_tree_view_column_new_with_attributes("Sexe            ",renderer,"text",ESEXE,NULL) ;
+        gtk_tree_view_append_column (GTK_TREE_VIEW (liste), column) ;
 
 
-renderer = gtk_cell_renderer_text_new () ;
-column = gtk_tree_view_column_new_with_attributes("Email",renderer,"text",EEMAIL,NULL) ;
-gtk_tree_view_append_column (GTK_TREE_VIEW (liste), column) ;
+        renderer = gtk_cell_renderer_text_new () ;
+        column = gtk_tree_view_column_new_with_attributes("Email               ",renderer,"text",EEMAIL,NULL) ;
+        gtk_tree_view_append_column (GTK_TREE_VIEW (liste), column) ;
 
-renderer = gtk_cell_renderer_text_new () ;
-column = gtk_tree_view_column_new_with_attributes("Objet_réclamation",renderer,"text",EOBJ_REC,NULL) ;
-gtk_tree_view_append_column (GTK_TREE_VIEW (liste), column) ; 
+        renderer = gtk_cell_renderer_text_new () ;
+        column = gtk_tree_view_column_new_with_attributes("Objet Réclamation          ",renderer,"text",EOBJ_REC,NULL) ;
+        gtk_tree_view_append_column (GTK_TREE_VIEW (liste), column) ; 
 
         renderer=gtk_cell_renderer_text_new();
-        column=gtk_tree_view_column_new_with_attributes("Date_ajout",renderer,"text",EDATEN,NULL);
+        column=gtk_tree_view_column_new_with_attributes("Date Ajout          ",renderer,"text",EDATEN,NULL);
         gtk_tree_view_append_column(GTK_TREE_VIEW(liste),column);
 	
 
-renderer = gtk_cell_renderer_text_new () ;
-column = gtk_tree_view_column_new_with_attributes("Texte_réclamation",renderer,"text",ETEXT_REC,NULL) ;
-gtk_tree_view_append_column (GTK_TREE_VIEW (liste), column) ;
+        renderer = gtk_cell_renderer_text_new () ;
+        column = gtk_tree_view_column_new_with_attributes("Texte Réclamation                  ",renderer,"text",ETEXT_REC,NULL) ;
+        gtk_tree_view_append_column (GTK_TREE_VIEW (liste), column) ;
 }
 
 store = gtk_list_store_new(ECOLUMNS,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING);

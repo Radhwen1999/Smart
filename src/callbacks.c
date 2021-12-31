@@ -3967,25 +3967,6 @@ on_treeview22_row_activated            (GtkTreeView     *treeview,
                                         GtkTreeViewColumn *column,
                                         gpointer         user_data)
 {
- GtkTreeIter iter;
-       gchar* menuId;
-       gchar* jour;
-       gchar* petit_dejeuner;
-       gchar* dejeuner;
-       gchar* dinner;
-       gchar* consommateur;
-    
-       char ch1[20] ;
-
-       GtkTreeModel *model = gtk_tree_view_get_model(treeview);
-       if (gtk_tree_model_get_iter(model, &iter, path))
-       {
-           gtk_tree_model_get (GTK_LIST_STORE(model),&iter,0,&menuId,1,&jour,2,&petit_dejeuner,3,&dejeuner,4,&dinner,5,&consommateur,-1) ;
-
-           strcpy(ch1,menuId);
-           supprimer_menu (ch1) ;
-           afficher_menu (treeview) ;
-       }
 }
 
 //////gestion des menus//////////
@@ -4139,7 +4120,7 @@ void view_popup_menu_men(GtkWidget *treeview, GdkEventButton *event, gpointer us
 		if (gtk_tree_model_get_iter(model, &iter, path))
 		{
 
-			gtk_tree_model_get(GTK_LIST_STORE(model), &iter, 2, &menuId, -1);
+			gtk_tree_model_get(GTK_LIST_STORE(model), &iter, 0, &menuId, -1);
 
 			strcpy(idM, menuId);
 		}
@@ -4287,11 +4268,9 @@ GtkWidget *window1;
 	gtk_widget_destroy(window2);
 GtkWidget *fenetre_afficher,*w1;
 GtkWidget *treeview2;
-w1=lookup_widget(objet,"gestion_des_menus");
-fenetre_afficher=create_gestion_des_menus();
-gtk_widget_show(fenetre_afficher);
-gtk_widget_destroy(w1);
-treeview2=lookup_widget(fenetre_afficher,"treeview22");
+
+gtk_widget_show(window1);
+treeview2=lookup_widget(window1,"treeview22");
 
 afficher_menu(treeview2);
 }
@@ -5046,7 +5025,7 @@ on_bahmed1_clicked                      (GtkWidget       *objet,
 remove("rupt.txt");
 GtkWidget *output;
 FILE *f,*g;
-char id[20],nom[20],quantite[20],val[20],type[20],a[20]="0",b[20],def[20],rupture[300]="- ";
+char id[20],nom[20],quantite[20],val[20],type[20],a[20]="0",b[20],def[20],rupture[300];
 f=fopen("stock.txt","r");
 g=fopen("rupt.txt","a");
 while (fscanf(f,"%s %s %s %s %s\n",id,nom,quantite,val,type)!=EOF)
@@ -5054,8 +5033,9 @@ while (fscanf(f,"%s %s %s %s %s\n",id,nom,quantite,val,type)!=EOF)
 	if (strcmp(quantite,a)==0)
 	{
 		fprintf(g,"%s\n",nom);
+		strcat(rupture," - ");
 		strcat(rupture,nom);
-		strcat(rupture,"\n- ");
+		strcat(rupture,"\n");
 	}
 }
 

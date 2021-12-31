@@ -166,27 +166,27 @@ void affichage_am (char fichier[],GtkWidget *liste)
 if(store == NULL )
 {
 renderer = gtk_cell_renderer_text_new();
-column=gtk_tree_view_column_new_with_attributes("identifiant",renderer,"text",EID,NULL);
+column=gtk_tree_view_column_new_with_attributes("      Identifiant      ",renderer,"text",EID,NULL);
 gtk_tree_view_append_column (GTK_TREE_VIEW (liste),column);
 
 renderer = gtk_cell_renderer_text_new();
-column=gtk_tree_view_column_new_with_attributes("nom",renderer,"text",ENOM,NULL);
+column=gtk_tree_view_column_new_with_attributes("                  Nom                  ",renderer,"text",ENOM,NULL);
 gtk_tree_view_append_column (GTK_TREE_VIEW (liste),column);
 
 renderer = gtk_cell_renderer_text_new();
-column=gtk_tree_view_column_new_with_attributes("prenom",renderer,"text",EPRENOM,NULL);
+column=gtk_tree_view_column_new_with_attributes("                  Prenom                  ",renderer,"text",EPRENOM,NULL);
 gtk_tree_view_append_column (GTK_TREE_VIEW (liste),column);
 
 renderer = gtk_cell_renderer_text_new();
-column=gtk_tree_view_column_new_with_attributes("niveau",renderer,"text",ENIVEAU,NULL);
+column=gtk_tree_view_column_new_with_attributes("         Niveau         ",renderer,"text",ENIVEAU,NULL);
 gtk_tree_view_append_column (GTK_TREE_VIEW (liste),column);
 
 renderer = gtk_cell_renderer_text_new();
-column=gtk_tree_view_column_new_with_attributes("sexe",renderer,"text",ESEXE,NULL);
+column=gtk_tree_view_column_new_with_attributes("               Sexe               ",renderer,"text",ESEXE,NULL);
 gtk_tree_view_append_column (GTK_TREE_VIEW (liste),column);
 
 renderer = gtk_cell_renderer_text_new();
-column=gtk_tree_view_column_new_with_attributes("date",renderer,"text",EDATE,NULL);
+column=gtk_tree_view_column_new_with_attributes("                           Date                        ",renderer,"text",EDATE,NULL);
 gtk_tree_view_append_column (GTK_TREE_VIEW (liste),column);
 
 }

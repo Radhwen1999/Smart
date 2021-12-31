@@ -1,3 +1,2 @@
-x x x x x Capteur_Temp_defectueux 1 1 2021 ⛔
 s sxx sxx s sxx Capteur_Temp_defectueux 1 4 2021 ⛔
 a a a a a Mouvement 1 1 2021 🆕
