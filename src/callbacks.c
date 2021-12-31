@@ -3973,13 +3973,14 @@ on_treeview22_row_activated            (GtkTreeView     *treeview,
        gchar* petit_dejeuner;
        gchar* dejeuner;
        gchar* dinner;
+       gchar* consommateur;
     
        char ch1[20] ;
 
        GtkTreeModel *model = gtk_tree_view_get_model(treeview);
        if (gtk_tree_model_get_iter(model, &iter, path))
        {
-           gtk_tree_model_get (GTK_LIST_STORE(model),&iter,0,&menuId,1,&jour,2,&petit_dejeuner,3,&dejeuner,4,&dinner,-1) ;
+           gtk_tree_model_get (GTK_LIST_STORE(model),&iter,0,&menuId,1,&jour,2,&petit_dejeuner,3,&dejeuner,4,&dinner,5,&consommateur,-1) ;
 
            strcpy(ch1,menuId);
            supprimer_menu (ch1) ;
@@ -4007,13 +4008,26 @@ void
 on_button_chercher_ob_clicked             (GtkWidget       *objet,
                                         gpointer         user_data)
 {
- GtkWidget *window1;
-	GtkWidget *window2;
-	window1 = lookup_widget(objet,"gestion_des_menus");
-	window2 = create_chercherdesmenus ();
-  	gtk_widget_show (window2);
-	gtk_widget_destroy(window1);
+
+   GtkWidget *fenetre_chercher;
+   GtkWidget *fenetre_afficher;
+   GtkWidget *menuId;
+   GtkWidget *treeview22;
+char id_rech[10];
+menuId = lookup_widget (objet, "entry1");
+strcpy(id_rech, gtk_entry_get_text(GTK_ENTRY(menuId)));
+
+fenetre_chercher=lookup_widget(objet,"chercherdesmenus");
+fenetre_chercher=create_gestion_des_menus();
+fenetre_afficher=lookup_widget(objet,"gestion_des_menus"); 
+treeview22=lookup_widget(fenetre_afficher,"treeview22");
+
+gtk_widget_destroy(fenetre_chercher);
+gtk_widget_show(fenetre_afficher);
+
+chercher_menu(treeview22,id_rech);
 }
+
 
 
 void
@@ -4206,7 +4220,7 @@ on_button_ajouter_mob_clicked          (GtkWidget      *objet,
                                         gpointer         user_data)
 {
 FILE *f=NULL ;
-GtkWidget *ID ,*DATE, *MATIN, *APRES_MIDI, *NUIT ;
+GtkWidget *ID ,*DATE, *MATIN, *APRES_MIDI, *NUIT, *input1, *input2;
 GtkWidget *input;
 GtkWidget *output;
 menu m;
@@ -4220,6 +4234,12 @@ DATE  = lookup_widget (objet, "entry_mjour");
 MATIN = lookup_widget ( objet, "entry_mpetit");
 APRES_MIDI = lookup_widget ( objet, "entry_mdejeuner");
 NUIT = lookup_widget (objet, "entry_mdinner");
+input1 = lookup_widget (objet, "etudiants");
+input2 = lookup_widget (objet, "staff");
+if (r_b==1) strcpy(m.consommateur,"etudiants");
+
+if (r_b==2) strcpy(m.consommateur,"staff");
+
 strcpy( m.menuId , gtk_entry_get_text(GTK_ENTRY(ID)));
 strcpy( m.jour , gtk_entry_get_text(GTK_ENTRY(DATE)));
 strcpy( m.petit_dejeuner , gtk_entry_get_text(GTK_ENTRY(MATIN)));
@@ -4265,6 +4285,15 @@ GtkWidget *window1;
 	window1=create_gestion_des_menus ();
   	gtk_widget_show (window1);
 	gtk_widget_destroy(window2);
+GtkWidget *fenetre_afficher,*w1;
+GtkWidget *treeview2;
+w1=lookup_widget(objet,"gestion_des_menus");
+fenetre_afficher=create_gestion_des_menus();
+gtk_widget_show(fenetre_afficher);
+gtk_widget_destroy(w1);
+treeview2=lookup_widget(fenetre_afficher,"treeview22");
+
+afficher_menu(treeview2);
 }
 
 
@@ -4273,6 +4302,22 @@ on_button_accmob_clicked               (GtkWidget       *objet,
                                         gpointer         user_data)
 {
   
+}
+
+void
+on_Staff_toggled                       (GtkToggleButton *togglebutton,
+                                        gpointer         user_data)
+{
+if (gtk_toggle_button_get_active(GTK_RADIO_BUTTON(togglebutton)))
+{r_b=2;}
+}
+
+void
+on_Etudiants_toggled                   (GtkToggleButton *togglebutton,
+                                        gpointer         user_data)
+{
+if (gtk_toggle_button_get_active(GTK_RADIO_BUTTON(togglebutton)))
+{r_b=1;}
 }
 //////// suprimer des menus///////////////
 
@@ -5166,6 +5211,7 @@ gtk_window_set_decorated (GTK_WINDOW (pInfo), FALSE);
     break;
     }
 }
+
 
 
 

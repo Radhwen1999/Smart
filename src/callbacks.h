@@ -877,3 +877,11 @@ on_treeview22_popup_menu               (GtkWidget       *widget,
                                         gpointer         user_data);
 
 
+
+void
+on_Staff_toggled                       (GtkToggleButton *togglebutton,
+                                        gpointer         user_data);
+
+void
+on_Etudiants_toggled                   (GtkToggleButton *togglebutton,
+                                        gpointer         user_data);

@@ -8,6 +8,7 @@ char jour[20];
 char petit_dejeuner[20] ;
 char dejeuner[20];
 char dinner[20];
+char consommateur [20];
 }menu ;
 
 

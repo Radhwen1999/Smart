@@ -11,6 +11,7 @@ enum
 	EPETIT,
 	EDEJEUNER,
 	EDINNER,
+	ECONS ,
 	ECOLUMNS,
 };
 
@@ -27,7 +28,7 @@ if(f!=NULL)
 {
 
 
-fprintf(f,"%s %s %s %s %s \n",m.menuId,m.jour,m.petit_dejeuner,m.dejeuner,m.dinner);
+fprintf(f,"%s %s %s %s %s %s \n",m.menuId,m.jour,m.petit_dejeuner,m.dejeuner,m.dinner,m.consommateur);
 }
 fclose(f);
 
@@ -40,7 +41,7 @@ menu find_m (char id[10])
     menu m ;
     FILE *f=NULL;
     f=fopen("menu.txt","r");
-    while(fscanf(f,"%s %s %s %s %s \n",m.menuId , m.jour , m.petit_dejeuner , m.dejeuner , m.dinner)!=EOF)
+    while(fscanf(f,"%s %s %s %s %s %s \n",m.menuId , m.jour , m.petit_dejeuner , m.dejeuner , m.dinner,m.consommateur)!=EOF)
     {
         if((strcmp(m.menuId,id)==0))
         {
@@ -63,6 +64,7 @@ void chercher_menu(GtkWidget *liste,char id_rech[20])
         char petit_dejeuner[20];
         char dejeuner[20] ;
         char dinner[20] ;
+	char consommateur [20];
         /*char id [20]; */
 	store=NULL;
 	FILE *f;
@@ -92,10 +94,14 @@ void chercher_menu(GtkWidget *liste,char id_rech[20])
         column = gtk_tree_view_column_new_with_attributes("dinner",renderer,"text",EDINNER,NULL) ;
         gtk_tree_view_append_column (GTK_TREE_VIEW (liste), column) ;
 
+	renderer = gtk_cell_renderer_text_new () ;
+	column = gtk_tree_view_column_new_with_attributes("consommateur",renderer,"text",ECONS,NULL) ;
+	gtk_tree_view_append_column (GTK_TREE_VIEW (liste), column) ;
+
 
    }
 
-        store = gtk_list_store_new(ECOLUMNS,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING);
+        store = gtk_list_store_new(ECOLUMNS,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING);
 		f=fopen("menu.txt","r");
 		if(f==NULL)
 		{
@@ -106,12 +112,12 @@ void chercher_menu(GtkWidget *liste,char id_rech[20])
 		{
 
 			f=fopen("menu.txt","r");
-			while(fscanf(f,"%s %s %s %s %s \n",menuId,jour,petit_dejeuner,dejeuner,dinner)!=EOF)
+			while(fscanf(f,"%s %s %s %s %s %s \n",menuId,jour,petit_dejeuner,dejeuner,dinner,consommateur)!=EOF)
 			{
 			  if( strcmp(id_rech,menuId)==0 || strcmp(id_rech,"")==0 )
                           {
 				gtk_list_store_append(store,&iter);
-				gtk_list_store_set(store,&iter,EID,menuId,EJOUR,jour,EPETIT,petit_dejeuner,EDEJEUNER,dejeuner,EDINNER,dinner,-1);
+				gtk_list_store_set(store,&iter,EID,menuId,EJOUR,jour,EPETIT,petit_dejeuner,EDEJEUNER,dejeuner,EDINNER,dinner,ECONS,consommateur,-1);
                           }
 			}
 			fclose(f);
@@ -133,7 +139,7 @@ void afficher_menu (GtkWidget *liste)
         char petit_dejeuner[20] ;
         char dejeuner[20] ;
         char dinner[20] ;
-      
+      	char consommateur [20];
 	store=NULL;
 	FILE *f;
 	
@@ -164,18 +170,22 @@ renderer = gtk_cell_renderer_text_new () ;
 column = gtk_tree_view_column_new_with_attributes("dinner",renderer,"text",EDINNER,NULL) ;
 gtk_tree_view_append_column (GTK_TREE_VIEW (liste), column) ;
 
+renderer = gtk_cell_renderer_text_new () ;
+column = gtk_tree_view_column_new_with_attributes("consommateur",renderer,"text",ECONS,NULL) ;
+gtk_tree_view_append_column (GTK_TREE_VIEW (liste), column) ;
+
 
 }
 
-store = gtk_list_store_new(ECOLUMNS,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING);
+store = gtk_list_store_new(ECOLUMNS,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING);
     char texte[200];
     f=fopen("menu.txt","r");
     if(f!=NULL)
     {
-         while(fscanf(f,"%s %s %s %s %s  \n",menuId,jour,petit_dejeuner,dejeuner,dinner)!=EOF)
+         while(fscanf(f,"%s %s %s %s %s %s  \n",menuId,jour,petit_dejeuner,dejeuner,dinner,consommateur)!=EOF)
          {
            gtk_list_store_append(store,&iter);
-           gtk_list_store_set(store,&iter,EID,menuId,EJOUR,jour,EPETIT,petit_dejeuner,EDEJEUNER,dejeuner,EDINNER,dinner,-1);
+           gtk_list_store_set(store,&iter,EID,menuId,EJOUR,jour,EPETIT,petit_dejeuner,EDEJEUNER,dejeuner,EDINNER,dinner,ECONS,consommateur,-1);
          }
         fclose(f);
         gtk_tree_view_set_model(GTK_TREE_VIEW(liste),GTK_TREE_MODEL(store));
@@ -190,11 +200,11 @@ void supprimer_menu(char id[20])
     FILE *f2;
     f1 = fopen("menu.txt","r");
     f2 = fopen("tmp.txt","a");
-    while (fscanf(f1,"%s %s %s %s %s \n", m.menuId,m.jour,m.petit_dejeuner,m.dejeuner,m.dinner) != EOF)
+    while (fscanf(f1,"%s %s %s %s %s %s \n", m.menuId,m.jour,m.petit_dejeuner,m.dejeuner,m.dinner,m.consommateur) != EOF)
     {
         if(strcmp(m.menuId,id)!=0)
         {
-            fprintf(f2,"%s %s %s %s %s \n", m.menuId,m.jour,m.petit_dejeuner,m.dejeuner,m.dinner);
+            fprintf(f2,"%s %s %s %s %s %s \n", m.menuId,m.jour,m.petit_dejeuner,m.dejeuner,m.dinner,m.consommateur);
         }
     }
     fclose(f1);
@@ -209,7 +219,7 @@ int idExist22(char id_s[20])
     FILE *f;
     f = fopen("menu.txt","r");
     if(f != NULL){
-        while(fscanf(f,"%s %s %s %s %s \n", m.menuId,m.jour,m.petit_dejeuner,m.dejeuner,m.dinner) != EOF)
+        while(fscanf(f,"%s %s %s %s %s %s \n", m.menuId,m.jour,m.petit_dejeuner,m.dejeuner,m.dinner,m.consommateur) != EOF)
         {
             if(strcmp(m.menuId,id_s) == 0)
             {
@@ -230,7 +240,7 @@ void modifier_menu (char id[20] ,char nouv_jour[20],char nouv_petit_dejeuner[20]
     FILE *f2;
     f1 = fopen("menu.txt","r");
     f2 = fopen("temp.txt","a");
-    while(fscanf(f1,"%s %s %s %s %s \n",m.menuId,m.jour,m.petit_dejeuner,m.dejeuner,m.dinner) != EOF)
+    while(fscanf(f1,"%s %s %s %s %s %s \n",m.menuId,m.jour,m.petit_dejeuner,m.dejeuner,m.dinner,m.consommateur) != EOF)
     {
         if (strcmp(m.menuId,id) == 0)
         {
@@ -239,7 +249,7 @@ void modifier_menu (char id[20] ,char nouv_jour[20],char nouv_petit_dejeuner[20]
 	    strcpy (m.dejeuner , nouv_dejeuner);
 	    strcpy(m.dinner ,nouv_dinner);
         }
-        fprintf(f2,"%s %s %s %s %s  \n",m.menuId,m.jour,m.petit_dejeuner,m.dejeuner,m.dinner);
+        fprintf(f2,"%s %s %s %s %s %S  \n",m.menuId,m.jour,m.petit_dejeuner,m.dejeuner,m.dinner,m.consommateur);
     }
     fclose(f1);
     fclose(f2);

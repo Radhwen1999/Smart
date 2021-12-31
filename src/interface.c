@@ -5950,18 +5950,12 @@ create_ajouterdesmenus (void)
   GtkWidget *entry_mpetit;
   GtkWidget *entry_mdejeuner;
   GtkWidget *entry_mdinner;
-  GtkWidget *image171;
   GtkWidget *label_ajout_ob;
   GtkWidget *button_ajouter_mob;
   GtkWidget *alignment80;
   GtkWidget *hbox78;
   GtkWidget *image101;
   GtkWidget *label233;
-  GtkWidget *label231;
-  GtkWidget *label232;
-  GtkWidget *label224;
-  GtkWidget *label226;
-  GtkWidget *label228;
   GtkWidget *button_retourner_mob;
   GtkWidget *alignment78;
   GtkWidget *hbox76;
@@ -5972,6 +5966,16 @@ create_ajouterdesmenus (void)
   GtkWidget *hbox77;
   GtkWidget *image100;
   GtkWidget *quit;
+  GtkWidget *image171;
+  GtkWidget *label294;
+  GtkWidget *label232;
+  GtkWidget *label231;
+  GtkWidget *label226;
+  GtkWidget *label228;
+  GtkWidget *label224;
+  GtkWidget *Staff;
+  GSList *Staff_group = NULL;
+  GtkWidget *Etudiants;
 
   ajouterdesmenus = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_widget_set_size_request (ajouterdesmenus, 1200, 700);
@@ -5991,13 +5995,13 @@ create_ajouterdesmenus (void)
 
   entry_mjour = gtk_entry_new ();
   gtk_widget_show (entry_mjour);
-  gtk_fixed_put (GTK_FIXED (fixed31), entry_mjour, 488, 256);
+  gtk_fixed_put (GTK_FIXED (fixed31), entry_mjour, 496, 232);
   gtk_widget_set_size_request (entry_mjour, 160, 27);
   gtk_entry_set_invisible_char (GTK_ENTRY (entry_mjour), 8226);
 
   entry_mpetit = gtk_entry_new ();
   gtk_widget_show (entry_mpetit);
-  gtk_fixed_put (GTK_FIXED (fixed31), entry_mpetit, 488, 336);
+  gtk_fixed_put (GTK_FIXED (fixed31), entry_mpetit, 488, 352);
   gtk_widget_set_size_request (entry_mpetit, 160, 27);
   gtk_entry_set_invisible_char (GTK_ENTRY (entry_mpetit), 8226);
 
@@ -6012,11 +6016,6 @@ create_ajouterdesmenus (void)
   gtk_fixed_put (GTK_FIXED (fixed31), entry_mdinner, 488, 496);
   gtk_widget_set_size_request (entry_mdinner, 160, 27);
   gtk_entry_set_invisible_char (GTK_ENTRY (entry_mdinner), 8226);
-
-  image171 = create_pixmap (ajouterdesmenus, "ajouter.png");
-  gtk_widget_show (image171);
-  gtk_fixed_put (GTK_FIXED (fixed31), image171, 0, 0);
-  gtk_widget_set_size_request (image171, 1200, 700);
 
   label_ajout_ob = gtk_label_new ("");
   gtk_widget_show (label_ajout_ob);
@@ -6043,31 +6042,6 @@ create_ajouterdesmenus (void)
   label233 = gtk_label_new_with_mnemonic (_("ajouter un menu"));
   gtk_widget_show (label233);
   gtk_box_pack_start (GTK_BOX (hbox78), label233, FALSE, FALSE, 0);
-
-  label231 = gtk_label_new (_("Dinner"));
-  gtk_widget_show (label231);
-  gtk_fixed_put (GTK_FIXED (fixed31), label231, 256, 496);
-  gtk_widget_set_size_request (label231, 200, 30);
-
-  label232 = gtk_label_new (_("Repas"));
-  gtk_widget_show (label232);
-  gtk_fixed_put (GTK_FIXED (fixed31), label232, 248, 416);
-  gtk_widget_set_size_request (label232, 200, 30);
-
-  label224 = gtk_label_new (_("Petit Dejeuner"));
-  gtk_widget_show (label224);
-  gtk_fixed_put (GTK_FIXED (fixed31), label224, 248, 328);
-  gtk_widget_set_size_request (label224, 200, 30);
-
-  label226 = gtk_label_new (_("Jour"));
-  gtk_widget_show (label226);
-  gtk_fixed_put (GTK_FIXED (fixed31), label226, 248, 248);
-  gtk_widget_set_size_request (label226, 200, 30);
-
-  label228 = gtk_label_new (_("ID Menu"));
-  gtk_widget_show (label228);
-  gtk_fixed_put (GTK_FIXED (fixed31), label228, 256, 168);
-  gtk_widget_set_size_request (label228, 200, 30);
 
   button_retourner_mob = gtk_button_new ();
   gtk_widget_show (button_retourner_mob);
@@ -6111,6 +6085,55 @@ create_ajouterdesmenus (void)
   gtk_widget_show (quit);
   gtk_box_pack_start (GTK_BOX (hbox77), quit, FALSE, FALSE, 0);
 
+  image171 = create_pixmap (ajouterdesmenus, "ajouter.png");
+  gtk_widget_show (image171);
+  gtk_fixed_put (GTK_FIXED (fixed31), image171, 5000, 0);
+  gtk_widget_set_size_request (image171, 1200, 700);
+
+  label294 = gtk_label_new (_("Destiner au:"));
+  gtk_widget_show (label294);
+  gtk_fixed_put (GTK_FIXED (fixed31), label294, 280, 296);
+  gtk_widget_set_size_request (label294, 124, 17);
+
+  label232 = gtk_label_new (_("Repas"));
+  gtk_widget_show (label232);
+  gtk_fixed_put (GTK_FIXED (fixed31), label232, 232, 416);
+  gtk_widget_set_size_request (label232, 200, 30);
+
+  label231 = gtk_label_new (_("Dinner"));
+  gtk_widget_show (label231);
+  gtk_fixed_put (GTK_FIXED (fixed31), label231, 240, 496);
+  gtk_widget_set_size_request (label231, 200, 30);
+
+  label226 = gtk_label_new (_("Jour"));
+  gtk_widget_show (label226);
+  gtk_fixed_put (GTK_FIXED (fixed31), label226, 216, 224);
+  gtk_widget_set_size_request (label226, 200, 30);
+
+  label228 = gtk_label_new (_("ID Menu"));
+  gtk_widget_show (label228);
+  gtk_fixed_put (GTK_FIXED (fixed31), label228, 224, 168);
+  gtk_widget_set_size_request (label228, 200, 30);
+
+  label224 = gtk_label_new (_("Petit Dejeuner"));
+  gtk_widget_show (label224);
+  gtk_fixed_put (GTK_FIXED (fixed31), label224, 248, 352);
+  gtk_widget_set_size_request (label224, 200, 30);
+
+  Staff = gtk_radio_button_new_with_mnemonic (NULL, _("Staff"));
+  gtk_widget_show (Staff);
+  gtk_fixed_put (GTK_FIXED (fixed31), Staff, 616, 280);
+  gtk_widget_set_size_request (Staff, 116, 24);
+  gtk_radio_button_set_group (GTK_RADIO_BUTTON (Staff), Staff_group);
+  Staff_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (Staff));
+
+  Etudiants = gtk_radio_button_new_with_mnemonic (NULL, _("Etudiants"));
+  gtk_widget_show (Etudiants);
+  gtk_fixed_put (GTK_FIXED (fixed31), Etudiants, 496, 280);
+  gtk_widget_set_size_request (Etudiants, 116, 24);
+  gtk_radio_button_set_group (GTK_RADIO_BUTTON (Etudiants), Staff_group);
+  Staff_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (Etudiants));
+
   g_signal_connect ((gpointer) button_ajouter_mob, "clicked",
                     G_CALLBACK (on_button_ajouter_mob_clicked),
                     NULL);
@@ -6119,6 +6142,12 @@ create_ajouterdesmenus (void)
                     NULL);
   g_signal_connect ((gpointer) quitajouterdesmenus, "clicked",
                     G_CALLBACK (on_quitajouterdesmenus_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) Staff, "toggled",
+                    G_CALLBACK (on_Staff_toggled),
+                    NULL);
+  g_signal_connect ((gpointer) Etudiants, "toggled",
+                    G_CALLBACK (on_Etudiants_toggled),
                     NULL);
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
@@ -6129,18 +6158,12 @@ create_ajouterdesmenus (void)
   GLADE_HOOKUP_OBJECT (ajouterdesmenus, entry_mpetit, "entry_mpetit");
   GLADE_HOOKUP_OBJECT (ajouterdesmenus, entry_mdejeuner, "entry_mdejeuner");
   GLADE_HOOKUP_OBJECT (ajouterdesmenus, entry_mdinner, "entry_mdinner");
-  GLADE_HOOKUP_OBJECT (ajouterdesmenus, image171, "image171");
   GLADE_HOOKUP_OBJECT (ajouterdesmenus, label_ajout_ob, "label_ajout_ob");
   GLADE_HOOKUP_OBJECT (ajouterdesmenus, button_ajouter_mob, "button_ajouter_mob");
   GLADE_HOOKUP_OBJECT (ajouterdesmenus, alignment80, "alignment80");
   GLADE_HOOKUP_OBJECT (ajouterdesmenus, hbox78, "hbox78");
   GLADE_HOOKUP_OBJECT (ajouterdesmenus, image101, "image101");
   GLADE_HOOKUP_OBJECT (ajouterdesmenus, label233, "label233");
-  GLADE_HOOKUP_OBJECT (ajouterdesmenus, label231, "label231");
-  GLADE_HOOKUP_OBJECT (ajouterdesmenus, label232, "label232");
-  GLADE_HOOKUP_OBJECT (ajouterdesmenus, label224, "label224");
-  GLADE_HOOKUP_OBJECT (ajouterdesmenus, label226, "label226");
-  GLADE_HOOKUP_OBJECT (ajouterdesmenus, label228, "label228");
   GLADE_HOOKUP_OBJECT (ajouterdesmenus, button_retourner_mob, "button_retourner_mob");
   GLADE_HOOKUP_OBJECT (ajouterdesmenus, alignment78, "alignment78");
   GLADE_HOOKUP_OBJECT (ajouterdesmenus, hbox76, "hbox76");
@@ -6151,6 +6174,15 @@ create_ajouterdesmenus (void)
   GLADE_HOOKUP_OBJECT (ajouterdesmenus, hbox77, "hbox77");
   GLADE_HOOKUP_OBJECT (ajouterdesmenus, image100, "image100");
   GLADE_HOOKUP_OBJECT (ajouterdesmenus, quit, "quit");
+  GLADE_HOOKUP_OBJECT (ajouterdesmenus, image171, "image171");
+  GLADE_HOOKUP_OBJECT (ajouterdesmenus, label294, "label294");
+  GLADE_HOOKUP_OBJECT (ajouterdesmenus, label232, "label232");
+  GLADE_HOOKUP_OBJECT (ajouterdesmenus, label231, "label231");
+  GLADE_HOOKUP_OBJECT (ajouterdesmenus, label226, "label226");
+  GLADE_HOOKUP_OBJECT (ajouterdesmenus, label228, "label228");
+  GLADE_HOOKUP_OBJECT (ajouterdesmenus, label224, "label224");
+  GLADE_HOOKUP_OBJECT (ajouterdesmenus, Staff, "Staff");
+  GLADE_HOOKUP_OBJECT (ajouterdesmenus, Etudiants, "Etudiants");
 
   return ajouterdesmenus;
 }
