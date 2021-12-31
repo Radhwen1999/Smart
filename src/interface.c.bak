@@ -531,11 +531,6 @@ create_gestcap (void)
   GtkWidget *hbox3;
   GtkWidget *image6;
   GtkWidget *label16;
-  GtkWidget *buttonfindcap;
-  GtkWidget *alignment112;
-  GtkWidget *hbox110;
-  GtkWidget *image198;
-  GtkWidget *label283;
   GtkWidget *buttonrefresh;
   GtkWidget *image21;
   GtkWidget *quitgestcap;
@@ -550,6 +545,11 @@ create_gestcap (void)
   GtkWidget *hbox111;
   GtkWidget *image199;
   GtkWidget *label284;
+  GtkWidget *buttonfindcap;
+  GtkWidget *alignment112;
+  GtkWidget *hbox110;
+  GtkWidget *image198;
+  GtkWidget *label283;
 
   gestcap = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_widget_set_size_request (gestcap, 1200, 700);
@@ -651,27 +651,6 @@ create_gestcap (void)
   gtk_widget_show (label16);
   gtk_box_pack_start (GTK_BOX (hbox3), label16, FALSE, FALSE, 0);
 
-  buttonfindcap = gtk_button_new ();
-  gtk_widget_show (buttonfindcap);
-  gtk_fixed_put (GTK_FIXED (fixed3), buttonfindcap, 320, 152);
-  gtk_widget_set_size_request (buttonfindcap, 104, 32);
-
-  alignment112 = gtk_alignment_new (0.5, 0.5, 0, 0);
-  gtk_widget_show (alignment112);
-  gtk_container_add (GTK_CONTAINER (buttonfindcap), alignment112);
-
-  hbox110 = gtk_hbox_new (FALSE, 2);
-  gtk_widget_show (hbox110);
-  gtk_container_add (GTK_CONTAINER (alignment112), hbox110);
-
-  image198 = gtk_image_new_from_stock ("gtk-find", GTK_ICON_SIZE_BUTTON);
-  gtk_widget_show (image198);
-  gtk_box_pack_start (GTK_BOX (hbox110), image198, FALSE, FALSE, 0);
-
-  label283 = gtk_label_new_with_mnemonic (_("Chercher"));
-  gtk_widget_show (label283);
-  gtk_box_pack_start (GTK_BOX (hbox110), label283, FALSE, FALSE, 0);
-
   buttonrefresh = gtk_button_new ();
   gtk_widget_show (buttonrefresh);
   gtk_fixed_put (GTK_FIXED (fixed3), buttonrefresh, 432, 152);
@@ -732,6 +711,27 @@ create_gestcap (void)
   gtk_widget_show (label284);
   gtk_box_pack_start (GTK_BOX (hbox111), label284, FALSE, FALSE, 0);
 
+  buttonfindcap = gtk_button_new ();
+  gtk_widget_show (buttonfindcap);
+  gtk_fixed_put (GTK_FIXED (fixed3), buttonfindcap, 320, 152);
+  gtk_widget_set_size_request (buttonfindcap, 104, 32);
+
+  alignment112 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment112);
+  gtk_container_add (GTK_CONTAINER (buttonfindcap), alignment112);
+
+  hbox110 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox110);
+  gtk_container_add (GTK_CONTAINER (alignment112), hbox110);
+
+  image198 = gtk_image_new_from_stock ("gtk-find", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image198);
+  gtk_box_pack_start (GTK_BOX (hbox110), image198, FALSE, FALSE, 0);
+
+  label283 = gtk_label_new_with_mnemonic (_("Chercher"));
+  gtk_widget_show (label283);
+  gtk_box_pack_start (GTK_BOX (hbox110), label283, FALSE, FALSE, 0);
+
   g_signal_connect ((gpointer) buttondelcap, "clicked",
                     G_CALLBACK (on_buttondelcap_clicked),
                     NULL);
@@ -750,9 +750,6 @@ create_gestcap (void)
   g_signal_connect ((gpointer) buttonaddcap, "clicked",
                     G_CALLBACK (on_buttonaddcap_clicked),
                     NULL);
-  g_signal_connect ((gpointer) buttonfindcap, "clicked",
-                    G_CALLBACK (on_buttonfindcap_clicked),
-                    NULL);
   g_signal_connect ((gpointer) buttonrefresh, "clicked",
                     G_CALLBACK (on_buttonrefresh_clicked),
                     NULL);
@@ -764,6 +761,9 @@ create_gestcap (void)
                     NULL);
   g_signal_connect ((gpointer) aidecapteur, "clicked",
                     G_CALLBACK (on_aidecapteur_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) buttonfindcap, "clicked",
+                    G_CALLBACK (on_buttonfindcap_clicked),
                     NULL);
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
@@ -789,11 +789,6 @@ create_gestcap (void)
   GLADE_HOOKUP_OBJECT (gestcap, hbox3, "hbox3");
   GLADE_HOOKUP_OBJECT (gestcap, image6, "image6");
   GLADE_HOOKUP_OBJECT (gestcap, label16, "label16");
-  GLADE_HOOKUP_OBJECT (gestcap, buttonfindcap, "buttonfindcap");
-  GLADE_HOOKUP_OBJECT (gestcap, alignment112, "alignment112");
-  GLADE_HOOKUP_OBJECT (gestcap, hbox110, "hbox110");
-  GLADE_HOOKUP_OBJECT (gestcap, image198, "image198");
-  GLADE_HOOKUP_OBJECT (gestcap, label283, "label283");
   GLADE_HOOKUP_OBJECT (gestcap, buttonrefresh, "buttonrefresh");
   GLADE_HOOKUP_OBJECT (gestcap, image21, "image21");
   GLADE_HOOKUP_OBJECT (gestcap, quitgestcap, "quitgestcap");
@@ -808,6 +803,11 @@ create_gestcap (void)
   GLADE_HOOKUP_OBJECT (gestcap, hbox111, "hbox111");
   GLADE_HOOKUP_OBJECT (gestcap, image199, "image199");
   GLADE_HOOKUP_OBJECT (gestcap, label284, "label284");
+  GLADE_HOOKUP_OBJECT (gestcap, buttonfindcap, "buttonfindcap");
+  GLADE_HOOKUP_OBJECT (gestcap, alignment112, "alignment112");
+  GLADE_HOOKUP_OBJECT (gestcap, hbox110, "hbox110");
+  GLADE_HOOKUP_OBJECT (gestcap, image198, "image198");
+  GLADE_HOOKUP_OBJECT (gestcap, label283, "label283");
 
   return gestcap;
 }
@@ -2716,13 +2716,13 @@ create_Tree_view (void)
   GtkWidget *hbox31;
   GtkWidget *image39;
   GtkWidget *label103;
+  GtkWidget *quitTree_view;
+  GtkWidget *image133;
   GtkWidget *help;
   GtkWidget *alignment114;
   GtkWidget *hbox112;
   GtkWidget *image200;
   GtkWidget *label285;
-  GtkWidget *quitTree_view;
-  GtkWidget *image133;
 
   Tree_view = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_widget_set_size_request (Tree_view, 1200, 700);
@@ -2818,6 +2818,15 @@ create_Tree_view (void)
   gtk_widget_show (label103);
   gtk_box_pack_start (GTK_BOX (hbox31), label103, FALSE, FALSE, 0);
 
+  quitTree_view = gtk_button_new ();
+  gtk_widget_show (quitTree_view);
+  gtk_fixed_put (GTK_FIXED (fixed13), quitTree_view, 1169, 1);
+  gtk_widget_set_size_request (quitTree_view, 30, 30);
+
+  image133 = gtk_image_new_from_stock ("gtk-cancel", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image133);
+  gtk_container_add (GTK_CONTAINER (quitTree_view), image133);
+
   help = gtk_button_new ();
   gtk_widget_show (help);
   gtk_fixed_put (GTK_FIXED (fixed13), help, 584, 628);
@@ -2839,15 +2848,6 @@ create_Tree_view (void)
   gtk_widget_show (label285);
   gtk_box_pack_start (GTK_BOX (hbox112), label285, FALSE, FALSE, 0);
 
-  quitTree_view = gtk_button_new ();
-  gtk_widget_show (quitTree_view);
-  gtk_fixed_put (GTK_FIXED (fixed13), quitTree_view, 1169, 1);
-  gtk_widget_set_size_request (quitTree_view, 30, 30);
-
-  image133 = gtk_image_new_from_stock ("gtk-cancel", GTK_ICON_SIZE_BUTTON);
-  gtk_widget_show (image133);
-  gtk_container_add (GTK_CONTAINER (quitTree_view), image133);
-
   g_signal_connect ((gpointer) treeview2, "row_activated",
                     G_CALLBACK (on_treeview2_row_activated),
                     NULL);
@@ -2866,11 +2866,11 @@ create_Tree_view (void)
   g_signal_connect ((gpointer) button_ajouter_rec, "clicked",
                     G_CALLBACK (on_button_ajouter_rec_clicked),
                     NULL);
-  g_signal_connect ((gpointer) help, "clicked",
-                    G_CALLBACK (on_help_clicked),
-                    NULL);
   g_signal_connect ((gpointer) quitTree_view, "clicked",
                     G_CALLBACK (on_quitTree_view_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) help, "clicked",
+                    G_CALLBACK (on_help_clicked),
                     NULL);
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
@@ -2895,13 +2895,13 @@ create_Tree_view (void)
   GLADE_HOOKUP_OBJECT (Tree_view, hbox31, "hbox31");
   GLADE_HOOKUP_OBJECT (Tree_view, image39, "image39");
   GLADE_HOOKUP_OBJECT (Tree_view, label103, "label103");
+  GLADE_HOOKUP_OBJECT (Tree_view, quitTree_view, "quitTree_view");
+  GLADE_HOOKUP_OBJECT (Tree_view, image133, "image133");
   GLADE_HOOKUP_OBJECT (Tree_view, help, "help");
   GLADE_HOOKUP_OBJECT (Tree_view, alignment114, "alignment114");
   GLADE_HOOKUP_OBJECT (Tree_view, hbox112, "hbox112");
   GLADE_HOOKUP_OBJECT (Tree_view, image200, "image200");
   GLADE_HOOKUP_OBJECT (Tree_view, label285, "label285");
-  GLADE_HOOKUP_OBJECT (Tree_view, quitTree_view, "quitTree_view");
-  GLADE_HOOKUP_OBJECT (Tree_view, image133, "image133");
 
   return Tree_view;
 }
@@ -3685,11 +3685,6 @@ create_gestion_des_utilisateurs (void)
   GtkWidget *label216;
   GtkWidget *quit_gestion_des_utilisateurs;
   GtkWidget *image139;
-  GtkWidget *rechercherUser;
-  GtkWidget *alignment52;
-  GtkWidget *hbox50;
-  GtkWidget *image58;
-  GtkWidget *label152;
   GtkWidget *ajouterUtilisateur;
   GtkWidget *alignment108;
   GtkWidget *hbox106;
@@ -3702,6 +3697,11 @@ create_gestion_des_utilisateurs (void)
   GtkWidget *hbox107;
   GtkWidget *image195;
   GtkWidget *label280;
+  GtkWidget *rechercherUser;
+  GtkWidget *alignment52;
+  GtkWidget *hbox50;
+  GtkWidget *image58;
+  GtkWidget *label152;
 
   gestion_des_utilisateurs = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_widget_set_size_request (gestion_des_utilisateurs, 1200, 700);
@@ -3755,27 +3755,6 @@ create_gestion_des_utilisateurs (void)
   gtk_widget_show (image139);
   gtk_container_add (GTK_CONTAINER (quit_gestion_des_utilisateurs), image139);
 
-  rechercherUser = gtk_button_new ();
-  gtk_widget_show (rechercherUser);
-  gtk_fixed_put (GTK_FIXED (fixed19), rechercherUser, 320, 152);
-  gtk_widget_set_size_request (rechercherUser, 104, 32);
-
-  alignment52 = gtk_alignment_new (0.5, 0.5, 0, 0);
-  gtk_widget_show (alignment52);
-  gtk_container_add (GTK_CONTAINER (rechercherUser), alignment52);
-
-  hbox50 = gtk_hbox_new (FALSE, 2);
-  gtk_widget_show (hbox50);
-  gtk_container_add (GTK_CONTAINER (alignment52), hbox50);
-
-  image58 = gtk_image_new_from_stock ("gtk-find", GTK_ICON_SIZE_BUTTON);
-  gtk_widget_show (image58);
-  gtk_box_pack_start (GTK_BOX (hbox50), image58, FALSE, FALSE, 0);
-
-  label152 = gtk_label_new_with_mnemonic (_("Chercher"));
-  gtk_widget_show (label152);
-  gtk_box_pack_start (GTK_BOX (hbox50), label152, FALSE, FALSE, 0);
-
   ajouterUtilisateur = gtk_button_new ();
   gtk_widget_show (ajouterUtilisateur);
   gtk_fixed_put (GTK_FIXED (fixed19), ajouterUtilisateur, 480, 624);
@@ -3828,14 +3807,32 @@ create_gestion_des_utilisateurs (void)
   gtk_widget_show (label280);
   gtk_box_pack_start (GTK_BOX (hbox107), label280, FALSE, FALSE, 0);
 
+  rechercherUser = gtk_button_new ();
+  gtk_widget_show (rechercherUser);
+  gtk_fixed_put (GTK_FIXED (fixed19), rechercherUser, 320, 152);
+  gtk_widget_set_size_request (rechercherUser, 104, 32);
+
+  alignment52 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment52);
+  gtk_container_add (GTK_CONTAINER (rechercherUser), alignment52);
+
+  hbox50 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox50);
+  gtk_container_add (GTK_CONTAINER (alignment52), hbox50);
+
+  image58 = gtk_image_new_from_stock ("gtk-find", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image58);
+  gtk_box_pack_start (GTK_BOX (hbox50), image58, FALSE, FALSE, 0);
+
+  label152 = gtk_label_new_with_mnemonic (_("Chercher"));
+  gtk_widget_show (label152);
+  gtk_box_pack_start (GTK_BOX (hbox50), label152, FALSE, FALSE, 0);
+
   g_signal_connect ((gpointer) buttonuseracceuil, "clicked",
                     G_CALLBACK (on_buttonuseracceuil_clicked),
                     NULL);
   g_signal_connect ((gpointer) quit_gestion_des_utilisateurs, "clicked",
                     G_CALLBACK (on_quit_gestion_des_utilisateurs_clicked),
-                    NULL);
-  g_signal_connect ((gpointer) rechercherUser, "clicked",
-                    G_CALLBACK (on_rechercherUser_clicked),
                     NULL);
   g_signal_connect ((gpointer) ajouterUtilisateur, "clicked",
                     G_CALLBACK (on_ajouterUtilisateur_clicked),
@@ -3852,6 +3849,9 @@ create_gestion_des_utilisateurs (void)
   g_signal_connect ((gpointer) help, "clicked",
                     G_CALLBACK (on_help_clicked),
                     NULL);
+  g_signal_connect ((gpointer) rechercherUser, "clicked",
+                    G_CALLBACK (on_rechercherUser_clicked),
+                    NULL);
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
   GLADE_HOOKUP_OBJECT_NO_REF (gestion_des_utilisateurs, gestion_des_utilisateurs, "gestion_des_utilisateurs");
@@ -3865,11 +3865,6 @@ create_gestion_des_utilisateurs (void)
   GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, label216, "label216");
   GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, quit_gestion_des_utilisateurs, "quit_gestion_des_utilisateurs");
   GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, image139, "image139");
-  GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, rechercherUser, "rechercherUser");
-  GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, alignment52, "alignment52");
-  GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, hbox50, "hbox50");
-  GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, image58, "image58");
-  GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, label152, "label152");
   GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, ajouterUtilisateur, "ajouterUtilisateur");
   GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, alignment108, "alignment108");
   GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, hbox106, "hbox106");
@@ -3882,6 +3877,11 @@ create_gestion_des_utilisateurs (void)
   GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, hbox107, "hbox107");
   GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, image195, "image195");
   GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, label280, "label280");
+  GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, rechercherUser, "rechercherUser");
+  GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, alignment52, "alignment52");
+  GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, hbox50, "hbox50");
+  GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, image58, "image58");
+  GLADE_HOOKUP_OBJECT (gestion_des_utilisateurs, label152, "label152");
 
   return gestion_des_utilisateurs;
 }
@@ -4345,16 +4345,6 @@ create_stock_ab (void)
   GtkWidget *image67;
   GtkWidget *label182;
   GtkWidget *label_stock_ahmed;
-  GtkWidget *ajouter_ahmed;
-  GtkWidget *alignment57;
-  GtkWidget *hbox55;
-  GtkWidget *image65;
-  GtkWidget *label180;
-  GtkWidget *button1;
-  GtkWidget *alignment110;
-  GtkWidget *hbox108;
-  GtkWidget *image196;
-  GtkWidget *label281;
   GtkWidget *scrolledwindow13;
   GtkWidget *treeview1_ahmed;
   GtkWidget *chercher_ahmed;
@@ -4362,6 +4352,16 @@ create_stock_ab (void)
   GtkWidget *hbox53;
   GtkWidget *image63;
   GtkWidget *label178;
+  GtkWidget *button1;
+  GtkWidget *alignment110;
+  GtkWidget *hbox108;
+  GtkWidget *image196;
+  GtkWidget *label281;
+  GtkWidget *ajouter_ahmed;
+  GtkWidget *alignment57;
+  GtkWidget *hbox55;
+  GtkWidget *image65;
+  GtkWidget *label180;
 
   stock_ab = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_widget_set_size_request (stock_ab, 1200, 700);
@@ -4420,48 +4420,6 @@ create_stock_ab (void)
   gtk_fixed_put (GTK_FIXED (fixed22), label_stock_ahmed, 56, 128);
   gtk_widget_set_size_request (label_stock_ahmed, 152, 40);
 
-  ajouter_ahmed = gtk_button_new ();
-  gtk_widget_show (ajouter_ahmed);
-  gtk_fixed_put (GTK_FIXED (fixed22), ajouter_ahmed, 480, 624);
-  gtk_widget_set_size_request (ajouter_ahmed, 104, 40);
-
-  alignment57 = gtk_alignment_new (0.5, 0.5, 0, 0);
-  gtk_widget_show (alignment57);
-  gtk_container_add (GTK_CONTAINER (ajouter_ahmed), alignment57);
-
-  hbox55 = gtk_hbox_new (FALSE, 2);
-  gtk_widget_show (hbox55);
-  gtk_container_add (GTK_CONTAINER (alignment57), hbox55);
-
-  image65 = gtk_image_new_from_stock ("gtk-add", GTK_ICON_SIZE_BUTTON);
-  gtk_widget_show (image65);
-  gtk_box_pack_start (GTK_BOX (hbox55), image65, FALSE, FALSE, 0);
-
-  label180 = gtk_label_new_with_mnemonic (_("Ajouter"));
-  gtk_widget_show (label180);
-  gtk_box_pack_start (GTK_BOX (hbox55), label180, FALSE, FALSE, 0);
-
-  button1 = gtk_button_new ();
-  gtk_widget_show (button1);
-  gtk_fixed_put (GTK_FIXED (fixed22), button1, 624, 624);
-  gtk_widget_set_size_request (button1, 104, 40);
-
-  alignment110 = gtk_alignment_new (0.5, 0.5, 0, 0);
-  gtk_widget_show (alignment110);
-  gtk_container_add (GTK_CONTAINER (button1), alignment110);
-
-  hbox108 = gtk_hbox_new (FALSE, 2);
-  gtk_widget_show (hbox108);
-  gtk_container_add (GTK_CONTAINER (alignment110), hbox108);
-
-  image196 = gtk_image_new_from_stock ("gtk-help", GTK_ICON_SIZE_BUTTON);
-  gtk_widget_show (image196);
-  gtk_box_pack_start (GTK_BOX (hbox108), image196, FALSE, FALSE, 0);
-
-  label281 = gtk_label_new_with_mnemonic (_("Aide"));
-  gtk_widget_show (label281);
-  gtk_box_pack_start (GTK_BOX (hbox108), label281, FALSE, FALSE, 0);
-
   scrolledwindow13 = gtk_scrolled_window_new (NULL, NULL);
   gtk_widget_show (scrolledwindow13);
   gtk_fixed_put (GTK_FIXED (fixed22), scrolledwindow13, 152, 192);
@@ -4493,17 +4451,53 @@ create_stock_ab (void)
   gtk_widget_show (label178);
   gtk_box_pack_start (GTK_BOX (hbox53), label178, FALSE, FALSE, 0);
 
+  button1 = gtk_button_new ();
+  gtk_widget_show (button1);
+  gtk_fixed_put (GTK_FIXED (fixed22), button1, 624, 624);
+  gtk_widget_set_size_request (button1, 104, 40);
+
+  alignment110 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment110);
+  gtk_container_add (GTK_CONTAINER (button1), alignment110);
+
+  hbox108 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox108);
+  gtk_container_add (GTK_CONTAINER (alignment110), hbox108);
+
+  image196 = gtk_image_new_from_stock ("gtk-help", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image196);
+  gtk_box_pack_start (GTK_BOX (hbox108), image196, FALSE, FALSE, 0);
+
+  label281 = gtk_label_new_with_mnemonic (_("Aide"));
+  gtk_widget_show (label281);
+  gtk_box_pack_start (GTK_BOX (hbox108), label281, FALSE, FALSE, 0);
+
+  ajouter_ahmed = gtk_button_new ();
+  gtk_widget_show (ajouter_ahmed);
+  gtk_fixed_put (GTK_FIXED (fixed22), ajouter_ahmed, 480, 624);
+  gtk_widget_set_size_request (ajouter_ahmed, 104, 40);
+
+  alignment57 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment57);
+  gtk_container_add (GTK_CONTAINER (ajouter_ahmed), alignment57);
+
+  hbox55 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox55);
+  gtk_container_add (GTK_CONTAINER (alignment57), hbox55);
+
+  image65 = gtk_image_new_from_stock ("gtk-add", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image65);
+  gtk_box_pack_start (GTK_BOX (hbox55), image65, FALSE, FALSE, 0);
+
+  label180 = gtk_label_new_with_mnemonic (_("Ajouter"));
+  gtk_widget_show (label180);
+  gtk_box_pack_start (GTK_BOX (hbox55), label180, FALSE, FALSE, 0);
+
   g_signal_connect ((gpointer) destroy1_ahmed, "clicked",
                     G_CALLBACK (on_destroy1_ahmed_clicked),
                     NULL);
   g_signal_connect ((gpointer) retour1_ahmed, "clicked",
                     G_CALLBACK (on_retour1_ahmed_clicked),
-                    NULL);
-  g_signal_connect ((gpointer) ajouter_ahmed, "clicked",
-                    G_CALLBACK (on_ajouter_ahmed_clicked),
-                    NULL);
-  g_signal_connect ((gpointer) button1, "clicked",
-                    G_CALLBACK (on_help_clicked),
                     NULL);
   g_signal_connect ((gpointer) treeview1_ahmed, "button_press_event",
                     G_CALLBACK (on_treeview1_ahmed_button_press_event),
@@ -4513,6 +4507,12 @@ create_stock_ab (void)
                     NULL);
   g_signal_connect ((gpointer) chercher_ahmed, "clicked",
                     G_CALLBACK (on_chercher_ahmed_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) button1, "clicked",
+                    G_CALLBACK (on_help_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) ajouter_ahmed, "clicked",
+                    G_CALLBACK (on_ajouter_ahmed_clicked),
                     NULL);
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
@@ -4528,16 +4528,6 @@ create_stock_ab (void)
   GLADE_HOOKUP_OBJECT (stock_ab, image67, "image67");
   GLADE_HOOKUP_OBJECT (stock_ab, label182, "label182");
   GLADE_HOOKUP_OBJECT (stock_ab, label_stock_ahmed, "label_stock_ahmed");
-  GLADE_HOOKUP_OBJECT (stock_ab, ajouter_ahmed, "ajouter_ahmed");
-  GLADE_HOOKUP_OBJECT (stock_ab, alignment57, "alignment57");
-  GLADE_HOOKUP_OBJECT (stock_ab, hbox55, "hbox55");
-  GLADE_HOOKUP_OBJECT (stock_ab, image65, "image65");
-  GLADE_HOOKUP_OBJECT (stock_ab, label180, "label180");
-  GLADE_HOOKUP_OBJECT (stock_ab, button1, "button1");
-  GLADE_HOOKUP_OBJECT (stock_ab, alignment110, "alignment110");
-  GLADE_HOOKUP_OBJECT (stock_ab, hbox108, "hbox108");
-  GLADE_HOOKUP_OBJECT (stock_ab, image196, "image196");
-  GLADE_HOOKUP_OBJECT (stock_ab, label281, "label281");
   GLADE_HOOKUP_OBJECT (stock_ab, scrolledwindow13, "scrolledwindow13");
   GLADE_HOOKUP_OBJECT (stock_ab, treeview1_ahmed, "treeview1_ahmed");
   GLADE_HOOKUP_OBJECT (stock_ab, chercher_ahmed, "chercher_ahmed");
@@ -4545,6 +4535,16 @@ create_stock_ab (void)
   GLADE_HOOKUP_OBJECT (stock_ab, hbox53, "hbox53");
   GLADE_HOOKUP_OBJECT (stock_ab, image63, "image63");
   GLADE_HOOKUP_OBJECT (stock_ab, label178, "label178");
+  GLADE_HOOKUP_OBJECT (stock_ab, button1, "button1");
+  GLADE_HOOKUP_OBJECT (stock_ab, alignment110, "alignment110");
+  GLADE_HOOKUP_OBJECT (stock_ab, hbox108, "hbox108");
+  GLADE_HOOKUP_OBJECT (stock_ab, image196, "image196");
+  GLADE_HOOKUP_OBJECT (stock_ab, label281, "label281");
+  GLADE_HOOKUP_OBJECT (stock_ab, ajouter_ahmed, "ajouter_ahmed");
+  GLADE_HOOKUP_OBJECT (stock_ab, alignment57, "alignment57");
+  GLADE_HOOKUP_OBJECT (stock_ab, hbox55, "hbox55");
+  GLADE_HOOKUP_OBJECT (stock_ab, image65, "image65");
+  GLADE_HOOKUP_OBJECT (stock_ab, label180, "label180");
 
   return stock_ab;
 }
@@ -5730,41 +5730,32 @@ create_gestion_des_menus (void)
 {
   GtkWidget *gestion_des_menus;
   GtkWidget *fixed30;
+  GtkWidget *entry1;
+  GtkWidget *scrolledwindow7;
+  GtkWidget *treeview22;
   GtkWidget *image147;
   GtkWidget *button_retour_ob;
   GtkWidget *alignment73;
   GtkWidget *hbox71;
   GtkWidget *image94;
   GtkWidget *label218;
-  GtkWidget *button_ajout_ob;
-  GtkWidget *alignment74;
-  GtkWidget *hbox72;
-  GtkWidget *image95;
-  GtkWidget *label219;
-  GtkWidget *button_modifier_ob;
-  GtkWidget *alignment76;
-  GtkWidget *hbox74;
-  GtkWidget *image97;
-  GtkWidget *label221;
-  GtkWidget *button_suppr_ob;
-  GtkWidget *alignment77;
-  GtkWidget *hbox75;
-  GtkWidget *image98;
-  GtkWidget *label222;
-  GtkWidget *button_actualiser_ob;
-  GtkWidget *alignment72;
-  GtkWidget *hbox70;
-  GtkWidget *image93;
-  GtkWidget *label217;
-  GtkWidget *quitgestion_des_menus;
-  GtkWidget *image142;
-  GtkWidget *scrolledwindow7;
-  GtkWidget *treeview22;
   GtkWidget *button_chercher_ob;
   GtkWidget *alignment75;
   GtkWidget *hbox73;
   GtkWidget *image96;
   GtkWidget *label220;
+  GtkWidget *helppp;
+  GtkWidget *alignment122;
+  GtkWidget *hbox120;
+  GtkWidget *image209;
+  GtkWidget *label293;
+  GtkWidget *button_ajout_ob;
+  GtkWidget *alignment74;
+  GtkWidget *hbox72;
+  GtkWidget *image95;
+  GtkWidget *label219;
+  GtkWidget *quitgestion_des_menus;
+  GtkWidget *image142;
 
   gestion_des_menus = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_widget_set_size_request (gestion_des_menus, 1200, 700);
@@ -5776,6 +5767,22 @@ create_gestion_des_menus (void)
   gtk_widget_show (fixed30);
   gtk_container_add (GTK_CONTAINER (gestion_des_menus), fixed30);
   gtk_widget_set_size_request (fixed30, 12, 638);
+
+  entry1 = gtk_entry_new ();
+  gtk_widget_show (entry1);
+  gtk_fixed_put (GTK_FIXED (fixed30), entry1, 152, 152);
+  gtk_widget_set_size_request (entry1, 160, 32);
+  gtk_entry_set_invisible_char (GTK_ENTRY (entry1), 8226);
+
+  scrolledwindow7 = gtk_scrolled_window_new (NULL, NULL);
+  gtk_widget_show (scrolledwindow7);
+  gtk_fixed_put (GTK_FIXED (fixed30), scrolledwindow7, 152, 192);
+  gtk_widget_set_size_request (scrolledwindow7, 776, 446);
+
+  treeview22 = gtk_tree_view_new ();
+  gtk_widget_show (treeview22);
+  gtk_container_add (GTK_CONTAINER (scrolledwindow7), treeview22);
+  gtk_widget_set_size_request (treeview22, 896, 408);
 
   image147 = create_pixmap (gestion_des_menus, "restrest.png");
   gtk_widget_show (image147);
@@ -5803,113 +5810,10 @@ create_gestion_des_menus (void)
   gtk_widget_show (label218);
   gtk_box_pack_start (GTK_BOX (hbox71), label218, FALSE, FALSE, 0);
 
-  button_ajout_ob = gtk_button_new ();
-  gtk_widget_show (button_ajout_ob);
-  gtk_fixed_put (GTK_FIXED (fixed30), button_ajout_ob, 912, 248);
-  gtk_widget_set_size_request (button_ajout_ob, 250, 40);
-
-  alignment74 = gtk_alignment_new (0.5, 0.5, 0, 0);
-  gtk_widget_show (alignment74);
-  gtk_container_add (GTK_CONTAINER (button_ajout_ob), alignment74);
-
-  hbox72 = gtk_hbox_new (FALSE, 2);
-  gtk_widget_show (hbox72);
-  gtk_container_add (GTK_CONTAINER (alignment74), hbox72);
-
-  image95 = gtk_image_new_from_stock ("gtk-add", GTK_ICON_SIZE_BUTTON);
-  gtk_widget_show (image95);
-  gtk_box_pack_start (GTK_BOX (hbox72), image95, FALSE, FALSE, 0);
-
-  label219 = gtk_label_new_with_mnemonic (_("Ajouter"));
-  gtk_widget_show (label219);
-  gtk_box_pack_start (GTK_BOX (hbox72), label219, FALSE, FALSE, 0);
-
-  button_modifier_ob = gtk_button_new ();
-  gtk_widget_show (button_modifier_ob);
-  gtk_fixed_put (GTK_FIXED (fixed30), button_modifier_ob, 912, 368);
-  gtk_widget_set_size_request (button_modifier_ob, 250, 40);
-
-  alignment76 = gtk_alignment_new (0.5, 0.5, 0, 0);
-  gtk_widget_show (alignment76);
-  gtk_container_add (GTK_CONTAINER (button_modifier_ob), alignment76);
-
-  hbox74 = gtk_hbox_new (FALSE, 2);
-  gtk_widget_show (hbox74);
-  gtk_container_add (GTK_CONTAINER (alignment76), hbox74);
-
-  image97 = gtk_image_new_from_stock ("gtk-edit", GTK_ICON_SIZE_BUTTON);
-  gtk_widget_show (image97);
-  gtk_box_pack_start (GTK_BOX (hbox74), image97, FALSE, FALSE, 0);
-
-  label221 = gtk_label_new_with_mnemonic (_("modifier"));
-  gtk_widget_show (label221);
-  gtk_box_pack_start (GTK_BOX (hbox74), label221, FALSE, FALSE, 0);
-
-  button_suppr_ob = gtk_button_new ();
-  gtk_widget_show (button_suppr_ob);
-  gtk_fixed_put (GTK_FIXED (fixed30), button_suppr_ob, 910, 490);
-  gtk_widget_set_size_request (button_suppr_ob, 250, 40);
-
-  alignment77 = gtk_alignment_new (0.5, 0.5, 0, 0);
-  gtk_widget_show (alignment77);
-  gtk_container_add (GTK_CONTAINER (button_suppr_ob), alignment77);
-
-  hbox75 = gtk_hbox_new (FALSE, 2);
-  gtk_widget_show (hbox75);
-  gtk_container_add (GTK_CONTAINER (alignment77), hbox75);
-
-  image98 = gtk_image_new_from_stock ("gtk-delete", GTK_ICON_SIZE_BUTTON);
-  gtk_widget_show (image98);
-  gtk_box_pack_start (GTK_BOX (hbox75), image98, FALSE, FALSE, 0);
-
-  label222 = gtk_label_new_with_mnemonic (_("Supprimer"));
-  gtk_widget_show (label222);
-  gtk_box_pack_start (GTK_BOX (hbox75), label222, FALSE, FALSE, 0);
-
-  button_actualiser_ob = gtk_button_new ();
-  gtk_widget_show (button_actualiser_ob);
-  gtk_fixed_put (GTK_FIXED (fixed30), button_actualiser_ob, 888, 160);
-  gtk_widget_set_size_request (button_actualiser_ob, 35, 35);
-
-  alignment72 = gtk_alignment_new (0.5, 0.5, 0, 0);
-  gtk_widget_show (alignment72);
-  gtk_container_add (GTK_CONTAINER (button_actualiser_ob), alignment72);
-
-  hbox70 = gtk_hbox_new (FALSE, 2);
-  gtk_widget_show (hbox70);
-  gtk_container_add (GTK_CONTAINER (alignment72), hbox70);
-
-  image93 = gtk_image_new_from_stock ("gtk-refresh", GTK_ICON_SIZE_BUTTON);
-  gtk_widget_show (image93);
-  gtk_box_pack_start (GTK_BOX (hbox70), image93, FALSE, FALSE, 0);
-
-  label217 = gtk_label_new_with_mnemonic ("");
-  gtk_widget_show (label217);
-  gtk_box_pack_start (GTK_BOX (hbox70), label217, FALSE, FALSE, 0);
-
-  quitgestion_des_menus = gtk_button_new ();
-  gtk_widget_show (quitgestion_des_menus);
-  gtk_fixed_put (GTK_FIXED (fixed30), quitgestion_des_menus, 1169, 1);
-  gtk_widget_set_size_request (quitgestion_des_menus, 30, 30);
-
-  image142 = gtk_image_new_from_stock ("gtk-cancel", GTK_ICON_SIZE_BUTTON);
-  gtk_widget_show (image142);
-  gtk_container_add (GTK_CONTAINER (quitgestion_des_menus), image142);
-
-  scrolledwindow7 = gtk_scrolled_window_new (NULL, NULL);
-  gtk_widget_show (scrolledwindow7);
-  gtk_fixed_put (GTK_FIXED (fixed30), scrolledwindow7, 48, 168);
-  gtk_widget_set_size_request (scrolledwindow7, 830, 470);
-
-  treeview22 = gtk_tree_view_new ();
-  gtk_widget_show (treeview22);
-  gtk_container_add (GTK_CONTAINER (scrolledwindow7), treeview22);
-  gtk_widget_set_size_request (treeview22, 830, 470);
-
   button_chercher_ob = gtk_button_new ();
   gtk_widget_show (button_chercher_ob);
-  gtk_fixed_put (GTK_FIXED (fixed30), button_chercher_ob, 104, 112);
-  gtk_widget_set_size_request (button_chercher_ob, 168, 40);
+  gtk_fixed_put (GTK_FIXED (fixed30), button_chercher_ob, 320, 152);
+  gtk_widget_set_size_request (button_chercher_ob, 104, 32);
 
   alignment75 = gtk_alignment_new (0.5, 0.5, 0, 0);
   gtk_widget_show (alignment75);
@@ -5927,69 +5831,111 @@ create_gestion_des_menus (void)
   gtk_widget_show (label220);
   gtk_box_pack_start (GTK_BOX (hbox73), label220, FALSE, FALSE, 0);
 
+  helppp = gtk_button_new ();
+  gtk_widget_show (helppp);
+  gtk_fixed_put (GTK_FIXED (fixed30), helppp, 568, 656);
+  gtk_widget_set_size_request (helppp, 104, 40);
+
+  alignment122 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment122);
+  gtk_container_add (GTK_CONTAINER (helppp), alignment122);
+
+  hbox120 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox120);
+  gtk_container_add (GTK_CONTAINER (alignment122), hbox120);
+
+  image209 = gtk_image_new_from_stock ("gtk-help", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image209);
+  gtk_box_pack_start (GTK_BOX (hbox120), image209, FALSE, FALSE, 0);
+
+  label293 = gtk_label_new_with_mnemonic (_("Aide"));
+  gtk_widget_show (label293);
+  gtk_box_pack_start (GTK_BOX (hbox120), label293, FALSE, FALSE, 0);
+
+  button_ajout_ob = gtk_button_new ();
+  gtk_widget_show (button_ajout_ob);
+  gtk_fixed_put (GTK_FIXED (fixed30), button_ajout_ob, 448, 656);
+  gtk_widget_set_size_request (button_ajout_ob, 104, 40);
+
+  alignment74 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment74);
+  gtk_container_add (GTK_CONTAINER (button_ajout_ob), alignment74);
+
+  hbox72 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox72);
+  gtk_container_add (GTK_CONTAINER (alignment74), hbox72);
+
+  image95 = gtk_image_new_from_stock ("gtk-add", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image95);
+  gtk_box_pack_start (GTK_BOX (hbox72), image95, FALSE, FALSE, 0);
+
+  label219 = gtk_label_new_with_mnemonic (_("Ajouter"));
+  gtk_widget_show (label219);
+  gtk_box_pack_start (GTK_BOX (hbox72), label219, FALSE, FALSE, 0);
+
+  quitgestion_des_menus = gtk_button_new ();
+  gtk_widget_show (quitgestion_des_menus);
+  gtk_fixed_put (GTK_FIXED (fixed30), quitgestion_des_menus, 1169, 1);
+  gtk_widget_set_size_request (quitgestion_des_menus, 30, 30);
+
+  image142 = gtk_image_new_from_stock ("gtk-cancel", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image142);
+  gtk_container_add (GTK_CONTAINER (quitgestion_des_menus), image142);
+
+  g_signal_connect ((gpointer) treeview22, "row_activated",
+                    G_CALLBACK (on_treeview22_row_activated),
+                    NULL);
+  g_signal_connect ((gpointer) treeview22, "button_press_event",
+                    G_CALLBACK (on_treeview22_button_press_event),
+                    NULL);
+  g_signal_connect ((gpointer) treeview22, "popup_menu",
+                    G_CALLBACK (on_treeview22_popup_menu),
+                    NULL);
   g_signal_connect ((gpointer) button_retour_ob, "clicked",
                     G_CALLBACK (on_button_retour_ob_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) button_chercher_ob, "clicked",
+                    G_CALLBACK (on_button_chercher_ob_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) helppp, "clicked",
+                    G_CALLBACK (on_help_clicked),
                     NULL);
   g_signal_connect ((gpointer) button_ajout_ob, "clicked",
                     G_CALLBACK (on_button_ajout_ob_clicked),
                     NULL);
-  g_signal_connect ((gpointer) button_modifier_ob, "clicked",
-                    G_CALLBACK (on_button_modifier_ob_clicked),
-                    NULL);
-  g_signal_connect ((gpointer) button_suppr_ob, "clicked",
-                    G_CALLBACK (on_button_suppr_ob_clicked),
-                    NULL);
-  g_signal_connect ((gpointer) button_actualiser_ob, "clicked",
-                    G_CALLBACK (on_button_actualiser_ob_clicked),
-                    NULL);
   g_signal_connect ((gpointer) quitgestion_des_menus, "clicked",
                     G_CALLBACK (on_quitgestion_des_menus_clicked),
-                    NULL);
-  g_signal_connect ((gpointer) treeview22, "row_activated",
-                    G_CALLBACK (on_treeview22_row_activated),
-                    NULL);
-  g_signal_connect ((gpointer) button_chercher_ob, "clicked",
-                    G_CALLBACK (on_button_chercher_ob_clicked),
                     NULL);
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
   GLADE_HOOKUP_OBJECT_NO_REF (gestion_des_menus, gestion_des_menus, "gestion_des_menus");
   GLADE_HOOKUP_OBJECT (gestion_des_menus, fixed30, "fixed30");
+  GLADE_HOOKUP_OBJECT (gestion_des_menus, entry1, "entry1");
+  GLADE_HOOKUP_OBJECT (gestion_des_menus, scrolledwindow7, "scrolledwindow7");
+  GLADE_HOOKUP_OBJECT (gestion_des_menus, treeview22, "treeview22");
   GLADE_HOOKUP_OBJECT (gestion_des_menus, image147, "image147");
   GLADE_HOOKUP_OBJECT (gestion_des_menus, button_retour_ob, "button_retour_ob");
   GLADE_HOOKUP_OBJECT (gestion_des_menus, alignment73, "alignment73");
   GLADE_HOOKUP_OBJECT (gestion_des_menus, hbox71, "hbox71");
   GLADE_HOOKUP_OBJECT (gestion_des_menus, image94, "image94");
   GLADE_HOOKUP_OBJECT (gestion_des_menus, label218, "label218");
-  GLADE_HOOKUP_OBJECT (gestion_des_menus, button_ajout_ob, "button_ajout_ob");
-  GLADE_HOOKUP_OBJECT (gestion_des_menus, alignment74, "alignment74");
-  GLADE_HOOKUP_OBJECT (gestion_des_menus, hbox72, "hbox72");
-  GLADE_HOOKUP_OBJECT (gestion_des_menus, image95, "image95");
-  GLADE_HOOKUP_OBJECT (gestion_des_menus, label219, "label219");
-  GLADE_HOOKUP_OBJECT (gestion_des_menus, button_modifier_ob, "button_modifier_ob");
-  GLADE_HOOKUP_OBJECT (gestion_des_menus, alignment76, "alignment76");
-  GLADE_HOOKUP_OBJECT (gestion_des_menus, hbox74, "hbox74");
-  GLADE_HOOKUP_OBJECT (gestion_des_menus, image97, "image97");
-  GLADE_HOOKUP_OBJECT (gestion_des_menus, label221, "label221");
-  GLADE_HOOKUP_OBJECT (gestion_des_menus, button_suppr_ob, "button_suppr_ob");
-  GLADE_HOOKUP_OBJECT (gestion_des_menus, alignment77, "alignment77");
-  GLADE_HOOKUP_OBJECT (gestion_des_menus, hbox75, "hbox75");
-  GLADE_HOOKUP_OBJECT (gestion_des_menus, image98, "image98");
-  GLADE_HOOKUP_OBJECT (gestion_des_menus, label222, "label222");
-  GLADE_HOOKUP_OBJECT (gestion_des_menus, button_actualiser_ob, "button_actualiser_ob");
-  GLADE_HOOKUP_OBJECT (gestion_des_menus, alignment72, "alignment72");
-  GLADE_HOOKUP_OBJECT (gestion_des_menus, hbox70, "hbox70");
-  GLADE_HOOKUP_OBJECT (gestion_des_menus, image93, "image93");
-  GLADE_HOOKUP_OBJECT (gestion_des_menus, label217, "label217");
-  GLADE_HOOKUP_OBJECT (gestion_des_menus, quitgestion_des_menus, "quitgestion_des_menus");
-  GLADE_HOOKUP_OBJECT (gestion_des_menus, image142, "image142");
-  GLADE_HOOKUP_OBJECT (gestion_des_menus, scrolledwindow7, "scrolledwindow7");
-  GLADE_HOOKUP_OBJECT (gestion_des_menus, treeview22, "treeview22");
   GLADE_HOOKUP_OBJECT (gestion_des_menus, button_chercher_ob, "button_chercher_ob");
   GLADE_HOOKUP_OBJECT (gestion_des_menus, alignment75, "alignment75");
   GLADE_HOOKUP_OBJECT (gestion_des_menus, hbox73, "hbox73");
   GLADE_HOOKUP_OBJECT (gestion_des_menus, image96, "image96");
   GLADE_HOOKUP_OBJECT (gestion_des_menus, label220, "label220");
+  GLADE_HOOKUP_OBJECT (gestion_des_menus, helppp, "helppp");
+  GLADE_HOOKUP_OBJECT (gestion_des_menus, alignment122, "alignment122");
+  GLADE_HOOKUP_OBJECT (gestion_des_menus, hbox120, "hbox120");
+  GLADE_HOOKUP_OBJECT (gestion_des_menus, image209, "image209");
+  GLADE_HOOKUP_OBJECT (gestion_des_menus, label293, "label293");
+  GLADE_HOOKUP_OBJECT (gestion_des_menus, button_ajout_ob, "button_ajout_ob");
+  GLADE_HOOKUP_OBJECT (gestion_des_menus, alignment74, "alignment74");
+  GLADE_HOOKUP_OBJECT (gestion_des_menus, hbox72, "hbox72");
+  GLADE_HOOKUP_OBJECT (gestion_des_menus, image95, "image95");
+  GLADE_HOOKUP_OBJECT (gestion_des_menus, label219, "label219");
+  GLADE_HOOKUP_OBJECT (gestion_des_menus, quitgestion_des_menus, "quitgestion_des_menus");
+  GLADE_HOOKUP_OBJECT (gestion_des_menus, image142, "image142");
 
   return gestion_des_menus;
 }
@@ -6760,7 +6706,6 @@ create_windowextras (void)
   GtkWidget *hbox99;
   GtkWidget *image183;
   GtkWidget *label268;
-  GtkWidget *labelshow_cap;
   GtkWidget *bashref;
   GtkWidget *alignment116;
   GtkWidget *hbox114;
@@ -6784,7 +6729,6 @@ create_windowextras (void)
   GtkWidget *hbox116;
   GtkWidget *image205;
   GtkWidget *label289;
-  GtkWidget *labelshow_menu;
   GtkWidget *buttonadem6;
   GtkWidget *alignment120;
   GtkWidget *hbox118;
@@ -6802,6 +6746,8 @@ create_windowextras (void)
   GtkWidget *image208;
   GtkWidget *label292;
   GtkWidget *labelshow_rec;
+  GtkWidget *labelshow_cap;
+  GtkWidget *labelshow_menu;
 
   windowextras = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_widget_set_size_request (windowextras, 1200, 700);
@@ -6897,11 +6843,6 @@ create_windowextras (void)
   label268 = gtk_label_new_with_mnemonic (_("Tester"));
   gtk_widget_show (label268);
   gtk_box_pack_start (GTK_BOX (hbox99), label268, FALSE, FALSE, 0);
-
-  labelshow_cap = gtk_label_new ("");
-  gtk_widget_show (labelshow_cap);
-  gtk_fixed_put (GTK_FIXED (fixed36), labelshow_cap, 344, 184);
-  gtk_widget_set_size_request (labelshow_cap, 216, 104);
 
   bashref = gtk_button_new ();
   gtk_widget_show (bashref);
@@ -7001,11 +6942,6 @@ create_windowextras (void)
   gtk_widget_show (label289);
   gtk_box_pack_start (GTK_BOX (hbox116), label289, FALSE, FALSE, 0);
 
-  labelshow_menu = gtk_label_new ("");
-  gtk_widget_show (labelshow_menu);
-  gtk_fixed_put (GTK_FIXED (fixed36), labelshow_menu, 904, 384);
-  gtk_widget_set_size_request (labelshow_menu, 184, 88);
-
   buttonadem6 = gtk_button_new ();
   gtk_widget_show (buttonadem6);
   gtk_fixed_put (GTK_FIXED (fixed36), buttonadem6, 792, 240);
@@ -7079,6 +7015,16 @@ create_windowextras (void)
   gtk_fixed_put (GTK_FIXED (fixed36), labelshow_rec, 792, 560);
   gtk_widget_set_size_request (labelshow_rec, 304, 72);
 
+  labelshow_cap = gtk_label_new ("");
+  gtk_widget_show (labelshow_cap);
+  gtk_fixed_put (GTK_FIXED (fixed36), labelshow_cap, 344, 184);
+  gtk_widget_set_size_request (labelshow_cap, 216, 104);
+
+  labelshow_menu = gtk_label_new ("");
+  gtk_widget_show (labelshow_menu);
+  gtk_fixed_put (GTK_FIXED (fixed36), labelshow_menu, 904, 384);
+  gtk_widget_set_size_request (labelshow_menu, 184, 88);
+
   g_signal_connect ((gpointer) bradhwen, "clicked",
                     G_CALLBACK (on_bradhwen_clicked),
                     NULL);
@@ -7126,7 +7072,6 @@ create_windowextras (void)
   GLADE_HOOKUP_OBJECT (windowextras, hbox99, "hbox99");
   GLADE_HOOKUP_OBJECT (windowextras, image183, "image183");
   GLADE_HOOKUP_OBJECT (windowextras, label268, "label268");
-  GLADE_HOOKUP_OBJECT (windowextras, labelshow_cap, "labelshow_cap");
   GLADE_HOOKUP_OBJECT (windowextras, bashref, "bashref");
   GLADE_HOOKUP_OBJECT (windowextras, alignment116, "alignment116");
   GLADE_HOOKUP_OBJECT (windowextras, hbox114, "hbox114");
@@ -7150,7 +7095,6 @@ create_windowextras (void)
   GLADE_HOOKUP_OBJECT (windowextras, hbox116, "hbox116");
   GLADE_HOOKUP_OBJECT (windowextras, image205, "image205");
   GLADE_HOOKUP_OBJECT (windowextras, label289, "label289");
-  GLADE_HOOKUP_OBJECT (windowextras, labelshow_menu, "labelshow_menu");
   GLADE_HOOKUP_OBJECT (windowextras, buttonadem6, "buttonadem6");
   GLADE_HOOKUP_OBJECT (windowextras, alignment120, "alignment120");
   GLADE_HOOKUP_OBJECT (windowextras, hbox118, "hbox118");
@@ -7168,6 +7112,8 @@ create_windowextras (void)
   GLADE_HOOKUP_OBJECT (windowextras, image208, "image208");
   GLADE_HOOKUP_OBJECT (windowextras, label292, "label292");
   GLADE_HOOKUP_OBJECT (windowextras, labelshow_rec, "labelshow_rec");
+  GLADE_HOOKUP_OBJECT (windowextras, labelshow_cap, "labelshow_cap");
+  GLADE_HOOKUP_OBJECT (windowextras, labelshow_menu, "labelshow_menu");
 
   return windowextras;
 }

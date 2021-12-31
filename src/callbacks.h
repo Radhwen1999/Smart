@@ -866,3 +866,14 @@ on_treeview2_button_press_event        (GtkWidget       *widget,
 gboolean
 on_treeview2_popup_menu                (GtkWidget       *widget,
                                         gpointer         user_data);
+/////////////////////ousssema///////////////////////////////
+gboolean
+on_treeview22_button_press_event       (GtkWidget       *widget,
+                                        GdkEventButton  *event,
+                                        gpointer         user_data);
+
+gboolean
+on_treeview22_popup_menu               (GtkWidget       *widget,
+                                        gpointer         user_data);
+
+

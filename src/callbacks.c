@@ -4040,7 +4040,163 @@ on_button_suppr_ob_clicked             (GtkWidget       *objet,
   	gtk_widget_show (window2);
 	gtk_widget_destroy(window1);
 }
+///////////////////////////////////////////
 
+void view_popup_menu_supp_men(GtkWidget *menuitem, gpointer userdata)
+{ 
+	GtkTreeView *treeview = GTK_TREE_VIEW(userdata);
+	supprimer_menu(idM);
+
+	GtkWidget *winadd;
+    	GtkWidget *winmen;
+GtkWidget *gestion_des_menus,*w1;
+GtkWidget *treeview22;
+
+w1=lookup_widget(treeview,"gestion_des_menus");
+gestion_des_menus=create_gestion_des_menus();
+
+gtk_widget_show(gestion_des_menus);
+
+gtk_widget_destroy(w1);
+treeview22=lookup_widget(gestion_des_menus,"treeview22");
+
+afficher_menu(treeview22);
+
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
+void view_popup_menu_modif_men(GtkWidget *menuitem, gpointer userdata)
+{ 
+	GtkTreeView *treeview = GTK_TREE_VIEW(userdata);
+       menu m1;
+m1=find_m(idM);
+GtkWidget *input1,*input2,*input3 , *input4, *input5, *gestion_des_menus,*modification;
+gestion_des_menus= lookup_widget(treeview, "gestion_des_menus");
+gtk_widget_destroy(gestion_des_menus);
+
+modification=create_modification();
+/*input1=lookup_widget(modifier_menu,"entry_id_modif");
+input2= lookup_widget(modifier_menu,"entry_nouv_rec");*/
+
+input1 = lookup_widget(modification,"entry_menuId_modif");
+	
+
+input2 = lookup_widget(modification,"entry_jour_modif");
+        
+input3 = lookup_widget(modification,"entry_petit_modif");
+input4 = lookup_widget(modification,"entry_dejeuenr_modif");
+input5 = lookup_widget(modification,"entry_dinner_modif");
+        
+
+gtk_entry_set_text(GTK_ENTRY(input1), m1.menuId);
+gtk_entry_set_text(GTK_ENTRY(input2), m1.jour);
+gtk_entry_set_text(GTK_ENTRY(input3), m1.petit_dejeuner);
+gtk_entry_set_text(GTK_ENTRY(input4), m1.dejeuner);
+gtk_entry_set_text(GTK_ENTRY(input5), m1.dinner);
+
+
+gtk_widget_show(modification);  
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+
+void view_popup_menu_men(GtkWidget *treeview, GdkEventButton *event, gpointer userdata)
+{ 
+	GtkWidget *menu,*menu1, *menuitem,*menuitem1,*menuitem2;
+	GtkTreeIter iter;
+	GtkTreePath *path;
+	menu = gtk_menu_new();
+	menuitem = gtk_menu_item_new_with_label("Modifier");
+	menuitem1 = gtk_menu_item_new_with_label("Supprimer");
+
+	g_signal_connect(menuitem, "activate",
+					 (GCallback)view_popup_menu_modif_men, treeview);
+	g_signal_connect(menuitem1, "activate",
+					 (GCallback)view_popup_menu_supp_men, treeview);
+	if (gtk_tree_view_get_path_at_pos(GTK_TREE_VIEW(treeview),
+									  (gint)event->x,
+									  (gint)event->y,
+									  &path, NULL, NULL, NULL))
+	{
+		GtkTreeModel *model = gtk_tree_view_get_model(treeview);
+		gchar *menuId;
+
+		if (gtk_tree_model_get_iter(model, &iter, path))
+		{
+
+			gtk_tree_model_get(GTK_LIST_STORE(model), &iter, 2, &menuId, -1);
+
+			strcpy(idM, menuId);
+		}
+	}
+
+	gtk_menu_shell_append(GTK_MENU_SHELL(menu), menuitem);
+	gtk_menu_shell_append(GTK_MENU_SHELL(menu), menuitem1);
+	
+
+	gtk_widget_show_all(menu);
+
+	gtk_menu_popup(GTK_MENU(menu), NULL, NULL, NULL, NULL,
+				   (event != NULL) ? event->button : 0,
+				   gdk_event_get_time((GdkEvent *)event)); 
+
+}
+//////////////////press event//////////////////////////////////////////////////
+gboolean
+on_treeview22_button_press_event       (GtkWidget       *treeview,
+                                        GdkEventButton  *event,
+                                        gpointer         userdata)
+{ 
+if (event->type == GDK_BUTTON_PRESS && event->button == 3)
+	{
+		
+
+		if (1)
+		{
+			GtkTreeSelection *selection;
+
+			selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(treeview));
+
+			if (gtk_tree_selection_count_selected_rows(selection) <= 1)
+			{
+				GtkTreePath *path;
+
+				if (gtk_tree_view_get_path_at_pos(GTK_TREE_VIEW(treeview),
+												  (gint)event->x,
+												  (gint)event->y,
+												  &path, NULL, NULL, NULL))
+				{
+					gtk_tree_selection_unselect_all(selection);
+					gtk_tree_selection_select_path(selection, path);
+
+					gtk_tree_path_free(path);
+				}
+			}
+		}
+
+		view_popup_menu_men(treeview, event, userdata);
+
+		return TRUE;
+	}
+
+	return FALSE;  
+}
+////////////////////////popup////////////////////////////////////////////////////
+
+gboolean
+on_treeview22_popup_menu               (GtkWidget       *treeview,
+                                        gpointer         userdata)
+{
+        view_popup_menu_men(treeview, NULL, userdata);
+
+	return TRUE; 
+}
+
+
+
+
+/////////////////////////////////////////
 
 
 //////// ajouter des menus/////////////////
@@ -5010,6 +5166,9 @@ gtk_window_set_decorated (GTK_WINDOW (pInfo), FALSE);
     break;
     }
 }
+
+
+
 
 
 
