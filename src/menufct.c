@@ -72,30 +72,30 @@ void chercher_menu(GtkWidget *liste,char id_rech[20])
    if(store == NULL)
    {
         renderer = gtk_cell_renderer_text_new () ;
-        column = gtk_tree_view_column_new_with_attributes("menuId",renderer,"text",EID,NULL) ;
+        column = gtk_tree_view_column_new_with_attributes("       ID du menu       ",renderer,"text",EID,NULL) ;
         gtk_tree_view_append_column (GTK_TREE_VIEW (liste), column) ;
 
 
         renderer = gtk_cell_renderer_text_new () ;
-        column = gtk_tree_view_column_new_with_attributes("jour",renderer,"text",EJOUR,NULL) ;
+        column = gtk_tree_view_column_new_with_attributes("              Date              ",renderer,"text",EJOUR,NULL) ;
         gtk_tree_view_append_column (GTK_TREE_VIEW (liste), column) ;
 
 
         renderer = gtk_cell_renderer_text_new () ;
-        column = gtk_tree_view_column_new_with_attributes("petit_dejeuner",renderer,"text",EPETIT,NULL) ;
+        column = gtk_tree_view_column_new_with_attributes("              Petit Déjeuner              ",renderer,"text",EPETIT,NULL) ;
         gtk_tree_view_append_column (GTK_TREE_VIEW (liste), column) ; 
 
         renderer = gtk_cell_renderer_text_new () ;
-        column = gtk_tree_view_column_new_with_attributes("dejeuner",renderer,"text",EDEJEUNER,NULL) ;
+        column = gtk_tree_view_column_new_with_attributes("              Déjeuner              ",renderer,"text",EDEJEUNER,NULL) ;
         gtk_tree_view_append_column (GTK_TREE_VIEW (liste), column) ;
 
 
         renderer = gtk_cell_renderer_text_new () ;
-        column = gtk_tree_view_column_new_with_attributes("dinner",renderer,"text",EDINNER,NULL) ;
+        column = gtk_tree_view_column_new_with_attributes("              Dinner              ",renderer,"text",EDINNER,NULL) ;
         gtk_tree_view_append_column (GTK_TREE_VIEW (liste), column) ;
 
 	renderer = gtk_cell_renderer_text_new () ;
-	column = gtk_tree_view_column_new_with_attributes("consommateur",renderer,"text",ECONS,NULL) ;
+	column = gtk_tree_view_column_new_with_attributes("                     Consommateur                     ",renderer,"text",ECONS,NULL) ;
 	gtk_tree_view_append_column (GTK_TREE_VIEW (liste), column) ;
 
 
@@ -148,31 +148,31 @@ void afficher_menu (GtkWidget *liste)
 if (store==NULL)
 {
 renderer = gtk_cell_renderer_text_new () ;
-column = gtk_tree_view_column_new_with_attributes("menuId",renderer,"text",EID,NULL) ;
-gtk_tree_view_append_column (GTK_TREE_VIEW (liste), column) ;
+        column = gtk_tree_view_column_new_with_attributes("       ID du menu       ",renderer,"text",EID,NULL) ;
+        gtk_tree_view_append_column (GTK_TREE_VIEW (liste), column) ;
 
 
-renderer = gtk_cell_renderer_text_new () ;
-column = gtk_tree_view_column_new_with_attributes("jour",renderer,"text",EJOUR,NULL) ;
-gtk_tree_view_append_column (GTK_TREE_VIEW (liste), column) ;
+        renderer = gtk_cell_renderer_text_new () ;
+        column = gtk_tree_view_column_new_with_attributes("              Date              ",renderer,"text",EJOUR,NULL) ;
+        gtk_tree_view_append_column (GTK_TREE_VIEW (liste), column) ;
 
 
-renderer = gtk_cell_renderer_text_new () ;
-column = gtk_tree_view_column_new_with_attributes("petit_dejeuner",renderer,"text",EPETIT,NULL) ;
-gtk_tree_view_append_column (GTK_TREE_VIEW (liste), column) ; 
+        renderer = gtk_cell_renderer_text_new () ;
+        column = gtk_tree_view_column_new_with_attributes("           Petit Déjeuner           ",renderer,"text",EPETIT,NULL) ;
+        gtk_tree_view_append_column (GTK_TREE_VIEW (liste), column) ; 
 
-renderer = gtk_cell_renderer_text_new () ;
-column = gtk_tree_view_column_new_with_attributes("dejeuner",renderer,"text",EDEJEUNER,NULL) ;
-gtk_tree_view_append_column (GTK_TREE_VIEW (liste), column) ;
+        renderer = gtk_cell_renderer_text_new () ;
+        column = gtk_tree_view_column_new_with_attributes("           Déjeuner           ",renderer,"text",EDEJEUNER,NULL) ;
+        gtk_tree_view_append_column (GTK_TREE_VIEW (liste), column) ;
 
 
-renderer = gtk_cell_renderer_text_new () ;
-column = gtk_tree_view_column_new_with_attributes("dinner",renderer,"text",EDINNER,NULL) ;
-gtk_tree_view_append_column (GTK_TREE_VIEW (liste), column) ;
+        renderer = gtk_cell_renderer_text_new () ;
+        column = gtk_tree_view_column_new_with_attributes("           Dinner           ",renderer,"text",EDINNER,NULL) ;
+        gtk_tree_view_append_column (GTK_TREE_VIEW (liste), column) ;
 
-renderer = gtk_cell_renderer_text_new () ;
-column = gtk_tree_view_column_new_with_attributes("consommateur",renderer,"text",ECONS,NULL) ;
-gtk_tree_view_append_column (GTK_TREE_VIEW (liste), column) ;
+	renderer = gtk_cell_renderer_text_new () ;
+	column = gtk_tree_view_column_new_with_attributes("              Consommateur              ",renderer,"text",ECONS,NULL) ;
+	gtk_tree_view_append_column (GTK_TREE_VIEW (liste), column) ;
 
 
 }

@@ -125,42 +125,42 @@ void afficher_capteur(GtkWidget *liste)
 
 	if(store==NULL){
 	renderer=gtk_cell_renderer_text_new();
-   	column=gtk_tree_view_column_new_with_attributes(" id",renderer,"text",ID,NULL);
+   	column=gtk_tree_view_column_new_with_attributes("     ID     ",renderer,"text",ID,NULL);
    	gtk_tree_view_append_column(GTK_TREE_VIEW(liste),column);
 
 
 	renderer=gtk_cell_renderer_text_new();
-   	column=gtk_tree_view_column_new_with_attributes(" reference",renderer,"text",REFERENCE,NULL);
+   	column=gtk_tree_view_column_new_with_attributes("     Reference     ",renderer,"text",REFERENCE,NULL);
    	gtk_tree_view_append_column(GTK_TREE_VIEW(liste),column);
 
 
 	renderer=gtk_cell_renderer_text_new();
-        column=gtk_tree_view_column_new_with_attributes(" marque",renderer,"text",MARQUE,NULL);
+        column=gtk_tree_view_column_new_with_attributes("     Marque     ",renderer,"text",MARQUE,NULL);
    	gtk_tree_view_append_column(GTK_TREE_VIEW(liste),column);
 
 
 	renderer=gtk_cell_renderer_text_new();
-   	column=gtk_tree_view_column_new_with_attributes(" prix",renderer,"text",PRIX,NULL);
+   	column=gtk_tree_view_column_new_with_attributes("     Prix     ",renderer,"text",PRIX,NULL);
    	gtk_tree_view_append_column(GTK_TREE_VIEW(liste),column);
 
 
 	renderer=gtk_cell_renderer_text_new();
-        column=gtk_tree_view_column_new_with_attributes(" nom",renderer,"text",NOM,NULL);
+        column=gtk_tree_view_column_new_with_attributes("        Nom        ",renderer,"text",NOM,NULL);
         gtk_tree_view_append_column(GTK_TREE_VIEW(liste),column);
 
 
 	renderer=gtk_cell_renderer_text_new();
-        column=gtk_tree_view_column_new_with_attributes(" date d'ajout",renderer,"text",DATE,NULL);
+        column=gtk_tree_view_column_new_with_attributes("             Date d'ajout             ",renderer,"text",DATE,NULL);
         gtk_tree_view_append_column(GTK_TREE_VIEW(liste),column);
 
 
 	renderer=gtk_cell_renderer_text_new();
-        column=gtk_tree_view_column_new_with_attributes(" service",renderer,"text",SERVICE,NULL);
+        column=gtk_tree_view_column_new_with_attributes("                        Service                        ",renderer,"text",SERVICE,NULL);
         gtk_tree_view_append_column(GTK_TREE_VIEW(liste),column);
 
 
 	renderer=gtk_cell_renderer_text_new();
-        column=gtk_tree_view_column_new_with_attributes(" etat                       ",renderer,"text",ETAT,NULL);
+        column=gtk_tree_view_column_new_with_attributes("  Etat   ",renderer,"text",ETAT,NULL);
         gtk_tree_view_append_column(GTK_TREE_VIEW(liste),column);
 	
 	store = gtk_list_store_new(COLUMNS,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING);
@@ -211,42 +211,42 @@ void afficher_findcapteur(GtkWidget *liste,char test [20])
 
 	if(store==NULL){
 	renderer=gtk_cell_renderer_text_new();
-   	column=gtk_tree_view_column_new_with_attributes(" id",renderer,"text",ID,NULL);
+   	column=gtk_tree_view_column_new_with_attributes("     ID     ",renderer,"text",ID,NULL);
    	gtk_tree_view_append_column(GTK_TREE_VIEW(liste),column);
 
 
 	renderer=gtk_cell_renderer_text_new();
-   	column=gtk_tree_view_column_new_with_attributes(" reference",renderer,"text",REFERENCE,NULL);
+   	column=gtk_tree_view_column_new_with_attributes("     Reference     ",renderer,"text",REFERENCE,NULL);
    	gtk_tree_view_append_column(GTK_TREE_VIEW(liste),column);
 
 
 	renderer=gtk_cell_renderer_text_new();
-        column=gtk_tree_view_column_new_with_attributes(" marque",renderer,"text",MARQUE,NULL);
+        column=gtk_tree_view_column_new_with_attributes("     Marque     ",renderer,"text",MARQUE,NULL);
    	gtk_tree_view_append_column(GTK_TREE_VIEW(liste),column);
 
 
 	renderer=gtk_cell_renderer_text_new();
-   	column=gtk_tree_view_column_new_with_attributes(" prix",renderer,"text",PRIX,NULL);
+   	column=gtk_tree_view_column_new_with_attributes("     Prix     ",renderer,"text",PRIX,NULL);
    	gtk_tree_view_append_column(GTK_TREE_VIEW(liste),column);
 
 
 	renderer=gtk_cell_renderer_text_new();
-        column=gtk_tree_view_column_new_with_attributes(" nom",renderer,"text",NOM,NULL);
+        column=gtk_tree_view_column_new_with_attributes("        Nom        ",renderer,"text",NOM,NULL);
         gtk_tree_view_append_column(GTK_TREE_VIEW(liste),column);
 
 
 	renderer=gtk_cell_renderer_text_new();
-        column=gtk_tree_view_column_new_with_attributes(" date d'ajout",renderer,"text",DATE,NULL);
+        column=gtk_tree_view_column_new_with_attributes("             Date d'ajout             ",renderer,"text",DATE,NULL);
         gtk_tree_view_append_column(GTK_TREE_VIEW(liste),column);
 
 
 	renderer=gtk_cell_renderer_text_new();
-        column=gtk_tree_view_column_new_with_attributes(" service",renderer,"text",SERVICE,NULL);
+        column=gtk_tree_view_column_new_with_attributes("                        Service                        ",renderer,"text",SERVICE,NULL);
         gtk_tree_view_append_column(GTK_TREE_VIEW(liste),column);
 
 
 	renderer=gtk_cell_renderer_text_new();
-        column=gtk_tree_view_column_new_with_attributes(" etat",renderer,"text",ETAT,NULL);
+        column=gtk_tree_view_column_new_with_attributes("  Etat   ",renderer,"text",ETAT,NULL);
         gtk_tree_view_append_column(GTK_TREE_VIEW(liste),column);
 	
 	store = gtk_list_store_new(COLUMNS,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING);
@@ -295,43 +295,44 @@ GtkCellRenderer *renderer;
 
 	if(store==NULL){
 	renderer=gtk_cell_renderer_text_new();
-   	column=gtk_tree_view_column_new_with_attributes(" id",renderer,"text",ID,NULL);
+   	column=gtk_tree_view_column_new_with_attributes("     ID     ",renderer,"text",ID,NULL);
    	gtk_tree_view_append_column(GTK_TREE_VIEW(liste),column);
 
 
 	renderer=gtk_cell_renderer_text_new();
-   	column=gtk_tree_view_column_new_with_attributes(" reference",renderer,"text",REFERENCE,NULL);
+   	column=gtk_tree_view_column_new_with_attributes("     Reference     ",renderer,"text",REFERENCE,NULL);
    	gtk_tree_view_append_column(GTK_TREE_VIEW(liste),column);
 
 
 	renderer=gtk_cell_renderer_text_new();
-        column=gtk_tree_view_column_new_with_attributes(" marque",renderer,"text",MARQUE,NULL);
+        column=gtk_tree_view_column_new_with_attributes("     Marque     ",renderer,"text",MARQUE,NULL);
    	gtk_tree_view_append_column(GTK_TREE_VIEW(liste),column);
 
 
 	renderer=gtk_cell_renderer_text_new();
-   	column=gtk_tree_view_column_new_with_attributes(" prix",renderer,"text",PRIX,NULL);
+   	column=gtk_tree_view_column_new_with_attributes("     Prix     ",renderer,"text",PRIX,NULL);
    	gtk_tree_view_append_column(GTK_TREE_VIEW(liste),column);
 
 
 	renderer=gtk_cell_renderer_text_new();
-        column=gtk_tree_view_column_new_with_attributes(" nom",renderer,"text",NOM,NULL);
+        column=gtk_tree_view_column_new_with_attributes("        Nom        ",renderer,"text",NOM,NULL);
         gtk_tree_view_append_column(GTK_TREE_VIEW(liste),column);
 
 
 	renderer=gtk_cell_renderer_text_new();
-        column=gtk_tree_view_column_new_with_attributes(" date d'ajout",renderer,"text",DATE,NULL);
+        column=gtk_tree_view_column_new_with_attributes("             Date d'ajout             ",renderer,"text",DATE,NULL);
         gtk_tree_view_append_column(GTK_TREE_VIEW(liste),column);
 
 
 	renderer=gtk_cell_renderer_text_new();
-        column=gtk_tree_view_column_new_with_attributes(" service",renderer,"text",SERVICE,NULL);
+        column=gtk_tree_view_column_new_with_attributes("                        Service                        ",renderer,"text",SERVICE,NULL);
         gtk_tree_view_append_column(GTK_TREE_VIEW(liste),column);
 
 
 	renderer=gtk_cell_renderer_text_new();
-        column=gtk_tree_view_column_new_with_attributes(" etat",renderer,"text",ETAT,NULL);
-        gtk_tree_view_append_column(GTK_TREE_VIEW(liste),column);}
+        column=gtk_tree_view_column_new_with_attributes("  Etat   ",renderer,"text",ETAT,NULL);
+        gtk_tree_view_append_column(GTK_TREE_VIEW(liste),column);
+}
 	
 	   store = gtk_list_store_new(COLUMNS,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING);
            gtk_list_store_set(store, &iter, ID, id, REFERENCE, reference, MARQUE, marque, PRIX, prix, NOM, nom, DATE, text, SERVICE, service, ETAT, etat, -1);

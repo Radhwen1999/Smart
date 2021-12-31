@@ -71,39 +71,39 @@ void afficher_user(GtkWidget *liste)
 	if(store == NULL)
 	{
 		renderer = gtk_cell_renderer_text_new();
-		column=gtk_tree_view_column_new_with_attributes(" EspritId:",renderer,"text",ESPRITID,NULL);
+		column=gtk_tree_view_column_new_with_attributes(" Esprit ID ",renderer,"text",ESPRITID,NULL);
 		gtk_tree_view_append_column(GTK_TREE_VIEW(liste),column);
 
 		renderer = gtk_cell_renderer_text_new();
-		column=gtk_tree_view_column_new_with_attributes(" Nom:",renderer,"text",NOM,NULL);
+		column=gtk_tree_view_column_new_with_attributes("   Nom   ",renderer,"text",NOM,NULL);
 		gtk_tree_view_append_column(GTK_TREE_VIEW(liste),column);
 
 		renderer = gtk_cell_renderer_text_new();
-		column=gtk_tree_view_column_new_with_attributes(" Prenom:",renderer,"text",PRENOM,NULL);
+		column=gtk_tree_view_column_new_with_attributes("   Prénom   ",renderer,"text",PRENOM,NULL);
 		gtk_tree_view_append_column(GTK_TREE_VIEW(liste),column);
 		
 		renderer = gtk_cell_renderer_text_new();
-		column=gtk_tree_view_column_new_with_attributes(" Date de naissance:",renderer,"text",DATEN,NULL);
+		column=gtk_tree_view_column_new_with_attributes(" Date de naissance ",renderer,"text",DATEN,NULL);
 		gtk_tree_view_append_column(GTK_TREE_VIEW(liste),column);
 
 		renderer = gtk_cell_renderer_text_new();
-		column=gtk_tree_view_column_new_with_attributes(" Role:",renderer,"text",ROLE,NULL);
+		column=gtk_tree_view_column_new_with_attributes("               Role               ",renderer,"text",ROLE,NULL);
 		gtk_tree_view_append_column(GTK_TREE_VIEW(liste),column);
 
 		renderer = gtk_cell_renderer_text_new();
-		column=gtk_tree_view_column_new_with_attributes(" Cin:",renderer,"text",CIN,NULL);
+		column=gtk_tree_view_column_new_with_attributes("      CIN      ",renderer,"text",CIN,NULL);
 		gtk_tree_view_append_column(GTK_TREE_VIEW(liste),column);
 
 		renderer = gtk_cell_renderer_text_new();
-		column=gtk_tree_view_column_new_with_attributes(" Email:",renderer,"text",EMAIL,NULL);
+		column=gtk_tree_view_column_new_with_attributes("                 Email                 ",renderer,"text",EMAIL,NULL);
 		gtk_tree_view_append_column(GTK_TREE_VIEW(liste),column);
 
 		renderer = gtk_cell_renderer_text_new();
-		column=gtk_tree_view_column_new_with_attributes(" Gender:",renderer,"text",SEXE,NULL);
+		column=gtk_tree_view_column_new_with_attributes("  Gender  ",renderer,"text",SEXE,NULL);
 		gtk_tree_view_append_column(GTK_TREE_VIEW(liste),column);
 
 		renderer = gtk_cell_renderer_text_new();
-		column=gtk_tree_view_column_new_with_attributes(" Téléphone:",renderer,"text",TEL,NULL);
+		column=gtk_tree_view_column_new_with_attributes("  Téléphone  ",renderer,"text",TEL,NULL);
 		gtk_tree_view_append_column(GTK_TREE_VIEW(liste),column);
 
 
@@ -151,39 +151,39 @@ void rechercher_user(GtkWidget *liste,char rech[])
 	if(store == NULL)
 	{
 		renderer = gtk_cell_renderer_text_new();
-		column=gtk_tree_view_column_new_with_attributes("EspritId:",renderer,"text",ESPRITID,NULL);
+		column=gtk_tree_view_column_new_with_attributes(" Esprit ID ",renderer,"text",ESPRITID,NULL);
 		gtk_tree_view_append_column(GTK_TREE_VIEW(liste),column);
 
 		renderer = gtk_cell_renderer_text_new();
-		column=gtk_tree_view_column_new_with_attributes("Nom:",renderer,"text",NOM,NULL);
+		column=gtk_tree_view_column_new_with_attributes("   Nom   ",renderer,"text",NOM,NULL);
 		gtk_tree_view_append_column(GTK_TREE_VIEW(liste),column);
 
 		renderer = gtk_cell_renderer_text_new();
-		column=gtk_tree_view_column_new_with_attributes("Prenom:",renderer,"text",PRENOM,NULL);
+		column=gtk_tree_view_column_new_with_attributes("   Prénom   ",renderer,"text",PRENOM,NULL);
 		gtk_tree_view_append_column(GTK_TREE_VIEW(liste),column);
 		
 		renderer = gtk_cell_renderer_text_new();
-		column=gtk_tree_view_column_new_with_attributes("Date de naissance:",renderer,"text",DATEN,NULL);
+		column=gtk_tree_view_column_new_with_attributes(" Date de naissance",renderer,"text",DATEN,NULL);
 		gtk_tree_view_append_column(GTK_TREE_VIEW(liste),column);
 
 		renderer = gtk_cell_renderer_text_new();
-		column=gtk_tree_view_column_new_with_attributes("Role:",renderer,"text",ROLE,NULL);
+		column=gtk_tree_view_column_new_with_attributes("               Role               ",renderer,"text",ROLE,NULL);
 		gtk_tree_view_append_column(GTK_TREE_VIEW(liste),column);
 
 		renderer = gtk_cell_renderer_text_new();
-		column=gtk_tree_view_column_new_with_attributes("Cin:",renderer,"text",CIN,NULL);
+		column=gtk_tree_view_column_new_with_attributes("      CIN      ",renderer,"text",CIN,NULL);
 		gtk_tree_view_append_column(GTK_TREE_VIEW(liste),column);
 
 		renderer = gtk_cell_renderer_text_new();
-		column=gtk_tree_view_column_new_with_attributes("Email:",renderer,"text",EMAIL,NULL);
+		column=gtk_tree_view_column_new_with_attributes("                 Email                 ",renderer,"text",EMAIL,NULL);
 		gtk_tree_view_append_column(GTK_TREE_VIEW(liste),column);
 
 		renderer = gtk_cell_renderer_text_new();
-		column=gtk_tree_view_column_new_with_attributes("Gender:",renderer,"text",SEXE,NULL);
+		column=gtk_tree_view_column_new_with_attributes("  Gender  ",renderer,"text",SEXE,NULL);
 		gtk_tree_view_append_column(GTK_TREE_VIEW(liste),column);
 
 		renderer = gtk_cell_renderer_text_new();
-		column=gtk_tree_view_column_new_with_attributes("Téléphone:",renderer,"text",TEL,NULL);
+		column=gtk_tree_view_column_new_with_attributes("  Téléphone  ",renderer,"text",TEL,NULL);
 		gtk_tree_view_append_column(GTK_TREE_VIEW(liste),column);
 
 
