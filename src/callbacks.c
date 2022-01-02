@@ -1824,7 +1824,7 @@ on_button_envoyer_rec_clicked              (GtkWidget       *objet,
 	strcpy(Rec.text_rec,gtk_entry_get_text(GTK_ENTRY(input13)));
     	
 	if(idExist1(Rec.id)) 
-        {
+        {	
 		sprintf(texte1,"Cet id existe déja \n");
 		output1 = lookup_widget(objet,"label_exist");
 		GdkColor color;
@@ -1832,7 +1832,9 @@ on_button_envoyer_rec_clicked              (GtkWidget       *objet,
 		gtk_widget_modify_fg (output1, GTK_STATE_NORMAL, &color);
     		gtk_label_set_text(GTK_LABEL(output1),texte1);	
 	} else 
-	{
+	{	sprintf(texte1,"");
+		output1 = lookup_widget(objet,"label_exist");
+		gtk_label_set_text(GTK_LABEL(output1),texte1);
 		ajouter_rec(Rec);
                 sprintf(texte,"✔️ Réclamation ajoutée avec succés") ;
 		GdkColor color;
