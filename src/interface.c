@@ -6749,6 +6749,9 @@ create_windowextras (void)
   GtkObject *spinbutton5_adj;
   GtkWidget *spinbutton5;
   GtkWidget *progressbar1;
+  GtkWidget *progressbar2;
+  GtkWidget *progressbar3;
+  GtkWidget *progressbar4;
   GtkWidget *image202;
   GtkWidget *labelshow_etudiant;
   GtkWidget *bashref;
@@ -6778,7 +6781,6 @@ create_windowextras (void)
   GtkWidget *hbox117;
   GtkWidget *image206;
   GtkWidget *label290;
-  GtkWidget *labelshow;
   GtkWidget *bhamdi;
   GtkWidget *alignment121;
   GtkWidget *hbox119;
@@ -6797,8 +6799,8 @@ create_windowextras (void)
   GtkWidget *hbox99;
   GtkWidget *image183;
   GtkWidget *label268;
-  GtkWidget *progressbar2;
   GtkWidget *labelshow_stock;
+  GtkWidget *labelshow;
 
   windowextras = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_widget_set_size_request (windowextras, 1200, 700);
@@ -6856,6 +6858,28 @@ create_windowextras (void)
   gtk_widget_show (progressbar1);
   gtk_fixed_put (GTK_FIXED (fixed36), progressbar1, 264, 256);
   gtk_widget_set_size_request (progressbar1, 296, 32);
+  gtk_progress_bar_set_pulse_step (GTK_PROGRESS_BAR (progressbar1), 0.01);
+  gtk_progress_bar_set_text (GTK_PROGRESS_BAR (progressbar1), _("%Des Capteur d\303\251fectueux"));
+
+  progressbar2 = gtk_progress_bar_new ();
+  gtk_widget_show (progressbar2);
+  gtk_fixed_put (GTK_FIXED (fixed36), progressbar2, 264, 440);
+  gtk_widget_set_size_request (progressbar2, 296, 32);
+  gtk_progress_bar_set_text (GTK_PROGRESS_BAR (progressbar2), _("%Rupture de ce Produit"));
+
+  progressbar3 = gtk_progress_bar_new ();
+  gtk_widget_show (progressbar3);
+  gtk_fixed_put (GTK_FIXED (fixed36), progressbar3, 904, 195);
+  gtk_widget_set_size_request (progressbar3, 192, 32);
+  gtk_progress_bar_set_pulse_step (GTK_PROGRESS_BAR (progressbar3), 0.01);
+  gtk_progress_bar_set_text (GTK_PROGRESS_BAR (progressbar3), _("S\303\251curit\303\251 contre incendie"));
+
+  progressbar4 = gtk_progress_bar_new ();
+  gtk_widget_show (progressbar4);
+  gtk_fixed_put (GTK_FIXED (fixed36), progressbar4, 904, 240);
+  gtk_widget_set_size_request (progressbar4, 192, 32);
+  gtk_progress_bar_set_pulse_step (GTK_PROGRESS_BAR (progressbar4), 0.01);
+  gtk_progress_bar_set_text (GTK_PROGRESS_BAR (progressbar4), _("Surveilance et Contr\303\264le"));
 
   image202 = create_pixmap (windowextras, "testtest123.png");
   gtk_widget_show (image202);
@@ -6981,11 +7005,6 @@ create_windowextras (void)
   gtk_widget_show (label290);
   gtk_box_pack_start (GTK_BOX (hbox117), label290, FALSE, FALSE, 0);
 
-  labelshow = gtk_label_new ("");
-  gtk_widget_show (labelshow);
-  gtk_fixed_put (GTK_FIXED (fixed36), labelshow, 912, 176);
-  gtk_widget_set_size_request (labelshow, 192, 112);
-
   bhamdi = gtk_button_new ();
   gtk_widget_show (bhamdi);
   gtk_fixed_put (GTK_FIXED (fixed36), bhamdi, 680, 576);
@@ -7064,15 +7083,15 @@ create_windowextras (void)
   gtk_widget_show (label268);
   gtk_box_pack_start (GTK_BOX (hbox99), label268, FALSE, FALSE, 0);
 
-  progressbar2 = gtk_progress_bar_new ();
-  gtk_widget_show (progressbar2);
-  gtk_fixed_put (GTK_FIXED (fixed36), progressbar2, 264, 440);
-  gtk_widget_set_size_request (progressbar2, 296, 32);
-
   labelshow_stock = gtk_label_new ("");
   gtk_widget_show (labelshow_stock);
   gtk_fixed_put (GTK_FIXED (fixed36), labelshow_stock, 264, 384);
   gtk_widget_set_size_request (labelshow_stock, 296, 56);
+
+  labelshow = gtk_label_new ("");
+  gtk_widget_show (labelshow);
+  gtk_fixed_put (GTK_FIXED (fixed36), labelshow, 912, 152);
+  gtk_widget_set_size_request (labelshow, 200, 32);
 
   g_signal_connect ((gpointer) bashref, "clicked",
                     G_CALLBACK (on_bashref_clicked),
@@ -7113,6 +7132,9 @@ create_windowextras (void)
   GLADE_HOOKUP_OBJECT (windowextras, spinbutton7, "spinbutton7");
   GLADE_HOOKUP_OBJECT (windowextras, spinbutton5, "spinbutton5");
   GLADE_HOOKUP_OBJECT (windowextras, progressbar1, "progressbar1");
+  GLADE_HOOKUP_OBJECT (windowextras, progressbar2, "progressbar2");
+  GLADE_HOOKUP_OBJECT (windowextras, progressbar3, "progressbar3");
+  GLADE_HOOKUP_OBJECT (windowextras, progressbar4, "progressbar4");
   GLADE_HOOKUP_OBJECT (windowextras, image202, "image202");
   GLADE_HOOKUP_OBJECT (windowextras, labelshow_etudiant, "labelshow_etudiant");
   GLADE_HOOKUP_OBJECT (windowextras, bashref, "bashref");
@@ -7142,7 +7164,6 @@ create_windowextras (void)
   GLADE_HOOKUP_OBJECT (windowextras, hbox117, "hbox117");
   GLADE_HOOKUP_OBJECT (windowextras, image206, "image206");
   GLADE_HOOKUP_OBJECT (windowextras, label290, "label290");
-  GLADE_HOOKUP_OBJECT (windowextras, labelshow, "labelshow");
   GLADE_HOOKUP_OBJECT (windowextras, bhamdi, "bhamdi");
   GLADE_HOOKUP_OBJECT (windowextras, alignment121, "alignment121");
   GLADE_HOOKUP_OBJECT (windowextras, hbox119, "hbox119");
@@ -7161,8 +7182,8 @@ create_windowextras (void)
   GLADE_HOOKUP_OBJECT (windowextras, hbox99, "hbox99");
   GLADE_HOOKUP_OBJECT (windowextras, image183, "image183");
   GLADE_HOOKUP_OBJECT (windowextras, label268, "label268");
-  GLADE_HOOKUP_OBJECT (windowextras, progressbar2, "progressbar2");
   GLADE_HOOKUP_OBJECT (windowextras, labelshow_stock, "labelshow_stock");
+  GLADE_HOOKUP_OBJECT (windowextras, labelshow, "labelshow");
 
   return windowextras;
 }

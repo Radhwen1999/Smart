@@ -28,26 +28,26 @@ on_EXTRA_clicked                       (GtkWidget       *button,
                                         gpointer         user_data)
 {
 	GtkWidget *winadd;
-    	GtkWidget *winmen,*windowajouter,*p2;
+    	GtkWidget *winmen,*windowajouter,*p2,*p4;
     	winmen=lookup_widget(button,"acceuil");
     	winadd=create_windowextras();
     	gtk_widget_show(winadd);
     	gtk_widget_destroy(winmen);
 	/*win=lookup_widget(button,"windowextras");*/
-	int a,b,c;
+	int a,b,c,e,f,w,h;
 	float d;
- 	GtkWidget *p1; int n11=0,n22=0;
-	gdouble d1;
+ 	GtkWidget *p1,*p3; int n11=0,n22=0,n1=0,n2=0;
+	gdouble d1,d3,d4;
 	p1=lookup_widget(winadd,"progressbar1");
-	FILE *f;
-	f=fopen("tempa.txt","r");
-	if (f!=NULL)
-	{while(fscanf(f,"%d %d %d %f\n",&a,&b,&c,&d)!=EOF)
+	FILE *q;
+	q=fopen("tempa.txt","r");
+	if (q!=NULL)
+	{while(fscanf(q,"%d %d %d %f\n",&a,&b,&c,&d)!=EOF)
 	{if ((d<30)&&(d>10))
 	 n11=n11+1;
 	else  n22=n22+1;
 	}
-fclose(f);}
+fclose(q);}
 d1=(float)n11/(n11+n22);
 gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(p1),d1);
 
@@ -67,6 +67,36 @@ gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(p1),d1);
     fclose(g);
     p2=lookup_widget(winadd,"progressbar2");
     gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(p2),i/j);
+
+
+
+p3=lookup_widget(winadd,"progressbar3");
+	FILE *z;
+	z=fopen("fumee.txt","r");
+	if (z!=NULL)
+	{while(fscanf(z,"%d %d %d %d\n",&e,&f,&w,&h)!=EOF)
+	{if (h==1)
+	 n2=n2+1;
+	else  n1=n1+1;
+	}
+fclose(z);}
+d3=(float)n1/(n1+n2);
+int l,m,p,hk;
+int a1=0,a2=0;
+gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(p3),d3);
+p4=lookup_widget(winadd,"progressbar4");
+	FILE *v;
+	v=fopen("mouvement.txt","r");
+	if (z!=NULL)
+	{while(fscanf(z,"%d %d %d %d\n",&l,&m,&p,&hk)!=EOF)
+	{if (hk==1)
+	 a2=a2+1;
+	else  a1=a1+1;
+	}
+fclose(v);}
+d4=(float)a1/(a1+a2);
+gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(p4),d4);
+
 }
 
 
@@ -5028,6 +5058,7 @@ on_buttonadem6_clicked                  (GtkWidget       *objet,
 	GtkWidget *input7;
 	GtkWidget *input8;
 	GtkWidget *output;
+	char ch1[200],ch2[200],ch[200];
 	char texte[200];
 	input6=lookup_widget(objet,"spinbuttonj");
 	input7=lookup_widget(objet,"spinbuttonh");
@@ -5040,7 +5071,8 @@ on_buttonadem6_clicked                  (GtkWidget       *objet,
 if (f!=NULL){
 	while(fscanf(f,"%d %d %d %d\n",&j,&h,&n,&t)!=EOF)
 	{
-         if ((jour==j)&&(heure==h)&&(num==n)&&(t==0))
+         if ((jour==j)&&(heure==h)&&(num==n)){
+	if(t==0)
   	  {
 	        sprintf(texte,"Pas De Mouvement");
 		output = lookup_widget(objet,"labelshow");
@@ -5050,7 +5082,10 @@ if (f!=NULL){
     		gtk_label_set_text(GTK_LABEL(output),texte);
           }
 	
-  	else {  
+  	else {  sprintf(ch,"%d",num);
+		sprintf(ch1,"%d à l'heure: %d",jour,heure);
+		strcpy (ch2,"radhwen.rmili@esprit.tn");
+		send_mail2(ch2,ch,ch1);
                 sprintf(texte,"Ily'a Mouvement");
 		output = lookup_widget(objet,"labelshow");
 		GdkColor color;
@@ -5059,7 +5094,7 @@ if (f!=NULL){
     		gtk_label_set_text(GTK_LABEL(output),texte);}
 
 
-             }
+             }}
 fclose(f);
 }
 }
@@ -5077,7 +5112,7 @@ on_bradhwen_clicked                    (GtkWidget       *objet,
 	GtkWidget *input7;
 	GtkWidget *input8;
 	GtkWidget *output;
-	
+	char ch1[200],ch2[200],ch[200];
 	char texte[200];
 	input6=lookup_widget(objet,"spinbutton6");
 	input7=lookup_widget(objet,"spinbutton7");
@@ -5091,18 +5126,23 @@ on_bradhwen_clicked                    (GtkWidget       *objet,
 	f=fopen("tempa.txt","r");
 	if (f!=NULL)
 	{while(fscanf(f,"%d %d %d %f",&a,&b,&c,&d)!=EOF)
-	{if ((jour==a)&&(heure==b)&&(num==c)&&(d<30)&&(d>10))
+	{if ((jour==a)&&(heure==b)&&(num==c))
+	if((d<30)&&(d>10))
 	{
   	
-	sprintf(texte,"Ce Capteur est fonctionnel");
+		sprintf(texte,"Ce Capteur est fonctionnel");
 		
 		output = lookup_widget(objet,"labelshow_cap");
 		GdkColor color;
 		gdk_color_parse ("#40e61a", &color);
 		gtk_widget_modify_fg (output, GTK_STATE_NORMAL, &color);
     		gtk_label_set_text(GTK_LABEL(output),texte);}	
-  	else { sprintf(texte,"Ce Capteur est diffectueux");
-		
+  	else  
+		{sprintf(texte,"Ce Capteur est défectueux");
+		sprintf(ch,"%d",num);
+		sprintf(ch1,"%d à l'heure %d",jour,heure);
+		strcpy (ch2,"radhwen.rmili@esprit.tn");
+		send_mail1(ch2,ch,ch1);
 		output = lookup_widget(objet,"labelshow_cap");
 		GdkColor color;
 		gdk_color_parse ("#ff250d", &color);
@@ -5116,6 +5156,57 @@ fclose(f);
 }
 
 
+void
+on_buttonadem2_clicked                 (GtkWidget       *objet,
+                                        gpointer         user_data)
+{
+	int jour,heure,num;
+	int j,h,n;
+	int t;
+	GtkWidget *input6;
+	GtkWidget *input7;
+	GtkWidget *input8;
+	GtkWidget *output;
+char ch1[200],ch2[200],ch[200];
+	char texte[200];
+	input6=lookup_widget(objet,"spinbuttonj");
+	input7=lookup_widget(objet,"spinbuttonh");
+	input8=lookup_widget(objet,"spinbuttonn");
+	jour=gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(input6));
+	heure=gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(input7));
+	num=gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(input8));
+	FILE *f=NULL;
+	f=fopen("fumee.txt","r");
+if (f!=NULL){
+	while(fscanf(f,"%d %d %d %d\n",&j,&h,&n,&t)!=EOF)
+	{
+         if ((jour==j)&&(heure==h)&&(num==n)){
+	if(t==0){
+  	  
+	        sprintf(texte,"Pas de fumée");
+		output = lookup_widget(objet,"labelshow");
+		GdkColor color;
+		gdk_color_parse ("#40e61a", &color);
+		gtk_widget_modify_fg (output, GTK_STATE_NORMAL, &color);
+    		gtk_label_set_text(GTK_LABEL(output),texte);
+          }
+	
+  	else {  sprintf(ch,"%d",num);
+		sprintf(ch1,"%d à l'heure %d",jour,heure);
+		strcpy (ch2,"radhwen.rmili@esprit.tn");
+		send_mail3(ch2,ch,ch1);
+                sprintf(texte,"Il y'a de fumée");
+		output = lookup_widget(objet,"labelshow");
+		GdkColor color;
+		gdk_color_parse ("#ff250d", &color);
+		gtk_widget_modify_fg (output, GTK_STATE_NORMAL, &color); 
+    		gtk_label_set_text(GTK_LABEL(output),texte);} 
+
+
+             }}
+fclose(f);
+}
+}
 void
 on_bhamdi_clicked                      (GtkWidget       *objet,
                                         gpointer         user_data)
@@ -5241,52 +5332,6 @@ on_bacceuilb_clicked                    (GtkWidget       *objet,
 }
 
 
-void
-on_buttonadem2_clicked                 (GtkWidget       *objet,
-                                        gpointer         user_data)
-{
-	int jour,heure,num;
-	int j,h,n;
-	int t;
-	GtkWidget *input6;
-	GtkWidget *input7;
-	GtkWidget *input8;
-	GtkWidget *output;
-	char texte[200];
-	input6=lookup_widget(objet,"spinbuttonj");
-	input7=lookup_widget(objet,"spinbuttonh");
-	input8=lookup_widget(objet,"spinbuttonn");
-	jour=gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(input6));
-	heure=gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(input7));
-	num=gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(input8));
-	FILE *f=NULL;
-	f=fopen("fumee.txt","r");
-if (f!=NULL){
-	while(fscanf(f,"%d %d %d %d\n",&j,&h,&n,&t)!=EOF)
-	{
-         if ((jour==j)&&(heure==h)&&(num==n)&&(t==0))
-  	  {
-	        sprintf(texte,"Pas de fumée");
-		output = lookup_widget(objet,"labelshow");
-		/*GdkColor color;
-		gdk_color_parse ("#40e61a", &color);
-		gtk_widget_modify_fg (output, GTK_STATE_NORMAL, &color);*/
-    		gtk_label_set_text(GTK_LABEL(output),texte);
-          }
-	
-  	else {  
-                sprintf(texte,"Il y'a de fumée");
-		output = lookup_widget(objet,"labelshow");
-		/*GdkColor color;
-		gdk_color_parse ("#ff250d", &color);
-		gtk_widget_modify_fg (output, GTK_STATE_NORMAL, &color); */
-    		gtk_label_set_text(GTK_LABEL(output),texte);} 
-
-
-             }
-fclose(f);
-}
-}
 
 
 
