@@ -28,7 +28,7 @@ on_EXTRA_clicked                       (GtkWidget       *button,
                                         gpointer         user_data)
 {
 	GtkWidget *winadd;
-    	GtkWidget *winmen,*windowajouter;
+    	GtkWidget *winmen,*windowajouter,*p2;
     	winmen=lookup_widget(button,"acceuil");
     	winadd=create_windowextras();
     	gtk_widget_show(winadd);
@@ -50,6 +50,23 @@ on_EXTRA_clicked                       (GtkWidget       *button,
 fclose(f);}
 d1=(float)n11/(n11+n22);
 gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(p1),d1);
+
+
+
+    stock s;
+    FILE *g;
+    float i=0,j=0;
+    g=fopen("stock.txt","r");
+    while(fscanf(g,"%s %s %s %s %s\n",s.id,s.nom,s.quantite,s.val,s.cat)!=EOF)
+    {
+        if (!strcmp(s.quantite,"0"))
+            i++;
+        j++;
+
+    }
+    fclose(g);
+    p2=lookup_widget(winadd,"progressbar2");
+    gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(p2),i/j);
 }
 
 
@@ -2439,7 +2456,7 @@ on_button_espcae_rec_clicked           (GtkWidget       *objet,
 
 /**************UTILISATEURS******************/
 
-int type=1;
+int type=2;
 
  user ust;
 void
@@ -3180,6 +3197,9 @@ on_ajouter_ahmed_clicked                     (GtkWidget       *objet,
     	winadd=create_ajouter_ab();
     	gtk_widget_show(winadd);
     	gtk_widget_destroy(winmen);
+	GtkWidget *combobox1_ahmed;
+  	combobox1_ahmed=lookup_widget(winadd,"combobox2_ahmed");
+ 	gtk_combo_box_set_active(GTK_COMBO_BOX(combobox1_ahmed),0);	
 
 }
 
@@ -3672,6 +3692,78 @@ gtk_entry_set_text(GTK_ENTRY(input3), ss.quantite);
 		gtk_toggle_button_set_active(GTK_RADIO_BUTTON(legume), FALSE);
 		gtk_toggle_button_set_active(GTK_RADIO_BUTTON(autre), TRUE);
 	}
+
+
+
+    char jour[20]="",mois[20]="",annee[20]="";
+    int i,m,a,j,aa;
+    for (i=0;i<strlen(ss.val);i++)
+    {
+        if(ss.val[i]=='/')
+        {
+            m=i;
+            break;
+        }
+    }
+    //printf("%d\n",m);
+
+    for (i=4;i<strlen(ss.val);i++)
+    {
+        if(ss.val[i]=='/')
+            a=i;
+    }
+    //printf("%d\n",a);
+    
+    for (i=0;i<m;i++)
+    {
+        strncat(jour,&ss.val[i],1);
+    }
+    j=atoi(jour);
+    //printf("%d\n",j);
+
+    for (i=m+1;i<a;i++)
+    {
+        strncat(mois,&ss.val[i],1);
+    }
+    //printf("%s\n",mois);
+
+    for (i=a+1;i<strlen(ss.val);i++)
+    {
+        strncat(annee,&ss.val[i],1);
+    }
+    aa=atoi(annee);
+    GtkWidget *spinbutton11,*spinbutton10,*combobox4_ahmed;
+    spinbutton11=lookup_widget(modifier_ab,"spinbutton11");
+    spinbutton10=lookup_widget(modifier_ab,"spinbutton10");
+    combobox4_ahmed=lookup_widget(modifier_ab,"combobox4_ahmed");
+    gtk_spin_button_set_value(GTK_SPIN_BUTTON(spinbutton11),j);
+    gtk_spin_button_set_value(GTK_SPIN_BUTTON(spinbutton10),aa);
+    if (!strcmp(mois,"Janvier"))
+        gtk_combo_box_set_active(GTK_COMBO_BOX(combobox4_ahmed),0);
+    if (!strcmp(mois,"Fevrier"))
+        gtk_combo_box_set_active(GTK_COMBO_BOX(combobox4_ahmed),1);
+    if (!strcmp(mois,"Mars"))
+        gtk_combo_box_set_active(GTK_COMBO_BOX(combobox4_ahmed),2);
+    if (!strcmp(mois,"Avril"))
+        gtk_combo_box_set_active(GTK_COMBO_BOX(combobox4_ahmed),3);
+    if (!strcmp(mois,"Mai"))
+        gtk_combo_box_set_active(GTK_COMBO_BOX(combobox4_ahmed),4);
+    if (!strcmp(mois,"Juin"))
+        gtk_combo_box_set_active(GTK_COMBO_BOX(combobox4_ahmed),5);
+    if (!strcmp(mois,"Juillet"))
+        gtk_combo_box_set_active(GTK_COMBO_BOX(combobox4_ahmed),6);
+    if (!strcmp(mois,"Aout"))
+        gtk_combo_box_set_active(GTK_COMBO_BOX(combobox4_ahmed),7);
+    if (!strcmp(mois,"Septembre"))
+        gtk_combo_box_set_active(GTK_COMBO_BOX(combobox4_ahmed),8);
+    if (!strcmp(mois,"Octobre"))
+        gtk_combo_box_set_active(GTK_COMBO_BOX(combobox4_ahmed),9);
+    if (!strcmp(mois,"Novembre"))
+        gtk_combo_box_set_active(GTK_COMBO_BOX(combobox4_ahmed),10);
+    if (!strcmp(mois,"Décembre"))
+        gtk_combo_box_set_active(GTK_COMBO_BOX(combobox4_ahmed),11);
+    //printf("%d",aa);
+
 gtk_widget_show(modifier_ab);
 }
 ////////
