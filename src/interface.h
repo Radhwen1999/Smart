@@ -37,3 +37,4 @@ GtkWidget* create_modification (void);
 GtkWidget* create_chercherdesmenus (void);
 GtkWidget* create_con_supp (void);
 GtkWidget* create_windowextras (void);
+GtkWidget* create_aboutdialog1 (void);

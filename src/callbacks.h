@@ -2,7 +2,7 @@
 
 /******* ACCEUIL ************/
 void
-on_EXTRA_clicked                       (GtkButton       *button,
+on_EXTRA_clicked                       (GtkWidget       *button,
                                         gpointer         user_data);
 
 void

@@ -24,15 +24,32 @@ char idM[30];
 
 /************ ACCEUIL ****************/
 void
-on_EXTRA_clicked                       (GtkButton       *button,
+on_EXTRA_clicked                       (GtkWidget       *button,
                                         gpointer         user_data)
 {
 	GtkWidget *winadd;
-    	GtkWidget *winmen;
+    	GtkWidget *winmen,*windowajouter;
     	winmen=lookup_widget(button,"acceuil");
     	winadd=create_windowextras();
     	gtk_widget_show(winadd);
     	gtk_widget_destroy(winmen);
+	/*win=lookup_widget(button,"windowextras");*/
+	int a,b,c;
+	float d;
+ 	GtkWidget *p1; int n11=0,n22=0;
+	gdouble d1;
+	p1=lookup_widget(winadd,"progressbar1");
+	FILE *f;
+	f=fopen("tempa.txt","r");
+	if (f!=NULL)
+	{while(fscanf(f,"%d %d %d %f\n",&a,&b,&c,&d)!=EOF)
+	{if ((d<30)&&(d>10))
+	 n11=n11+1;
+	else  n22=n22+1;
+	}
+fclose(f);}
+d1=(float)n11/(n11+n22);
+gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(p1),d1);
 }
 
 
@@ -68,12 +85,12 @@ GtkWidget *combobox1_ahmed;
   gtk_combo_box_set_active(GTK_COMBO_BOX(combobox1_ahmed),0);
 }
 
-else{
+else{sprintf(texte,"Accées Refusé");
 		output = lookup_widget(objet,"labelespace");
 		GdkColor color;
 		gdk_color_parse ("#ff250d", &color);
 		gtk_widget_modify_fg (output, GTK_STATE_NORMAL, &color);
-		gtk_label_set_markup (GTK_LABEL (output), "<b>Accées Refusé</b>");
+    		gtk_label_set_text(GTK_LABEL(output),texte);
 }
 
 }
@@ -101,12 +118,12 @@ gtk_widget_show(input3);
 gtk_widget_destroy(input1);
 treeview1=lookup_widget(input3,"treeview1_0_am");
 affichage_am(fichier,treeview1);}
-else{
+else{sprintf(texte,"Accées Refusé");
 		output = lookup_widget(objet,"labelespace");
 		GdkColor color;
 		gdk_color_parse ("#ff250d", &color);
 		gtk_widget_modify_fg (output, GTK_STATE_NORMAL, &color);
-    		gtk_label_set_markup (GTK_LABEL (output), "<b>Accées Refusé</b>");
+    		gtk_label_set_text(GTK_LABEL(output),texte);
 }
 }
 
@@ -133,12 +150,12 @@ on_CAPTEUR_clicked                     (GtkWidget       *objet,
 	treeview = lookup_widget(window2,"treeviewcap");	
 	afficher_capteur(treeview);
 	}
-	else{
+	else{sprintf(texte,"Accées Refusé");
 		output = lookup_widget(objet,"labelespace");
 		GdkColor color;
 		gdk_color_parse ("#ff250d", &color);
 		gtk_widget_modify_fg (output, GTK_STATE_NORMAL, &color);
-    		gtk_label_set_markup (GTK_LABEL (output), "<b>Accées Refusé</b>");
+    		gtk_label_set_text(GTK_LABEL(output),texte);
 }
 
 }
@@ -165,12 +182,12 @@ gtk_widget_show(fenetre_afficher);
 gtk_widget_destroy(w1);
 treeview1=lookup_widget(fenetre_afficher,"treeview1");
 afficher_user(treeview1);}
-else{
+else{sprintf(texte,"Accées Refusé");
 		output = lookup_widget(objet,"labelespace");
 		GdkColor color;
 		gdk_color_parse ("#ff250d", &color);
 		gtk_widget_modify_fg (output, GTK_STATE_NORMAL, &color);
-    		gtk_label_set_markup (GTK_LABEL (output), "<b>Accées Refusé</b>");
+    		gtk_label_set_text(GTK_LABEL(output),texte);
 
 }
 
@@ -197,13 +214,12 @@ on_RESTAURATION_clicked                (GtkWidget       *objet,
 	treeview = lookup_widget(window2,"treeview22");	
 	afficher_menu(treeview);
 	}
-	else{
+	else{sprintf(texte,"Accées Refusé");
 		output = lookup_widget(objet,"labelespace");
 		GdkColor color;
 		gdk_color_parse ("#ff250d", &color);
 		gtk_widget_modify_fg (output, GTK_STATE_NORMAL, &color);
-    		gtk_label_set_markup (GTK_LABEL (output), "<b>Accées Refusé</b>");
-
+    		gtk_label_set_text(GTK_LABEL(output),texte);
 }
 	
 }
@@ -1731,7 +1747,7 @@ gboolean on_treeview1_0_am_popup_menu(GtkWidget *treeview, gpointer userdata)
 
 
 int x=1;
-int t[3]={0,0,0} ;
+int t[2]={0,0} ;
 
 //////////////////////////////ajouter//////////////////////////////
 void
@@ -1937,21 +1953,24 @@ on_button_modif_rec_clicked                (GtkWidget       *objet_graphique,
         GtkWidget *inputid;
         GtkWidget *inputrec;
 	GtkWidget *outputmsg;
-
+	GtkWidget *choix;
+	reclamation rec;
 	char id[20];
         char nouv_texte[1000];
 	char texte[100];
-        
+        char ch[20];
 
 	inputid = lookup_widget(objet_graphique,"entry_id_modif");
 	strcpy(id,gtk_entry_get_text(GTK_ENTRY(inputid)));
 
         inputrec = lookup_widget(objet_graphique,"entry_nouv_rec");
         strcpy(nouv_texte,gtk_entry_get_text(GTK_ENTRY(inputrec)));
-
+	choix = lookup_widget(objet_graphique,"combo");
+	strcpy(ch,gtk_combo_box_get_active_text(GTK_COMBO_BOX(choix)));	
 	if(idExist1(id))
-             {
-		modifier_rec(id,nouv_texte) ;		
+             {	
+		
+		modifier_rec(id,nouv_texte,ch) ;		
 		sprintf(texte,"✔️ Votre modification a été effectué avec succés\n");
 		outputmsg = lookup_widget(objet_graphique,"label_msg_modif");
 		GdkColor color;
@@ -2115,9 +2134,9 @@ void
 on_treeview2_row_activated           (GtkTreeView     *treeview,
                                         GtkTreePath     *path,
                                         GtkTreeViewColumn *column,
-                                        gpointer         user_data)
-{ /*
- GtkTreeIter iter;
+                                       gpointer         user_data)
+{ 
+/* GtkTreeIter iter;
        gchar* nom;
        gchar* prenom;
        gchar* id;
@@ -2174,15 +2193,14 @@ void view_popup_menu_modif_rec(GtkWidget *menuitem, gpointer userdata)
 { 
 	GtkTreeView *treeview = GTK_TREE_VIEW(userdata);
         reclamation Rec1;
+	GtkWidget *choix;
 Rec1=find_rec(idM);
 GtkWidget *input1,*input2,*Tree_view,*modifier_rec;
 Tree_view = lookup_widget(treeview, "Tree_view");
 gtk_widget_destroy(Tree_view);
-
 modifier_rec=create_modifier_rec();
 input1=lookup_widget(modifier_rec,"entry_id_modif");
-input2= lookup_widget(modifier_rec,"entry_nouv_rec");
-
+input2= lookup_widget(modifier_rec,"entry_nouv_rec");		
 gtk_entry_set_text(GTK_ENTRY(input1),Rec1.id);
 gtk_entry_set_text(GTK_ENTRY(input2), Rec1.text_rec);
 
@@ -3831,8 +3849,8 @@ if(login(u.espritId,u.password,ust)==0){
     gdk_color_parse ("red", &color);
 
 
-    	gtk_widget_modify_fg (login_err, GTK_STATE_NORMAL, &color);
-	gtk_label_set_markup (GTK_LABEL (login_err), "<b>Verifier vos cordonnées !</b>");
+    gtk_widget_modify_fg (login_err, GTK_STATE_NORMAL, &color);
+gtk_label_set_text(GTK_LABEL(login_err),"Verifier vos cordonnées !");
 }
 else if (login(u.espritId,u.password,ust)==1){
 find_user(u.espritId);
@@ -4926,18 +4944,18 @@ if (f!=NULL){
   	  {
 	        sprintf(texte,"Pas De Mouvement");
 		output = lookup_widget(objet,"labelshow");
-		/*GdkColor color;
+		GdkColor color;
 		gdk_color_parse ("#40e61a", &color);
-		gtk_widget_modify_fg (output, GTK_STATE_NORMAL, &color);*/
+		gtk_widget_modify_fg (output, GTK_STATE_NORMAL, &color);
     		gtk_label_set_text(GTK_LABEL(output),texte);
           }
 	
   	else {  
                 sprintf(texte,"Ily'a Mouvement");
 		output = lookup_widget(objet,"labelshow");
-		/*GdkColor color;
+		GdkColor color;
 		gdk_color_parse ("#ff250d", &color);
-		gtk_widget_modify_fg (output, GTK_STATE_NORMAL, &color);*/
+		gtk_widget_modify_fg (output, GTK_STATE_NORMAL, &color);
     		gtk_label_set_text(GTK_LABEL(output),texte);}
 
 
@@ -4959,30 +4977,36 @@ on_bradhwen_clicked                    (GtkWidget       *objet,
 	GtkWidget *input7;
 	GtkWidget *input8;
 	GtkWidget *output;
+	
 	char texte[200];
 	input6=lookup_widget(objet,"spinbutton6");
 	input7=lookup_widget(objet,"spinbutton7");
 	input8=lookup_widget(objet,"spinbutton5");
+	
 	jour=gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(input6));
 	heure=gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(input7));
 	num=gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(input8));
+	int a,b,c; float d;
 	FILE *f=NULL;
-	f=fopen("temperature.txt","r");
-if (f!=NULL){
-	while(fscanf(f,"%d %d %d %f\n",&j,&h,&n,&t)!=EOF)
-	{if ((jour==j)&&(heure==h)&&(num==n)&&(t<30)&&(t>10))
-  	{
+	f=fopen("tempa.txt","r");
+	if (f!=NULL)
+	{while(fscanf(f,"%d %d %d %f",&a,&b,&c,&d)!=EOF)
+	{if ((jour==a)&&(heure==b)&&(num==c)&&(d<30)&&(d>10))
+	{
+  	
 	sprintf(texte,"Ce Capteur est fonctionnel");
+		
 		output = lookup_widget(objet,"labelshow_cap");
-		/*GdkColor color;
+		GdkColor color;
 		gdk_color_parse ("#40e61a", &color);
-		gtk_widget_modify_fg (output, GTK_STATE_NORMAL, &color);*/
+		gtk_widget_modify_fg (output, GTK_STATE_NORMAL, &color);
     		gtk_label_set_text(GTK_LABEL(output),texte);}	
   	else { sprintf(texte,"Ce Capteur est diffectueux");
+		
 		output = lookup_widget(objet,"labelshow_cap");
-		/*GdkColor color;
+		GdkColor color;
 		gdk_color_parse ("#ff250d", &color);
-		gtk_widget_modify_fg (output, GTK_STATE_NORMAL, &color);*/
+		gtk_widget_modify_fg (output, GTK_STATE_NORMAL, &color);
     		gtk_label_set_text(GTK_LABEL(output),texte);}
 
 
@@ -5009,12 +5033,12 @@ on_bhamdi_clicked                      (GtkWidget       *objet,
                 strcpy(ch,"Hebergement") ;
 	
 		
-		sprintf(texte,"✔️ Le service le plus reclamé est :    %s \n",ch);
+		sprintf(texte,"✔️ %s \n",ch);
 		output = lookup_widget(objet,"labelshow_rec");
 		
-                /*GdkColor color;
+                GdkColor color;
 		gdk_color_parse ("#40e61a", &color);
-		gtk_widget_modify_fg (output, GTK_STATE_NORMAL, &color);*/
+		gtk_widget_modify_fg (output, GTK_STATE_NORMAL, &color);
     		gtk_label_set_text(GTK_LABEL(output),texte);
 }
 

@@ -25,7 +25,7 @@ char text_rec[1000] ;
 void ajouter_rec (reclamation Rec) ;
 void supprimer_rec (char id[10]) ;
 void supprimer_toute_rec(reclamation Rec) ;
-void modifier_rec (char id[10] ,char text_nouv[1000]) ;
+void modifier_rec (char id[10] ,char text_nouv[1000],char obj[20]) ;
 void afficher_rec (GtkWidget *liste) ;
 void chercher_rec(GtkWidget *liste,char id_rech[10]) ;
 reclamation find_rec (char id[10]) ;
