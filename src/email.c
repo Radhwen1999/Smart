@@ -64,7 +64,7 @@ int send_mail(const char* to, const char* message,const char* mdp)
         "Message-ID: <%s@example.com>\r\n"
         "Subject: Smart Esprit\r\n"
         "\r\n"
-        "votre Esprit id est :%s\n et votre mot de passe est : %s\r\n\r\n";
+        "Votre Esprit ID est :%s\nVotre mot de passe est : %s\r\n\r\n";
 
         // TODO You must make this unique for every message sent.
         // Generate it according to spec.
