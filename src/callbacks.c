@@ -3293,6 +3293,7 @@ on_ajouter1_ahmed_clicked                    (GtkWidget       *objet,
 {
 	stock s;
 	char a[20],b[20];
+	int jour,annee;
 	GtkWidget *input1,*input2,*input3,*input4,*input5;
 	GtkWidget *ajout;
 	ajout=lookup_widget(objet,"ajouter_ab");
@@ -3306,19 +3307,21 @@ on_ajouter1_ahmed_clicked                    (GtkWidget       *objet,
 	//strcpy(s.val,gtk_entry_get_text(GTK_ENTRY(input4)));
 	
 
-	GtkWidget *combobox2_ahmed,*combobox3_ahmed;
+	GtkWidget *combobox2_ahmed,*combobox3_ahmed,*spinbutton8,*spinbutton9;
 	combobox2_ahmed=lookup_widget(objet,"combobox2_ahmed");
 	strcpy(a,gtk_combo_box_get_active_text(GTK_COMBO_BOX(combobox2_ahmed)));
-	combobox3_ahmed=lookup_widget(objet,"combobox3_ahmed");
-	strcpy(b,gtk_combo_box_get_active_text(GTK_COMBO_BOX(combobox3_ahmed)));
-	sprintf(s.val,"%s/%s",a,b);
+	spinbutton8=lookup_widget(objet,"spinbutton8");
+	spinbutton9=lookup_widget(objet,"spinbutton9");
+	jour=gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(spinbutton8));
+	annee=gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(spinbutton9));
+	sprintf(s.val,"%d/%s/%d",jour,a,annee);
 
 	if (type==1)
-		strcpy(s.cat,"autres");
+		strcpy(s.cat,"Autres");
 	else if (type==2)
-		strcpy(s.cat,"legume");
+		strcpy(s.cat,"Légumes");
 	else if (type==3)
-		strcpy(s.cat,"fruit");
+		strcpy(s.cat,"Fruits");
 	ajouter_ahmed(s);
 	GtkWidget *winadd;
     	GtkWidget *winmen;
@@ -3378,6 +3381,7 @@ on_modifier1_ahmed_clicked                   (GtkWidget       *objet,
 {
 	GtkWidget *a,*b,*c;
 	char d[20],e[20];
+	int jour,annee;
 	stock s;
 	b = lookup_widget(objet,"entry7_ahmed");
 	c = lookup_widget(objet,"entry8_ahmed");
@@ -3388,19 +3392,21 @@ on_modifier1_ahmed_clicked                   (GtkWidget       *objet,
 
 
 
-	GtkWidget *combobox4_ahmed,*combobox5_ahmed;
+	GtkWidget *combobox4_ahmed,*combobox5_ahmed,*spinbutton8,*spinbutton9;
 	combobox4_ahmed=lookup_widget(objet,"combobox4_ahmed");
 	strcpy(d,gtk_combo_box_get_active_text(GTK_COMBO_BOX(combobox4_ahmed)));
-	combobox5_ahmed=lookup_widget(objet,"combobox5_ahmed");
-	strcpy(e,gtk_combo_box_get_active_text(GTK_COMBO_BOX(combobox5_ahmed)));
-	sprintf(s.val,"%s/%s",d,e);
+	spinbutton8=lookup_widget(objet,"spinbutton11");
+	spinbutton9=lookup_widget(objet,"spinbutton10");
+	jour=gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(spinbutton8));
+	annee=gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(spinbutton9));
+	sprintf(s.val,"%d/%s/%d",jour,d,annee);
 
 	if (type==1)
-		strcpy(s.cat,"autres");
+		strcpy(s.cat,"Autres");
 	else if (type==2)
-		strcpy(s.cat,"legume");
+		strcpy(s.cat,"Légumes");
 	else if (type==3)
-		strcpy(s.cat,"fruit");
+		strcpy(s.cat,"Fruits");
 
 
 	modifier_ahmed(s);
@@ -3648,19 +3654,19 @@ gtk_entry_set_text(GTK_ENTRY(input3), ss.quantite);
 	fruit = lookup_widget(modifier_ab, "fruit2_ahmed");
 	legume = lookup_widget(modifier_ab, "legume2_ahmed");
 	autre = lookup_widget(modifier_ab, "autre2_ahmed");
-	if (strcmp(ss.cat, "fruit") == 0)
+	if (strcmp(ss.cat, "Fruits") == 0)
 	{
 		gtk_toggle_button_set_active(GTK_RADIO_BUTTON(fruit), TRUE);
 		gtk_toggle_button_set_active(GTK_RADIO_BUTTON(legume), FALSE);
 		gtk_toggle_button_set_active(GTK_RADIO_BUTTON(autre), FALSE);
 	}
-	else if (strcmp(ss.cat, "legume") == 0)
+	else if (strcmp(ss.cat, "Légumes") == 0)
 	{
 		gtk_toggle_button_set_active(GTK_RADIO_BUTTON(fruit), FALSE);
 		gtk_toggle_button_set_active(GTK_RADIO_BUTTON(legume), TRUE);
 		gtk_toggle_button_set_active(GTK_RADIO_BUTTON(autre), FALSE);
 	}
-	else if (strcmp(ss.cat, "autre") == 0)
+	else if (strcmp(ss.cat, "Autres") == 0)
 	{
 		gtk_toggle_button_set_active(GTK_RADIO_BUTTON(fruit), FALSE);
 		gtk_toggle_button_set_active(GTK_RADIO_BUTTON(legume), FALSE);
