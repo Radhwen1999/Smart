@@ -233,7 +233,7 @@ int idExist22(char id_s[20])
 
 
 /////////////////////////// fct modifier_menu/////////////////////////////
-void modifier_menu (char id[20] ,char nouv_jour[20],char nouv_petit_dejeuner[20]  ,char nouv_dejeuner [20],char nouv_dinner[20])
+void modifier_menu (char id[20] ,char nouv_jour[20],char nouv_petit_dejeuner[20]  ,char nouv_dejeuner [20],char nouv_dinner[20] ,char nouv_consommateur [20] )
 {
     menu m ;
     FILE *f1;
@@ -248,8 +248,9 @@ void modifier_menu (char id[20] ,char nouv_jour[20],char nouv_petit_dejeuner[20]
 	    strcpy (m.petit_dejeuner , nouv_petit_dejeuner);
 	    strcpy (m.dejeuner , nouv_dejeuner);
 	    strcpy(m.dinner ,nouv_dinner);
+	    strcpy(m.consommateur ,nouv_consommateur);
         }
-        fprintf(f2,"%s %s %s %s %s %S  \n",m.menuId,m.jour,m.petit_dejeuner,m.dejeuner,m.dinner,m.consommateur);
+        fprintf(f2,"%s %s %s %s %s %s  \n",m.menuId,m.jour,m.petit_dejeuner,m.dejeuner,m.dinner,m.consommateur);
     }
     fclose(f1);
     fclose(f2);

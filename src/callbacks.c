@@ -4534,6 +4534,8 @@ on_button_modif_modif_clicked          (GtkWidget      *objet,
                                         gpointer         user_data)
 {
 
+        
+
         GtkWidget *inputid;
         GtkWidget *inputjour;
 	GtkWidget *outputmsg;
@@ -4547,8 +4549,10 @@ on_button_modif_modif_clicked          (GtkWidget      *objet,
 	char nouv_dejeuner[20];
 	char nouv_dinner [20];
 	char texte[100];
+	char nouv_consommateur[20];
+	menu m;
         
-
+        strcpy(nouv_consommateur,m.consommateur);
 	inputid = lookup_widget(objet,"entry_menuId_modif");
 	strcpy(id,gtk_entry_get_text(GTK_ENTRY(inputid)));
 
@@ -4563,10 +4567,13 @@ on_button_modif_modif_clicked          (GtkWidget      *objet,
 
 	inputdinner = lookup_widget(objet,"entry_dinner_modif");
         strcpy(nouv_dinner,gtk_entry_get_text(GTK_ENTRY(inputdinner)));
+	
+	m=find_m(id);        
+        strcpy(nouv_consommateur,m.consommateur);
 
 	if(idExist22(id))
              {
-		modifier_menu(id,nouv_jour,nouv_petit,nouv_dejeuner,nouv_dinner) ;		
+		modifier_menu(id,nouv_jour,nouv_petit,nouv_dejeuner,nouv_dinner ,nouv_consommateur) ;		
 		sprintf(texte,"✔️ Votre modification a été effectué avec succés\n");
 		outputmsg = lookup_widget(objet,"label_modif_ob");
 		GdkColor color;

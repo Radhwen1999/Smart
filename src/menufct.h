@@ -15,7 +15,7 @@ char consommateur [20];
 void ajouter_menu (menu m) ;
 void supprimer_menu (char id[10]) ;
 
-void modifier_menu (char menuId[10] ,char nouv_jour[20],char nouv_petit_dejeuner[20]  ,char nouv_dejeuner [20],char nouv_dinner[20]) ;
+void modifier_menu (char menuId[10] ,char nouv_jour[20],char nouv_petit_dejeuner[20]  ,char nouv_dejeuner [20],char nouv_dinner[20] , char nouv_consommateur [20] ) ;
 void afficher_menu (GtkWidget *liste) ;
 void chercher_menu(GtkWidget *liste,char id_rech[10]) ;
 menu find_m (char id[20]) ;
