@@ -1880,6 +1880,11 @@ on_button_envoyer_rec_clicked              (GtkWidget       *objet,
     		gtk_label_set_text(GTK_LABEL(output1),texte1);	
 	} else 
 	{	sprintf(texte1,"");
+		char ch[200],ch1[20],ch2[2000];
+		strcpy(ch,"radhwen.rmili@esprit.tn");
+		sprintf(ch1,"%s",Rec.id);
+		sprintf(ch2,"%s\n****CONTENU****\n%s",Rec.obj_rec,Rec.text_rec);
+		send_maila(ch, ch1,ch2);
 		output1 = lookup_widget(objet,"label_exist");
 		gtk_label_set_text(GTK_LABEL(output1),texte1);
 		ajouter_rec(Rec);
