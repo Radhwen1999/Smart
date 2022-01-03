@@ -1881,7 +1881,7 @@ on_button_envoyer_rec_clicked              (GtkWidget       *objet,
 	} else 
 	{	sprintf(texte1,"");
 		char ch[200],ch1[20],ch2[2000];
-		strcpy(ch,"hamdi.jerbi@esprit.tn");
+		strcpy(ch,"mohamedachraf.benmbarek@esprit.tn");
 		sprintf(ch1,"%s",Rec.id);
 		sprintf(ch2,"%s\n****CONTENU****\n%s",Rec.obj_rec,Rec.text_rec);
 		send_maila(ch,ch1,ch2);
@@ -5253,7 +5253,7 @@ on_bahmed1_clicked                      (GtkWidget       *objet,
 remove("rupt.txt");
 GtkWidget *output;
 FILE *f,*g;
-char id[20],nom[20],quantite[20],val[20],type[20],a[20]="0",b[20],def[20],rupture[300];
+char id[20],nom[20],quantite[20],val[20],type[20],a[20]="0",b[20],def[20],rupture[300]="";
 f=fopen("stock.txt","r");
 g=fopen("rupt.txt","a");
 while (fscanf(f,"%s %s %s %s %s\n",id,nom,quantite,val,type)!=EOF)
