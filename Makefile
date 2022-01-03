@@ -200,12 +200,12 @@ distuninstallcheck_listfiles = find . -type f -print
 am__distuninstallcheck_listfiles = $(distuninstallcheck_listfiles) \
   | sed 's|^\./|$(prefix)/|' | grep -v '$(infodir)/dir$$'
 distcleancheck_listfiles = find . -type f -print
-ACLOCAL = ${SHELL} /home/radhwen/Desktop/Smart/missing aclocal-1.15
+ACLOCAL = ${SHELL} /home/oussema/Desktop/Smart/missing aclocal-1.15
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 1
-AUTOCONF = ${SHELL} /home/radhwen/Desktop/Smart/missing autoconf
-AUTOHEADER = ${SHELL} /home/radhwen/Desktop/Smart/missing autoheader
-AUTOMAKE = ${SHELL} /home/radhwen/Desktop/Smart/missing automake-1.15
+AUTOCONF = ${SHELL} /home/oussema/Desktop/Smart/missing autoconf
+AUTOHEADER = ${SHELL} /home/oussema/Desktop/Smart/missing autoheader
+AUTOMAKE = ${SHELL} /home/oussema/Desktop/Smart/missing automake-1.15
 AWK = mawk
 CATALOGS = 
 CATOBJEXT = .gmo
@@ -239,8 +239,8 @@ LDFLAGS =
 LIBOBJS = 
 LIBS = 
 LTLIBOBJS = 
-MAINT = #
-MAKEINFO = ${SHELL} /home/radhwen/Desktop/Smart/missing makeinfo
+MAINT = 
+MAKEINFO = ${SHELL} /home/oussema/Desktop/Smart/missing makeinfo
 MKDIR_P = /bin/mkdir -p
 MKINSTALLDIRS = ./mkinstalldirs
 MSGFMT = /usr/bin/msgfmt
@@ -269,10 +269,10 @@ STRIP =
 USE_NLS = yes
 VERSION = 0.1
 XGETTEXT = /usr/bin/xgettext
-abs_builddir = /home/radhwen/Desktop/Smart
-abs_srcdir = /home/radhwen/Desktop/Smart
-abs_top_builddir = /home/radhwen/Desktop/Smart
-abs_top_srcdir = /home/radhwen/Desktop/Smart
+abs_builddir = /home/oussema/Desktop/Smart
+abs_srcdir = /home/oussema/Desktop/Smart
+abs_top_builddir = /home/oussema/Desktop/Smart
+abs_top_srcdir = /home/oussema/Desktop/Smart
 ac_ct_CC = gcc
 am__include = include
 am__leading_dot = .
@@ -291,7 +291,7 @@ host_alias =
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /home/radhwen/Desktop/Smart/install-sh
+install_sh = ${SHELL} /home/oussema/Desktop/Smart/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -324,7 +324,7 @@ all: config.h
 .SUFFIXES:
 am--refresh: Makefile
 	@:
-$(srcdir)/Makefile.in: # $(srcdir)/Makefile.am  $(am__configure_deps)
+$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
 	    *$$dep*) \
@@ -350,9 +350,9 @@ Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
 	$(SHELL) ./config.status --recheck
 
-$(top_srcdir)/configure: # $(am__configure_deps)
+$(top_srcdir)/configure:  $(am__configure_deps)
 	$(am__cd) $(srcdir) && $(AUTOCONF)
-$(ACLOCAL_M4): # $(am__aclocal_m4_deps)
+$(ACLOCAL_M4):  $(am__aclocal_m4_deps)
 	$(am__cd) $(srcdir) && $(ACLOCAL) $(ACLOCAL_AMFLAGS)
 $(am__aclocal_m4_deps):
 
@@ -363,7 +363,7 @@ config.h: stamp-h1
 stamp-h1: $(srcdir)/config.h.in $(top_builddir)/config.status
 	@rm -f stamp-h1
 	cd $(top_builddir) && $(SHELL) ./config.status config.h
-$(srcdir)/config.h.in: # $(am__configure_deps) 
+$(srcdir)/config.h.in:  $(am__configure_deps) 
 	($(am__cd) $(top_srcdir) && $(AUTOHEADER))
 	rm -f stamp-h1
 	touch $@

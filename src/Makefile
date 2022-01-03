@@ -163,12 +163,12 @@ ETAGS = etags
 CTAGS = ctags
 am__DIST_COMMON = $(srcdir)/Makefile.in $(top_srcdir)/depcomp
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = ${SHELL} /home/radhwen/Desktop/Smart/missing aclocal-1.15
+ACLOCAL = ${SHELL} /home/oussema/Desktop/Smart/missing aclocal-1.15
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 1
-AUTOCONF = ${SHELL} /home/radhwen/Desktop/Smart/missing autoconf
-AUTOHEADER = ${SHELL} /home/radhwen/Desktop/Smart/missing autoheader
-AUTOMAKE = ${SHELL} /home/radhwen/Desktop/Smart/missing automake-1.15
+AUTOCONF = ${SHELL} /home/oussema/Desktop/Smart/missing autoconf
+AUTOHEADER = ${SHELL} /home/oussema/Desktop/Smart/missing autoheader
+AUTOMAKE = ${SHELL} /home/oussema/Desktop/Smart/missing automake-1.15
 AWK = mawk
 CATALOGS = 
 CATOBJEXT = .gmo
@@ -202,8 +202,8 @@ LDFLAGS =
 LIBOBJS = 
 LIBS = 
 LTLIBOBJS = 
-MAINT = #
-MAKEINFO = ${SHELL} /home/radhwen/Desktop/Smart/missing makeinfo
+MAINT = 
+MAKEINFO = ${SHELL} /home/oussema/Desktop/Smart/missing makeinfo
 MKDIR_P = /bin/mkdir -p
 MKINSTALLDIRS = ./mkinstalldirs
 MSGFMT = /usr/bin/msgfmt
@@ -232,10 +232,10 @@ STRIP =
 USE_NLS = yes
 VERSION = 0.1
 XGETTEXT = /usr/bin/xgettext
-abs_builddir = /home/radhwen/Desktop/Smart/src
-abs_srcdir = /home/radhwen/Desktop/Smart/src
-abs_top_builddir = /home/radhwen/Desktop/Smart
-abs_top_srcdir = /home/radhwen/Desktop/Smart
+abs_builddir = /home/oussema/Desktop/Smart/src
+abs_srcdir = /home/oussema/Desktop/Smart/src
+abs_top_builddir = /home/oussema/Desktop/Smart
+abs_top_srcdir = /home/oussema/Desktop/Smart
 ac_ct_CC = gcc
 am__include = include
 am__leading_dot = .
@@ -254,7 +254,7 @@ host_alias =
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /home/radhwen/Desktop/Smart/install-sh
+install_sh = ${SHELL} /home/oussema/Desktop/Smart/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -294,12 +294,12 @@ smart_SOURCES = \
 	menufct.c menufct.h \
 	etudiant1.c etudiant1.h
 
-smart_LDADD = -lgtk-x11-2.0 -lgdk-x11-2.0 -lpangocairo-1.0 -latk-1.0 -lcairo -lgdk_pixbuf-2.0 -lgio-2.0 -lpangoft2-1.0 -lpango-1.0 -lgobject-2.0 -lglib-2.0 -lfontconfig -lfreetype $(INTLLIBS)
+smart_LDADD = -lcurl -lgtk-x11-2.0 -lgdk-x11-2.0 -lpangocairo-1.0 -latk-1.0 -lcairo -lgdk_pixbuf-2.0 -lgio-2.0 -lpangoft2-1.0 -lpango-1.0 -lgobject-2.0 -lglib-2.0 -lfontconfig -lfreetype $(INTLLIBS)
 all: all-am
 
 .SUFFIXES:
 .SUFFIXES: .c .o .obj
-$(srcdir)/Makefile.in: # $(srcdir)/Makefile.am  $(am__configure_deps)
+$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
 	    *$$dep*) \
@@ -323,9 +323,9 @@ Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 
-$(top_srcdir)/configure: # $(am__configure_deps)
+$(top_srcdir)/configure:  $(am__configure_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
-$(ACLOCAL_M4): # $(am__aclocal_m4_deps)
+$(ACLOCAL_M4):  $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(am__aclocal_m4_deps):
 install-binPROGRAMS: $(bin_PROGRAMS)
