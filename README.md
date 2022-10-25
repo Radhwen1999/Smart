@@ -106,9 +106,15 @@ To get a local copy up and running follow these simple example steps.
 ### Prerequisites
 
 This is an example of how to list things you need to use the software and how to install them.
-* npm
+Make sure to run these commands to update the pachakge manager
+sudo apt-get update && sudo apt-get upgrade
+* Gtk 2.0
   ```sh
-  npm install npm@latest -g
+  sudo apt-get install gtk2.0
+  ```
+* Gtk 2.0
+  ```sh
+  sudo apt-get install gtk2.0
   ```
 
 ### Installation
