@@ -73,7 +73,7 @@
 ## About The Project
 
 <div align="center">
-  <img src="images/smart.png" alt="Logo" width="80" height="80">
+  <img src="images/Smart.png" alt="Logo" width="80" height="80">
 </div>
 
 
